@@ -1,0 +1,9 @@
+.PrimaryButton {
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border: none;
+    background-color: #1e262c;
+    font-size: 1rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
