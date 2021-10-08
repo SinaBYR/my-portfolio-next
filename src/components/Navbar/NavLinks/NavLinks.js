@@ -10,7 +10,7 @@ const NavLinks = props => {
                 <SocialIcon style={{width: '40px', height: '40px'}} url="https://wwww.linkedin.com/sinabyr"/>
             </li>
             <li>
-                {/* <SocialIcon style={{width: '40px', height: '40px'}} url="https://wwww.twitter.com/sinabyr"/> */}
+                <SocialIcon style={{width: '40px', height: '40px'}} url="https://wwww.twitter.com/sinabyr"/>
             </li>
         </>
     )
