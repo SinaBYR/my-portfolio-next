@@ -2,10 +2,9 @@
     display: flex;
     align-items: center;
     height: 300px;
-    /* background-color: red; */
-    margin-top: 72px;
     background-color: #eeeeee;
-
+    padding: 0 1rem;
+    margin-top: 72px;
 }
 
 .ShowcaseWrapper {
@@ -22,4 +21,5 @@
 .ShowcaseWrapper p {
     font-size: 1.8rem;
     line-height: 1.4;
+    margin: 0.5rem 0;
 }

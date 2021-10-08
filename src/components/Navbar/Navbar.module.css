@@ -3,10 +3,10 @@
     top: 0;
     left: 0;
     right: 0;
+    height: 72px;
     color: #1e262c;
     background-color: #fff;
-    height: 56px;
-    height: 72px;
+    padding: 0 1rem;
     border-bottom: 1px solid #cccccc;
 }
 
@@ -19,10 +19,9 @@
 }
 
 .Links {
+    display: flex;
     margin-left: auto;
     margin-right: 1rem;
-    display: flex;
-    list-style: none;
 }
 
 .Links li {
