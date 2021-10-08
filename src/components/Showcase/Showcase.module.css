@@ -1,0 +1,25 @@
+.Showcase {
+    display: flex;
+    align-items: center;
+    height: 300px;
+    /* background-color: red; */
+    margin-top: 72px;
+    background-color: #eeeeee;
+
+}
+
+.ShowcaseWrapper {
+    width: 100%;
+    max-width: 980px;
+    /* background-color: blue; */
+    margin: 0 auto;
+}
+
+.ShowcaseWrapper h2 {
+    font-size: 2.8rem;
+}
+
+.ShowcaseWrapper p {
+    font-size: 1.8rem;
+    line-height: 1.4;
+}

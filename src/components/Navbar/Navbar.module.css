@@ -1,4 +1,8 @@
 .Navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     color: #1e262c;
     background-color: #fff;
     height: 56px;
