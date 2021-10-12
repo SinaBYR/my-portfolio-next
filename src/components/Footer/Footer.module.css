@@ -1,6 +1,7 @@
 .Footer {
+    width: 100%;
     background-color: #f7f7f7;
-    padding: 3rem 0;
+    padding: 32px 0;
     text-align: center;
 }
 
