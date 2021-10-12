@@ -1,14 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+
 body {
     margin: 0;
     /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif; */
     font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Noto Sans Mono', monospace;
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Cairo', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: #10456e;
     color: #1e262c;
 
     /* background-color: #eeeeee; */

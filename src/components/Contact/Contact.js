@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import classes from './Contact.module.css';
+import { SocialIcon } from 'react-social-icons';
+import { PrimaryButton } from '../Utilities/Buttons/PrimaryButton/PrimaryButton';
 
 const Contact = props => {
 
@@ -29,12 +31,20 @@ const Contact = props => {
                 <h2>Get in touch</h2>
                 <form className={classes.Form}>
                     <label htmlFor="name">Name</label>
-                    <input type="text" name="name" id="name" value="" autoComplete="off"/>
+                    <input type="text" name="name" id="name" autoComplete="off"/>
                     <label>Email</label>
-                    <input type="email" name="email" id="email" value="" autoComplete="off"/>
+                    <input type="email" name="email" id="email" autoComplete="off"/>
                     <label>Message</label>
-                    <input type="text" name="message" id="message" value="" autoComplete="off"/>
+                    <textarea name="message" id="message" />
+                    <PrimaryButton type="submit">Send</PrimaryButton>
                 </form>
+                <div className={classes.OrLine}>
+                    <p>or</p>
+                </div>
+                <div className={classes.SocialIcons}>
+                    <SocialIcon style={{width: '40px', height: '40px'}} url="https://wwww.linkedin.com/sinabyr"/>
+                    <p>LinkedIn</p>
+                </div>
             </div>
         </section>
     )
