@@ -2,15 +2,12 @@ import { useState } from 'react';
 import classes from './Contact.module.css';
 import { PrimaryButton } from '../Utilities/Buttons/PrimaryButton/PrimaryButton';
 import { setValuesAndErrors, setTouched, setErrors, setValues } from './form-handling';
+import ScaleLoader from 'react-spinners/ScaleLoader';
+import PulseLoader from 'react-spinners/PulseLoader';
 
 const Contact = props => {
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
-        // name: {
-        //     value: '',
-        //     error: null,
-        //     touched: false
-        // },
         email: {
             value: '',
             error: null,
@@ -44,16 +41,11 @@ const Contact = props => {
         console.log(formData);
     }
 
-    console.log(formData)
-
     return (
         <section className={classes.Contact}>
             <div className={classes.ContactWrapper}>
-                {/* <h2>Get in touch</h2> */}
                 <h2>Contact Me</h2>
                 <form className={classes.Form} onSubmit={sendData}>
-                    {/* <label htmlFor="name">Name</label>
-                    <input type="text" name="name" id="name" autoComplete="off" onChange={onChangeHandler}/> */}
                     <label>Email</label>
                     <p className={classes.ErrorMessage}>{formData.email.error}</p>
                     <input
@@ -76,7 +68,7 @@ const Contact = props => {
                         onFocus={onFocusHandler}
                         onBlur={onBlurHandler}
                         />
-                    <PrimaryButton type="submit">{loading ? 'Loading...' : 'Send'}</PrimaryButton>
+                    <PrimaryButton type="submit">{loading ? <ScaleLoader color="#eeeeee" height="10px" radius="2px"/> : 'Send'}</PrimaryButton>
                 </form>
             </div>
         </section>
