@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classes from './Contact.module.css';
 import { PrimaryButton } from '../Utilities/Buttons/PrimaryButton/PrimaryButton';
-import { setTouched, setErrors, setValues, isValid } from './form-handling';
+import { setTouched, setErrors, setValues, isValid } from './form-data-handling';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
 const Contact = () => {
