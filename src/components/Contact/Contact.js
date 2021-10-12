@@ -38,13 +38,6 @@ const Contact = props => {
                     <textarea name="message" id="message" />
                     <PrimaryButton type="submit">Send</PrimaryButton>
                 </form>
-                <div className={classes.OrLine}>
-                    <p>or</p>
-                </div>
-                <div className={classes.SocialIcons}>
-                    <SocialIcon style={{width: '40px', height: '40px'}} url="https://wwww.linkedin.com/sinabyr"/>
-                    <p>LinkedIn</p>
-                </div>
             </div>
         </section>
     )
