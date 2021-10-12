@@ -27,3 +27,7 @@ body {
 li {
     list-style: none;
 }
+
+a {
+    color: #1e262c;
+}

@@ -1,0 +1,11 @@
+.Footer {
+    background-color: #f7f7f7;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.Photographer {
+    font-style: italic;
+    font-size: 0.75rem;
+    color: gray;
+}

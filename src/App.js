@@ -2,6 +2,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Work } from "./components/Work/Work";
 import { Showcase } from "./components/Showcase/Showcase";
 import { Contact } from "./components/Contact/Contact";
+import { Footer } from "./components/Footer/Footer";
 
 const App = () => {
     return (
@@ -10,6 +11,7 @@ const App = () => {
                 <Showcase />
                 <Work />
                 <Contact />
+                <Footer />
             </div>
     )
 }
