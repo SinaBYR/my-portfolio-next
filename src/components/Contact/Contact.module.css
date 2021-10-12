@@ -26,6 +26,10 @@
     font-size: 1.2rem;
 }
 
+.ErrorMessage {
+    color: red;
+}
+
 .Form :is(input, textarea) {
     display: block;
     width: 100%;
@@ -36,5 +40,5 @@
 
 .Form textarea {
     resize: vertical;
-    height: 150px;
+    height: 100px;
 }
