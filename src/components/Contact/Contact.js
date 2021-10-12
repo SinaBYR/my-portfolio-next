@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import classes from './Contact.module.css';
 import { PrimaryButton } from '../Utilities/Buttons/PrimaryButton/PrimaryButton';
-import { setValuesAndErrors, setTouched, setErrors, setValues } from './form-handling';
+import { setTouched, setErrors, setValues, isValid } from './form-handling';
 import ScaleLoader from 'react-spinners/ScaleLoader';
-import PulseLoader from 'react-spinners/PulseLoader';
-import { isValid } from './form-handling/validation/validation';
 
-const Contact = props => {
+const Contact = () => {
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         email: {
@@ -34,14 +32,15 @@ const Contact = props => {
     }
 
     const sendData = (e) => {
-        setLoading(true)
         e.preventDefault();
+
+        if(!isValid(formData)) {
+            return false
+        }
+        setLoading(true)
         setTimeout(() => {
-            setLoading(false)
-            if(isValid(formData)) {
-                console.log('Okay')
-            }
             console.log(formData);
+            setLoading(false)
         }, 2000)
     }
 
@@ -72,7 +71,9 @@ const Contact = props => {
                         onFocus={onFocusHandler}
                         onBlur={onBlurHandler}
                         />
-                    <PrimaryButton type="submit">{loading ? <ScaleLoader color="#eeeeee" height="10px" radius="2px"/> : 'Send'}</PrimaryButton>
+                    <PrimaryButton type="submit" disabled={loading}>
+                        {loading ? <ScaleLoader color="#eeeeee" height="10px" radius="2px"/> : 'Send'}
+                    </PrimaryButton>
                 </form>
             </div>
         </section>

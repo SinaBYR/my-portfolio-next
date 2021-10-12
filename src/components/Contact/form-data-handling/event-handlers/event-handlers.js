@@ -12,7 +12,7 @@ export const setTouched = (data, e) => {
     }
 }
 
-// set inputs values & errors
+// set inputs values
 export const setValues = (data, e) => {
     const field = e.target.name;
     return {
@@ -24,6 +24,7 @@ export const setValues = (data, e) => {
     }
 }
 
+// set inputs errors
 export const setErrors = (data, e) => {
     const field = e.target.name;
     const errors = validationErrors(data);
