@@ -26,3 +26,10 @@ export const validationErrors = ({ email, message }) => {
 
     return errors
 }
+
+export const isValid = (data) => {
+    const valid = Object.keys(data).every(inputName => {
+        return data[inputName].touched && !data[inputName].error
+    })
+    return valid
+}

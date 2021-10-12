@@ -4,6 +4,7 @@ import { PrimaryButton } from '../Utilities/Buttons/PrimaryButton/PrimaryButton'
 import { setValuesAndErrors, setTouched, setErrors, setValues } from './form-handling';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import PulseLoader from 'react-spinners/PulseLoader';
+import { isValid } from './form-handling/validation/validation';
 
 const Contact = props => {
     const [loading, setLoading] = useState(false)
@@ -37,8 +38,11 @@ const Contact = props => {
         e.preventDefault();
         setTimeout(() => {
             setLoading(false)
+            if(isValid(formData)) {
+                console.log('Okay')
+            }
+            console.log(formData);
         }, 2000)
-        console.log(formData);
     }
 
     return (
