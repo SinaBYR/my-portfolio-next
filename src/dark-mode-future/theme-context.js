@@ -1,11 +1,11 @@
 import { createContext } from "react";
-import { theme } from "./theme-reducer";
+import { themeColor } from "./theme-reducer";
 
-const ThemeContext = createContext(theme);
+export const ThemeContext = createContext(undefined);
 
 export const ThemeProvider = (props) => {
     return (
-        <ThemeContext.Provider value={theme}>
+        <ThemeContext.Provider value={themeColor}>
             {props.children}
         </ThemeContext.Provider>
     )

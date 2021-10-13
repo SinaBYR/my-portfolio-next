@@ -1,5 +1,4 @@
 import { SocialIcon } from 'react-social-icons';
-import { PrimaryButton } from '../../Utilities';
 
 const NavLinks = ({ mobile }) => {
     let links = (

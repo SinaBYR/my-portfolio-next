@@ -1,6 +1,6 @@
-export const theme = 'light';
+export const themeColor = 'light';
 
-export const themeReducer = (state = theme, action) => {
+export const themeReducer = (theme, action) => {
     if (action.type === 'darken') {
         return 'dark'
     }
