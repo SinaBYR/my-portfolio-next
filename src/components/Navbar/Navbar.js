@@ -7,9 +7,7 @@ import { useState } from 'react/cjs/react.development';
 const Navbar = props => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const menuClickHandler = () => {
-        setIsMenuOpen(!isMenuOpen)
-    }
+    const menuClickHandler = () => setIsMenuOpen(!isMenuOpen);
 
     return (
         <header className={classes.Navbar}>
