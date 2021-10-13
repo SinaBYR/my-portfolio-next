@@ -35,4 +35,10 @@ h1 {
     .Links {
         display: none;
     }
+    
+    /* PrimaryLink ( resume download link ) */
+    .NavbarWrapper > *:last-child {
+        margin-left: auto;
+    }
+
 }
