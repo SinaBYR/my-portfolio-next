@@ -1,8 +1,8 @@
 import classes from './Navbar.module.css';
+import { useState } from 'react/cjs/react.development';
 import { NavLinks } from './NavLinks/NavLinks';
 import { BsDownload } from 'react-icons/bs';
 import { Burger, PrimaryLink, DarkModeCheckbox } from '../Utilities';
-import { useState } from 'react/cjs/react.development';
 import { Menu } from './Menu/Menu';
 
 const Navbar = props => {
