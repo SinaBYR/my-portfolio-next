@@ -1,6 +1,5 @@
-import { Project } from './Project/Project';
 import classes from './Work.module.css';
-
+import { Project } from './Project/Project';
 
 const Work = props => {
     return (
