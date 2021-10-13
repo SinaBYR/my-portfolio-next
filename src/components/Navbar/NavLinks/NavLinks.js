@@ -20,10 +20,10 @@ const NavLinks = ({ mobile }) => {
         links = (
             <>
                 <li>
-                    <SocialIcon bgColor="#eeeeee" style={{width: '80px', height: '80px'}} url="https://github.com/SinaBYR"/>
+                    <SocialIcon style={{width: '80px', height: '80px'}} url="https://github.com/SinaBYR"/>
                 </li>
                 <li>
-                    <SocialIcon bgColor="#eeeeee" style={{width: '80px', height: '80px'}} url="https://wwww.linkedin.com/sinabyr"/>
+                    <SocialIcon style={{width: '80px', height: '80px'}} url="https://wwww.linkedin.com/sinabyr"/>
                 </li>
                 <li>
                     <SocialIcon style={{width: '80px', height: '80px'}} url="https://wwww.twitter.com/sinabyr"/>

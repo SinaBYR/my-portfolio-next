@@ -1,5 +1,6 @@
 import classes from './Menu.module.css';
 import { NavLinks } from '../NavLinks/NavLinks';
+import { DarkModeCheckbox } from '../../Utilities';
 
 const Menu = ({ open }) => {
     const classNames = [classes.Menu, open ? classes.Open : null].join(' ')
@@ -9,7 +10,10 @@ const Menu = ({ open }) => {
             <ul className={classes.Links}>
                 <NavLinks mobile/>
             </ul>
-            <div>Dark Mode</div>
+            <div className={classes.DarkMode}>
+                <span>Theme Mode</span>
+                <DarkModeCheckbox />
+            </div>
         </div>
     )
 }

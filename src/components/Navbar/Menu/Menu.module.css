@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50%;
+    height: 25%;
 }
 
 .Links > li {
@@ -28,4 +28,14 @@
 
 .Links a {
     font-size: 2rem !important;
+}
+
+.DarkMode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.DarkMode > * {
+    margin: 0 4px;
 }
