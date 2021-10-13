@@ -1,7 +1,7 @@
-import { PrimaryButton } from '../Utilities/Buttons/PrimaryButton/PrimaryButton';
 import classes from './Navbar.module.css';
 import { NavLinks } from './NavLinks/NavLinks';
 import { BsDownload } from 'react-icons/bs';
+import { PrimaryLink } from '../Utilities';
 
 const Navbar = props => {
     return (
@@ -13,7 +13,7 @@ const Navbar = props => {
                 <ul className={classes.Links}>
                     <NavLinks />
                 </ul>
-                <PrimaryButton>Resume <BsDownload /></PrimaryButton>
+                <PrimaryLink>Resume <BsDownload /></PrimaryLink>
             </nav>
         </header>
     )
