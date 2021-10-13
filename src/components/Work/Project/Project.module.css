@@ -1,7 +1,6 @@
 .Project {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    /* border: 1px solid #bdbdbd; */
     background-color: #f7f7f7;
     padding: 1.5rem;
     border-radius: 5px;
@@ -13,7 +12,14 @@
     box-shadow: 0 0 8px #bdbdbd;
 }
 
-.Preview {
+.DesktopPreview {
+    background-color: #bdbdbd;
+    width: 100%;
+    height: 180px;
+}
+
+.MobilePreview {
+    display: none;
     background-color: #bdbdbd;
     width: 100%;
     height: 180px;
@@ -53,4 +59,30 @@
     color: #2c3842;
     margin: 4px 0;
     list-style: square;
+}
+
+@media screen and (max-width: 680px) {
+    .Project {
+        grid-template-columns: 1fr;
+    }
+
+    .Project h2 {
+        font-size: 1.5rem;
+    }
+
+    .DesktopPreview {
+        display: none;
+    }
+
+    .MobilePreview {
+        display: block;
+    }
+
+    .Links {
+        text-align: center;
+    }
+
+    .Description {
+        margin-right: 0;
+    }
 }

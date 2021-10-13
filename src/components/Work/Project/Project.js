@@ -7,6 +7,7 @@ const Project = props => {
         <section className={classes.Project}>
             <div>
                 <h2>Spotify API Dashboard</h2>
+                <div className={classes.MobilePreview}></div>
                 <div className={classes.Links}>
                     <PrimaryLink>Demo <BiLinkExternal /></PrimaryLink>
                     <PrimaryLink>Code <BiLinkExternal /></PrimaryLink>
@@ -23,7 +24,7 @@ const Project = props => {
                     </ul>
                 </div>
             </div>
-            <div className={classes.Preview}></div>
+            <div className={classes.DesktopPreview}></div>
         </section>
     )
 }
