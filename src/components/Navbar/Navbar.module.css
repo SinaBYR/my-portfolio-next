@@ -4,7 +4,8 @@
     left: 0;
     right: 0;
     height: 72px;
-    background-color: #fff;
+    background-color: #ffffff;
+    /* background-color: #1e262c; */
     padding: 0 1rem;
     border-bottom: 1px solid #cccccc;
 }
@@ -17,18 +18,25 @@
     height: 100%;
 }
 
+.Logo {
+    font-size: 24px;
+}
+
+.DarkMode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 4px;
+}
+
 .Links {
     display: flex;
-    margin-left: auto;
     margin-right: 1rem;
 }
 
 .Links li {
     margin: 0 4px;
-}
-
-h1 {
-    font-size: 24px;
 }
 
 @media screen and (max-width: 680px) {
