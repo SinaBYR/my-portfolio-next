@@ -31,3 +31,8 @@ li {
 a {
     color: #1e262c;
 }
+
+.Dark {
+    color: #f7f7f7;
+    background-color: red;
+}

@@ -2,10 +2,12 @@ import classes from './Navbar.module.css';
 import { useState } from 'react/cjs/react.development';
 import { NavLinks } from './NavLinks/NavLinks';
 import { BsDownload } from 'react-icons/bs';
-import { Burger, PrimaryLink, DarkModeCheckbox } from '../Utilities';
+import { Burger, PrimaryLink, SecondaryLink } from '../Utilities';
 import { Menu } from './Menu/Menu';
 import { useContext } from 'react';
 import { ThemeContext } from '../../dark-mode-future/theme-context';
+import { colors } from '../../color-palette/color-palette';
+import { DarkModeCheckbox } from './DarkModeCheckbox/DarkModeCheckbox';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +17,7 @@ const Navbar = () => {
 
     // console.log('Navbar: ', dark)
     return (
-        <header className={classes.Navbar} style={{backgroundColor: dark ? '#1e262c' : '#f7f7f7'}}>
+        <header className={classes.Navbar} style={{backgroundColor: dark ? colors.secondary : colors.primary}}>
             <nav className={classes.NavbarWrapper}>
                 <Burger open={isMenuOpen} click={menuClickHandler}/>
                 <Menu open={isMenuOpen}/>
@@ -26,7 +28,13 @@ const Navbar = () => {
                 <ul className={classes.Links}>
                     <NavLinks />
                 </ul>
-                <PrimaryLink>Resume <BsDownload /></PrimaryLink>
+                {
+                    dark
+                    ?
+                    <SecondaryLink>Resume <BsDownload /></SecondaryLink>
+                    :
+                    <PrimaryLink>Resume <BsDownload /></PrimaryLink>
+                }
             </nav>
         </header>
     )

@@ -5,8 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './dark-mode-future/theme-context';
 
-export const ThemeContext = createContext(undefined);
-
 ReactDOM.render(
   <React.StrictMode>
         <ThemeProvider>

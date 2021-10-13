@@ -1,5 +1,5 @@
-import { useContext } from 'react';
 import classes from './DarkModeCheckbox.module.css';
+import { useContext } from 'react';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import { DispatchContext, ThemeContext } from '../../../dark-mode-future/theme-context';
 
@@ -10,10 +10,13 @@ const DarkModeCheckbox = () => {
 
     const onChangeHandler = e => {
         if(!dark) {
-            return dispatch({type: 'darken'})
+            dispatch({type: 'darken'})
+            localStorage.setItem('dark', true)
+            return
         }
 
         dispatch({type: 'lighten'})
+        localStorage.setItem('dark', false)
     }
 
     // console.log('dark: ', dark)
