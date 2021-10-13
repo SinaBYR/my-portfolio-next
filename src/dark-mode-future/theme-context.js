@@ -1,12 +1,17 @@
-import { createContext } from "react";
-import { themeColor } from "./theme-reducer";
+import { createContext, useReducer } from "react";
+import { initialState, themeReducer } from "./theme-reducer";
 
-export const ThemeContext = createContext(undefined);
+export const ThemeContext = createContext()
+export const DispatchContext = createContext()
 
 export const ThemeProvider = (props) => {
+    const [dark, dispatch] = useReducer(themeReducer, initialState)
+
     return (
-        <ThemeContext.Provider value={themeColor}>
-            {props.children}
-        </ThemeContext.Provider>
+        <DispatchContext.Provider value={dispatch}>
+            <ThemeContext.Provider value={dark}>
+                {props.children}
+            </ThemeContext.Provider>
+        </DispatchContext.Provider>
     )
 }

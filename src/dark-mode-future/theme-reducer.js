@@ -1,9 +1,15 @@
-export const themeColor = 'light';
+export const initialState = false;
 
-export const themeReducer = (theme, action) => {
-    if (action.type === 'darken') {
-        return 'dark'
+export const themeReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case 'darken': {
+            return true
+        }
+        case 'lighten': {
+            return false
+        }
+        default: {
+            return state
+        }
     }
-
-    return 'light'
 }

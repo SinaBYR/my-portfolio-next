@@ -3,17 +3,15 @@ import { Work } from "./components/Work/Work";
 import { Showcase } from "./components/Showcase/Showcase";
 import { Contact } from "./components/Contact/Contact";
 import { Footer } from "./components/Footer/Footer";
-// import { useReducer } from "react";
-// import { themeReducer, themeColor } from "./dark-mode-future/theme-reducer";
+import { useContext } from "react/cjs/react.development";
+import { ThemeContext } from "./dark-mode-future/theme-context";
 
 const App = () => {
-    // const [theme, dispatch] = useReducer(themeReducer, themeColor)
-
+    const dark = useContext(ThemeContext)
     return (
-        <div>
+        <div style={{color: dark ? '#f7f7f7' : '#1e262c'}}>
             <Navbar />
             <Showcase />
-            {/* <button onClick={() => dispatch({type: 'darken'})}>Change</button> */}
             <Work />
             <Contact />
             <Footer />

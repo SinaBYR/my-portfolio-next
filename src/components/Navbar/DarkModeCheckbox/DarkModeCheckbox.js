@@ -1,27 +1,30 @@
-import { useReducer } from 'react';
+import { useContext } from 'react';
 import classes from './DarkModeCheckbox.module.css';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
-import { themeColor, themeReducer } from '../../../dark-mode-future/theme-reducer';
+import { DispatchContext, ThemeContext } from '../../../dark-mode-future/theme-context';
 
-const DarkModeCheckbox = ({ isDark }) => {
-    const [theme, dispatch] = useReducer(themeReducer, themeColor)
+const DarkModeCheckbox = () => {
+    // const [dark, dispatch] = useReducer(themeReducer, isDark)
+    const dark = useContext(ThemeContext)
+    const dispatch = useContext(DispatchContext)
 
     const onChangeHandler = e => {
-        if(theme === 'light') {
+        if(!dark) {
             return dispatch({type: 'darken'})
         }
 
         dispatch({type: 'lighten'})
     }
 
-    // console.log(theme)
+    // console.log('dark: ', dark)
+    // console.log('dispatch: ', dispatch)
 
     return (
         <label className={classes.Switch}>
-            <input type="checkbox" value={theme} onChange={onChangeHandler} />
+            <input type="checkbox" value={dark} onChange={onChangeHandler} />
             <span className={[classes.Slider, classes.Round].join(' ')}>
                 {
-                    theme === 'dark'
+                    dark
                     ?
                     <span className={classes.Moon}>
                         <BsFillMoonFill />

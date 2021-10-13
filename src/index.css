@@ -18,8 +18,8 @@ body {
     font-family: 'Cairo', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #10456e;
-    color: #1e262c;
+    /* color: #10456e; */
+    /* color: #1e262c; */
 
     /* background-color: #eeeeee; */
 }

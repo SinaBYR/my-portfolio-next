@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './dark-mode-future/theme-context';
+
+export const ThemeContext = createContext(undefined);
 
 ReactDOM.render(
   <React.StrictMode>
