@@ -17,7 +17,7 @@ const Navbar = () => {
 
     // console.log('Navbar: ', dark)
     return (
-        <header className={classes.Navbar} style={{backgroundColor: dark ? colors.secondary : colors.primary}}>
+        <header className={classes.Navbar} style={{backgroundColor: dark ? colors.dark.secondary : colors.light.primary}}>
             <nav className={classes.NavbarWrapper}>
                 <Burger open={isMenuOpen} click={menuClickHandler}/>
                 <Menu open={isMenuOpen}/>

@@ -1,8 +1,13 @@
 import classes from './Showcase.module.css';
+import { useContext } from 'react/cjs/react.development';
+import { ThemeContext } from '../../dark-mode-future/theme-context';
+import { colors } from '../../color-palette/color-palette';
 
-const Showcase = props => {
+const Showcase = () => {
+    const dark = useContext(ThemeContext)
+
     return (
-        <section className={classes.Showcase}>
+        <section className={classes.Showcase} style={{backgroundColor: dark ? colors.dark.primary : colors.light.secondary}}>
             <div className={classes.ShowcaseWrapper}>
                 <h2>Hello, and welcome to my portfolio.</h2>
                 <p>My name is Sina. I'm a front-end web developer and I make web applications.</p>

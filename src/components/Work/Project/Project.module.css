@@ -12,6 +12,14 @@
     box-shadow: 0 0 8px #bdbdbd;
 }
 
+.Project.Dark {
+    box-shadow: 0 0 8px #1e262c;
+}
+
+.Project.Dark:hover {
+    box-shadow: 0 0 8px #1e262c;
+}
+
 .DesktopPreview {
     width: 100%;
     height: 180px;
@@ -59,6 +67,10 @@
     color: #2c3842;
     margin: 4px 0;
     list-style: square;
+}
+
+.Project.Dark .Technologies > ul > li {
+    color: #ececec;
 }
 
 @media screen and (max-width: 680px) {
