@@ -8,7 +8,9 @@ const Work = () => {
     const dark = useContext(ThemeContext)
 
     return (
-        <main className={classes.Work} style={{backgroundColor: dark ? colors.dark.secondary : colors.light.primary}}>
+        <main
+            className={classes.Work}
+            style={{backgroundColor: dark ? colors.dark.secondary : colors.light.primary}}>
             <div className={classes.WorkWrapper}>
                 <h2>My Work</h2>
                 <div className={classes.Projects}>

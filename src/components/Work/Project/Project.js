@@ -12,7 +12,7 @@ const Project = () => {
     return (
         <section
             className={classNames}
-            style={{backgroundColor: dark ? colors.dark.primary : colors.light.primary}}>
+            style={{backgroundColor: dark ? colors.dark.primary : colors.light.secondary}}>
             <div>
                 <h2>Spotify API Dashboard</h2>
                 <div className={classes.MobilePreview}></div>

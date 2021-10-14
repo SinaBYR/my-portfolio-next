@@ -10,13 +10,13 @@ const Burger = ({styles, open, click}) => {
     return (
         <div className={classNames} onClick={click}>
             <div style={{
-                backgroundColor: dark ? colors.primary : colors.secondary
+                backgroundColor: dark ? colors.light.primary : colors.dark.secondary
             }}></div>
             <div style={{
-                backgroundColor: dark ? colors.primary : colors.secondary
+                backgroundColor: dark ? colors.light.primary : colors.dark.secondary
             }}></div>
             <div style={{
-                backgroundColor: dark ? colors.primary : colors.secondary
+                backgroundColor: dark ? colors.light.primary : colors.dark.secondary
             }}></div>
         </div>
     )

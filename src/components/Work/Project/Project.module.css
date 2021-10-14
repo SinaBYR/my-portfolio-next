@@ -1,7 +1,6 @@
 .Project {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    background-color: #f7f7f7;
     padding: 1.5rem;
     border-radius: 5px;
     box-shadow: 0 0 4px #bdbdbd;
@@ -13,11 +12,11 @@
 }
 
 .Project.Dark {
-    box-shadow: 0 0 8px #1e262c;
+    box-shadow: 0 0 4px #111111;
 }
 
 .Project.Dark:hover {
-    box-shadow: 0 0 8px #1e262c;
+    box-shadow: 0 0 8px #111111;
 }
 
 .DesktopPreview {
@@ -48,8 +47,8 @@
 .Description {
     max-width: 500px;
     font-size: 1.1rem;
-    margin-bottom: 1rem;
     margin-right: 1rem;
+    margin-bottom: 1rem;
     text-align: justify;
 }
 
@@ -69,6 +68,7 @@
     list-style: square;
 }
 
+/* Dark mode technologies li tags color */
 .Project.Dark .Technologies > ul > li {
     color: #ececec;
 }
@@ -95,6 +95,7 @@
     }
 
     .Description {
+        font-size: 1rem;
         margin-right: 0;
     }
 }

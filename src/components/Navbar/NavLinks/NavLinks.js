@@ -8,13 +8,13 @@ const NavLinks = ({ mobile }) => {
     return (
         <>
             <li>
-                <SocialIcon bgColor={dark ? colors.primary : null} style={{width: mobile ? '80px' : '40px', height: mobile ? '80px' : '40px'}} url="https://github.com/SinaBYR"/>
+                <SocialIcon bgColor={dark ? colors.light.secondary : null} style={{width: mobile ? '80px' : '40px', height: mobile ? '80px' : '40px'}} url="https://www.github.com/SinaBYR"/>
             </li>
             <li>
-                <SocialIcon bgColor={dark ? colors.primary : null} style={{width: mobile ? '80px' : '40px', height: mobile ? '80px' : '40px'}} url="https://wwww.linkedin.com/sinabyr"/>
+                <SocialIcon bgColor={dark ? colors.light.secondary : null} style={{width: mobile ? '80px' : '40px', height: mobile ? '80px' : '40px'}} url="https://www.linkedin.com/in/sina-beyraghdar-7bb920162/"/>
             </li>
             <li>
-                <SocialIcon bgColor={dark ? colors.primary : null} style={{width: mobile ? '80px' : '40px', height: mobile ? '80px' : '40px'}} url="https://wwww.twitter.com/sinabyr"/>
+                <SocialIcon bgColor={dark ? colors.light.secondary : null} style={{width: mobile ? '80px' : '40px', height: mobile ? '80px' : '40px'}} url="https://www.twitter.com/sinabyr"/>
             </li>
         </>
     )

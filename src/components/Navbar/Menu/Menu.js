@@ -12,7 +12,7 @@ const Menu = ({ open }) => {
         <div
             className={classNames}
             style={{
-                backgroundColor: dark ? colors.secondary : colors.primary
+                backgroundColor: dark ? colors.dark.secondary : colors.light.secondary
             }}>
             <ul className={classes.Links}>
                 <NavLinks mobile/>
