@@ -4,7 +4,6 @@ import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import { DispatchContext, ThemeContext } from '../../../dark-mode-future/theme-context';
 
 const DarkModeCheckbox = () => {
-    // const [dark, dispatch] = useReducer(themeReducer, isDark)
     const dark = useContext(ThemeContext)
     const dispatch = useContext(DispatchContext)
 
@@ -24,7 +23,7 @@ const DarkModeCheckbox = () => {
 
     return (
         <label className={classes.Switch}>
-            <input type="checkbox" value={dark} onChange={onChangeHandler} />
+            <input type="checkbox" checked={dark} onChange={onChangeHandler} />
             <span className={[classes.Slider, classes.Round].join(' ')}>
                 {
                     dark
