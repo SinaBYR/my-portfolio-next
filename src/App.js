@@ -5,8 +5,8 @@ import { Contact } from "./components/Contact/Contact";
 import { Footer } from "./components/Footer/Footer";
 import { useContext } from "react/cjs/react.development";
 import { ThemeContext } from "./dark-mode-future/theme-context";
-import { useEffect } from "react";
-import axios from './axios/axios';
+import { Route, Switch } from "react-router";
+import { CreateProject } from "./components/CreateProject/CreateProject";
 
 const App = () => {
     const dark = useContext(ThemeContext)
@@ -23,11 +23,16 @@ const App = () => {
 
     return (
         <div style={{color: dark ? '#f7f7f7' : '#1e262c'}}>
-            <Navbar />
-            <Showcase />
-            <Work />
-            <Contact />
-            <Footer />
+            <Switch>
+                <Route exact path="/create" component={CreateProject}/>
+                <Route>
+                    <Navbar />
+                    <Showcase />
+                    <Work />
+                    <Contact />
+                    <Footer />
+                </Route>
+            </Switch>
         </div>
     )
 }
