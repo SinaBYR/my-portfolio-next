@@ -1,9 +1,9 @@
 import classes from './Form.module.css';
-import { PrimaryButton } from '../../Utilities';
 import { useState } from 'react';
+import { PrimaryButton, Spinner } from '../../Utilities';
 
 
-const Form = ({ create }) => {
+const Form = ({ create, loading }) => {
     const [techNum, setTechNum] = useState(1)
     const [formData, setFormData] = useState({
         title: '',
@@ -78,7 +78,7 @@ const Form = ({ create }) => {
             <div className={classes.ButtonsWrapper}>
                 <PrimaryButton type="button" onClick={addInputHandler}>Add Tech</PrimaryButton>
                 <PrimaryButton type="button" onClick={deleteInputHandler}>Delete Tech</PrimaryButton>
-                <PrimaryButton type="submit" onClick={submitFormHandler}>Submit</PrimaryButton>
+                <PrimaryButton type="submit" disabled={loading} onClick={submitFormHandler}>{loading ? 'Loading...' : 'Submit'}</PrimaryButton>
             </div>
         </form>
     )
