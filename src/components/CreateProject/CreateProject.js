@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SecondaryButton } from '../Utilities';
+import { PrimaryButton } from '../Utilities';
 import classes from './CreateProject.module.css';
 
 const CreateProject = () => {
@@ -11,10 +11,6 @@ const CreateProject = () => {
         desc: '',
         tech: []
     })
-
-    const addInputHandler = () => {
-        setTechNum(techNum + 1)
-    }
 
     const onChangeHandler = e => {
         if(e.target.name === 'tech') {
@@ -32,23 +28,39 @@ const CreateProject = () => {
         })
     }
 
-    const deleteInputHanlder = e => {
+    const addInputHandler = () => {
+        setTechNum(techNum + 1)
+    }
 
+    const deleteInputHandler = () => {
+        if(techNum < 2) {
+            return
+        }
+
+        const newTechArray = [...formData.tech]
+        newTechArray.pop()
+
+        setFormData({
+            ...formData,
+            tech: newTechArray
+        })
+        setTechNum(techNum - 1)
+    }
+
+    const submitFormHandler = e => {
+        e.preventDefault()
+
+        console.log(formData)
     }
 
     let techElements = Array.from(new Array(techNum)).map((num, i) => {
         return (
             <div key={i}>
-                <div className={classes.Label}>
-                    {/* <label htmlFor="tech">Tech {i + 1}</label> */}
-                    <span className={classes.Remove}>remove</span>
-                </div>
+                <label htmlFor="tech">Tech {i + 1}</label>
                 <input type="text" name="tech" id={i} onChange={onChangeHandler}/>
            </div>
         )
     })
-
-    console.log(techElements)
 
     return (
         <div className={classes.CreateProject}>
@@ -56,23 +68,21 @@ const CreateProject = () => {
                 <h2>Create Project</h2>
                 <form className={classes.Form}>
                     <label htmlFor="title">Title</label>
-                    <input type="text" id="title" name="title" onChange={onChangeHandler}/>
+                    <input type="text" id="title" name="title" value={formData.title} onChange={onChangeHandler}/>
                     <label htmlFor="demo">Demo Link</label>
-                    <input type="text" id="demo" name="demo" onChange={onChangeHandler}/>
+                    <input type="text" id="demo" name="demo" value={formData.demo} onChange={onChangeHandler}/>
                     <label htmlFor="code">Code Link</label>
-                    <input type="text" id="code" name="code" onChange={onChangeHandler}/>
+                    <input type="text" id="code" name="code" value={formData.code} onChange={onChangeHandler}/>
                     <label htmlFor="desc">Description</label>
-                    <textarea name="desc" id="desc" onChange={onChangeHandler}/>
-                    <div className={classes.Technologies}>
-                        {techElements}
+                    <textarea name="desc" id="desc" value={formData.desc} onChange={onChangeHandler}/>
+                    <div className={classes.Technologies}>{techElements}</div>
+                    <div className={classes.ButtonsWrapper}>
+                        <PrimaryButton type="button" onClick={addInputHandler}>Add Tech</PrimaryButton>
+                        <PrimaryButton type="button" onClick={deleteInputHandler}>Delete Tech</PrimaryButton>
+                        <PrimaryButton type="button" onClick={submitFormHandler}>Submit</PrimaryButton>
                     </div>
-                        <div className={classes.Buttons}>
-                            <SecondaryButton type="button" onClick={addInputHandler}>Add Tech</SecondaryButton>
-                            <SecondaryButton type="button" onClick={deleteInputHanlder}>Delete Tech</SecondaryButton>
-                        </div>
                 </form>
             </div>
-            <button onClick={() => console.log(formData)}>Send Data</button>
         </div>
     )
 }
