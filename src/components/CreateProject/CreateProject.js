@@ -3,8 +3,9 @@ import classes from './CreateProject.module.css';
 import { Form } from './Form/Form';
 
 const CreateProject = () => {
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const create = data => {
+        
         console.log(data)
     }
 
