@@ -1,3 +1,3 @@
 import ScaleLoader from "react-spinners/ScaleLoader"
 
-export const Spinner = () => <ScaleLoader />
+export const Spinner = ({ color }) => <ScaleLoader color={color}/>
