@@ -1,0 +1,8 @@
+.Header {
+    display: flex;
+    align-items: center;
+}
+
+.Header h2 {
+    margin-right: auto;
+}
