@@ -3,6 +3,9 @@
     align-items: center;
 }
 
-.Header h2 {
+.Header > *:first-child {
+    color: #f7f7f7;
+    font-size: 1.4rem;
     margin-right: auto;
+    text-decoration: none;
 }
