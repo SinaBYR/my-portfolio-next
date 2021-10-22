@@ -6,7 +6,7 @@ import { Footer } from "./components/Footer/Footer";
 import { useContext } from "react/cjs/react.development";
 import { ThemeContext } from "./dark-mode-future/theme-context";
 import { Route, Switch } from "react-router";
-import { CreateProject } from "./components/CreateProject/CreateProject";
+import { Dashboard } from "./components/Dashboard/Dashboard";
 
 const App = () => {
     const dark = useContext(ThemeContext)
@@ -24,7 +24,7 @@ const App = () => {
     return (
         <div style={{color: dark ? '#f7f7f7' : '#1e262c'}}>
             <Switch>
-                <Route exact path="/create" component={CreateProject}/>
+                <Route exact path="/dashboard" component={Dashboard}/>
                 <Route>
                     <Navbar />
                     <Showcase />

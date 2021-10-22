@@ -1,11 +1,11 @@
-.CreateProject {
+.Dashboard {
     height: 100vh;
     color: #f7f7f7;
     background-color: #2a4f4d;
     padding: 1rem;
 }
 
-.CreateProjectWrapper {
+.DashboardWrapper {
     max-width: 800px;
     margin: 0 auto;
 }
