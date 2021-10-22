@@ -24,7 +24,7 @@ const App = () => {
     return (
         <div style={{color: dark ? '#f7f7f7' : '#1e262c'}}>
             <Switch>
-                <Route exact path="/dashboard" component={Dashboard}/>
+                <Route path="/dashboard" component={Dashboard}/>
                 <Route>
                     <Navbar />
                     <Showcase />
