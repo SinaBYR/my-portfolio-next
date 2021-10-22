@@ -4,6 +4,7 @@ import { Form } from './Form/Form';
 import axios from '../../axios/axios';
 import { Header } from './Header/Header';
 import { Projects } from './Projects/Projects';
+import { Route, Switch } from 'react-router';
 
 const Dashboard = () => {
     const [loading, setLoading] = useState(false)
@@ -24,8 +25,10 @@ const Dashboard = () => {
         <div className={classes.Dashboard}>
             <div className={classes.DashboardWrapper}>
                 <Header />
-                <Projects />
-                {/* <Form create={create} loading={loading}/> */}
+                <Switch>
+                    <Route path="/dashboard/create" render={() => <Form create={create} loading={loading}/>}/>
+                    <Route path="/dashboard" component={Projects}/>
+                </Switch>
             </div>
         </div>
     )
