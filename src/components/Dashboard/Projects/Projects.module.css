@@ -1,0 +1,7 @@
+.Projects {
+    margin: 3rem 0;
+}
+
+.Projects > * {
+    margin: 1rem 0;
+}

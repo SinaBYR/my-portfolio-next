@@ -2,9 +2,8 @@ import { useState } from 'react';
 import classes from './Dashboard.module.css';
 import { Form } from './Form/Form';
 import axios from '../../axios/axios';
-import { Link } from 'react-router-dom'
-import { SecondaryLink } from '../Utilities';
 import { Header } from './Header/Header';
+import { Projects } from './Projects/Projects';
 
 const Dashboard = () => {
     const [loading, setLoading] = useState(false)
@@ -25,6 +24,7 @@ const Dashboard = () => {
         <div className={classes.Dashboard}>
             <div className={classes.DashboardWrapper}>
                 <Header />
+                <Projects />
                 {/* <Form create={create} loading={loading}/> */}
             </div>
         </div>

@@ -1,0 +1,15 @@
+.Project {
+    display: flex;
+    align-items: center;
+    background-color: #182025;
+    padding: 1rem;
+}
+
+.Project > p {
+    margin-right: auto;
+    font-size: 1.2rem;
+}
+
+.Controllers > * {
+    margin-left: 0.5rem;
+}
