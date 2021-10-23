@@ -20,11 +20,16 @@ const App = () => {
     // useEffect(() => {
     //     get()
     // })
-
+    const host = window.location.host
+    const array = host.split('.')
+    console.log(array)
     return (
         <div style={{color: dark ? '#f7f7f7' : '#1e262c'}}>
             <Switch>
-                <Route path="/dashboard" component={Dashboard}/>
+                {
+                    array[0].toLowerCase() === 'dashboard' && 
+                    <Route component={Dashboard}/>
+                }
                 <Route>
                     <Navbar />
                     <Showcase />
