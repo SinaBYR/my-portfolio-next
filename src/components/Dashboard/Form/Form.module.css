@@ -13,6 +13,13 @@
     border: none;
 }
 
+.Preview {
+    width: 200px;
+    height: 100px;
+    background-color: gray;
+    margin-top: 0.5rem;
+}
+
 .Technologies {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

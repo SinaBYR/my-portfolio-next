@@ -16,7 +16,7 @@ const Projects = () => {
     }, [])
 
     let display = projects.map(project => {
-        return <Project title="Spotify API" key={project}/>
+        return <Project title="Spotify API" key={project + Math.random()}/>
     })
 
     return (

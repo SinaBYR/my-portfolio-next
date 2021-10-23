@@ -5,6 +5,7 @@ import { PrimaryButton } from '../../Utilities';
 
 const Form = ({ create, loading }) => {
     const [techNum, setTechNum] = useState(1)
+    const [imagePreview, setImagePreview] = useState(null)
     const [formData, setFormData] = useState({
         title: '',
         preview: null,
@@ -25,6 +26,9 @@ const Form = ({ create, loading }) => {
         }
 
         if(e.target.name === 'preview') {
+            const url = URL.createObjectURL(e.target.files[0])
+            setImagePreview(url)
+
             return setFormData({
                 ...formData,
                 preview: e.target.files[0]
@@ -90,6 +94,9 @@ const Form = ({ create, loading }) => {
             <textarea name="desc" id="desc" value={formData.desc} onChange={onChangeHandler}></textarea>
             <label htmlFor="preview">Preview</label>
             <input type="file" name="preview" id="preview" accept="image/png, image/jpeg" onChange={onChangeHandler}/>
+            {
+                imagePreview ? <img src={imagePreview} className={classes.Preview} /> : null
+            }
             <div className={classes.Technologies}>{techElements}</div>
             <div className={classes.ButtonsWrapper}>
                 <PrimaryButton type="button" onClick={addInputHandler}>Add Tech</PrimaryButton>
