@@ -26,8 +26,8 @@ const Dashboard = () => {
             <div className={classes.DashboardWrapper}>
                 <Header />
                 <Switch>
-                    <Route path="/dashboard/create" render={() => <Form create={create} loading={loading}/>}/>
-                    <Route path="/dashboard" component={Projects}/>
+                    <Route path="/create" render={() => <Form create={create} loading={loading}/>}/>
+                    <Route path="/" component={Projects}/>
                 </Switch>
             </div>
         </div>

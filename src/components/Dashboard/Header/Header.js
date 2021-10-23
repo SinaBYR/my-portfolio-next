@@ -5,8 +5,8 @@ import classes from './Header.module.css';
 const Header = () => {
     return (
         <header className={classes.Header}>
-            <Link to="/dashboard">Dashboard</Link>
-            <SecondaryLink to="/dashboard/create">Create a new project</SecondaryLink>
+            <Link to="/">Dashboard</Link>
+            <SecondaryLink to="/create">Create a new project</SecondaryLink>
         </header>
     )
 }
