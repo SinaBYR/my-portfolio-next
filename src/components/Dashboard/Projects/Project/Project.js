@@ -1,13 +1,12 @@
-import { SecondaryLink, WarningButton } from '../../../Utilities';
+import { SecondaryLink } from '../../../Utilities';
 import classes from './Project.module.css';
 
-const Project = ({ title }) => {
+const Project = ({ title, projectID }) => {
     return (
         <div className={classes.Project}>
             <p>{title}</p>
             <div className={classes.Controllers}>
-                <SecondaryLink to="/">Update</SecondaryLink>
-                {/* <WarningButton>Delete</WarningButton> */}
+                <SecondaryLink to={"/" + projectID}>Edit</SecondaryLink>
             </div>
         </div>
     )
