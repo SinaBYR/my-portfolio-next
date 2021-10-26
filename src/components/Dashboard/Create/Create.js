@@ -10,7 +10,7 @@ const Create = () => {
         setLoading(true)
         setError(null)
         try {
-            const response = await axios.post('/projects', payload)
+            const response = await axios.post('/projectss', payload)
             const data = await response.data
             console.log(response)
             console.log(data)

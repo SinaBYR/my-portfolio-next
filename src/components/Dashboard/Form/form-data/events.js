@@ -29,19 +29,25 @@ export const setValues = (data, e) => {
     }
 
     if(field === 'preview') {
-        if(e.target.files.length) {
-            const url = URL.createObjectURL(e.target.files[0])
+        const [file] = e.target.files
+        if(!file) {
             return {
                 ...data,
-                imagePreview: url,
                 preview: {
                     ...data.preview,
-                    value: e.target.files[0]
+                    value: null
                 }
             }
         }
-    }
 
+        return {
+            ...data,
+            preview: {
+                ...data.preview,
+                value: file
+            }
+        }
+    }
 
     return {
         ...data,

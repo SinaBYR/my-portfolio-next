@@ -1,11 +1,11 @@
 import classes from './Form.module.css';
 import { useState } from 'react';
-import { PrimaryButton } from '../../Utilities';
-import { setTouched, setValues, setErrors } from './form-data';
+import { ErrorMessage, PrimaryButton } from '../../Utilities';
+import { setTouched, setValues, setErrors, isValid } from './form-data';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 const Form = ({ submit, loading, error }) => {
     const [techNum, setTechNum] = useState(1)
-    // const [imagePreview, setImagePreview] = useState(null)
     const [formData, setFormData] = useState({
         title: {
             value: '',
@@ -36,8 +36,7 @@ const Form = ({ submit, loading, error }) => {
             value: [''],
             error: null,
             touched: false
-        },
-        imagePreview: null
+        }
     })
 
     const addInputHandler = () => {
@@ -72,6 +71,18 @@ const Form = ({ submit, loading, error }) => {
         setTechNum(techNum - 1)
     }
 
+    const onChangeHandler = e => {
+        setFormData(setValues(formData, e))
+    }
+
+    const onFocusHandler = e => {
+        setFormData(setTouched(formData, e))
+    }
+
+    const onBlurHandler = e => {
+        setFormData(setErrors(formData, e))
+    }
+
     const onSubmitHandler = e => {
         e.preventDefault()
 
@@ -83,30 +94,11 @@ const Form = ({ submit, loading, error }) => {
         data.append('tech', formData.tech.value)
         data.append('preview', formData.preview.value)
 
-        // submit(data)
-        console.log(formData)
-        // if(!error) {
-        //     setFormData({
-        //         title: '',
-        //         preview: null,
-        //         demo: '',
-        //         code: '',
-        //         description: '',
-        //         tech: ['']
-        //     })
-        // }
-    }
+        if(!isValid(formData)) {
+            return
+        }
 
-    const onChangeHandler = e => {
-        setFormData(setValues(formData, e))
-    }
-
-    const onFocusHandler = e => {
-        setFormData(setTouched(formData, e))
-    }
-    
-    const onBlurHandler = e => {
-        setFormData(setErrors(formData, e))
+        submit(data)
     }
 
     let techElements = Array.from(new Array(techNum)).map((num, i) => {
@@ -128,8 +120,9 @@ const Form = ({ submit, loading, error }) => {
 
     return (
         <form className={classes.Form} onSubmit={onSubmitHandler}>
-            {error && <div className={classes.Error}>{error}</div>}
+            {error && <div className={classes.Error}>{error.message}</div>}
             <label htmlFor="title">Title</label>
+            <ErrorMessage>{formData.title.error}</ErrorMessage>
             <input
                 type="text"
                 id="title"
@@ -140,6 +133,7 @@ const Form = ({ submit, loading, error }) => {
                 onBlur={onBlurHandler}
                 />
             <label htmlFor="demo">Demo Link</label>
+            <ErrorMessage>{formData.demo.error}</ErrorMessage>
             <input
                 type="text"
                 id="demo"
@@ -150,6 +144,7 @@ const Form = ({ submit, loading, error }) => {
                 onBlur={onBlurHandler}
                 />
             <label htmlFor="code">Code Link</label>
+            <ErrorMessage>{formData.code.error}</ErrorMessage>
             <input
                 type="text"
                 id="code"
@@ -160,6 +155,7 @@ const Form = ({ submit, loading, error }) => {
                 onBlur={onBlurHandler}
                 />
             <label htmlFor="description">Description</label>
+            <ErrorMessage>{formData.description.error}</ErrorMessage>
             <textarea
                 name="description"
                 id="description"
@@ -169,24 +165,42 @@ const Form = ({ submit, loading, error }) => {
                 onBlur={onBlurHandler}
                 ></textarea>
             <label htmlFor="preview">Preview</label>
+            <ErrorMessage>{formData.preview.error}</ErrorMessage>
             <input
                 type="file"
                 name="preview"
+                resize="off"
                 id="preview"
                 accept="image/png, image/jpeg"
-                // value={formData.preview.value}
                 onChange={onChangeHandler}
                 onFocus={onFocusHandler}
                 onBlur={onBlurHandler}
                 />
             {
-                formData.imagePreview ? <img className={classes.Preview} src={formData.imagePreview} alt="upload-preview" /> : null
+                formData.preview.value
+                ?
+                <img
+                    className={classes.Preview}
+                    src={URL.createObjectURL(formData.preview.value)}
+                    alt="upload-preview" />
+                :
+                null
             }
+            
+            <ErrorMessage>{formData.tech.error}</ErrorMessage>
             <div className={classes.Technologies}>{techElements}</div>
             <div className={classes.ButtonsWrapper}>
                 <PrimaryButton type="button" onClick={addInputHandler}>Add Tech</PrimaryButton>
                 <PrimaryButton type="button" onClick={deleteInputHandler}>Delete Tech</PrimaryButton>
-                <PrimaryButton type="submit" disabled={loading} onClick={onSubmitHandler}>{loading ? 'Loading...' : 'Submit'}</PrimaryButton>
+                <PrimaryButton type="submit" onClick={onSubmitHandler} disabled={loading}>
+                    {
+                        loading
+                        ?
+                        <ScaleLoader color="#eeeeee" height="10px" radius="2px"/>
+                        :
+                        'Submit'
+                    }
+                </PrimaryButton>
             </div>
         </form>
     )

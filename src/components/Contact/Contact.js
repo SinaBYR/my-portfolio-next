@@ -3,6 +3,7 @@ import classes from './Contact.module.css';
 import { PrimaryButton } from '../Utilities/Buttons/PrimaryButton/PrimaryButton';
 import { setTouched, setErrors, setValues, isValid } from './form-data-handling';
 import ScaleLoader from 'react-spinners/ScaleLoader';
+import { ErrorMessage } from '../Utilities';
 
 const Contact = () => {
     const [loading, setLoading] = useState(false)
@@ -63,6 +64,7 @@ const Contact = () => {
                         />
                     <label>Message</label>
                     <p className={classes.ErrorMessage}>{formData.message.error}</p>
+                    <ErrorMessage>{formData.message.error}</ErrorMessage>
                     <textarea
                         name="message"
                         id="message"
