@@ -1,7 +1,7 @@
 import classes from './Input.module.css';
 import { ErrorMessage } from '../../../Utilities';
 
-const Input = ({ type, label, name, id, value, error, onChange, onFocus, onBlur }) => {
+const Input = ({ type, label, name, id, value, error, accept, onChange, onFocus, onBlur }) => {
     let display;
     switch (type) {
         case 'text': {
@@ -31,14 +31,33 @@ const Input = ({ type, label, name, id, value, error, onChange, onFocus, onBlur 
                         name={name}
                         id={id}
                         type="file"
+                        accept={accept}
                         onChange={onChange}
                         onFocus={onFocus}
                         onBlur={onBlur}
                     />
                 </>
             )
+            break
         }
-        break
+        case 'textarea': {
+            display = (
+                <>
+                    <label htmlFor={id}>{label}</label>
+                    <ErrorMessage>{error}</ErrorMessage>
+                    <textarea
+                        name={name}
+                        id={id}
+                        type="file"
+                        accept={accept}
+                        onChange={onChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                    />
+                </>
+            )
+            break
+        }
     }
     return (
         <div className={classes.Input}>

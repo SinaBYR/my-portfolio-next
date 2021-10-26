@@ -8,6 +8,14 @@
     border: none;
 }
 
+.Input > label {
+    display: flex;
+}
+
+.Input > textarea {
+    resize: vertical;
+}
+
 @media screen and (max-width: 680px) {
     .Input > :is(input, textarea) {
         font-size: 0.8rem;
