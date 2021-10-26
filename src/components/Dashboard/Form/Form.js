@@ -2,8 +2,7 @@ import classes from './Form.module.css';
 import { useState } from 'react';
 import { PrimaryButton } from '../../Utilities';
 
-
-const Form = ({ create, loading }) => {
+const Form = ({ submit, loading, error }) => {
     const [techNum, setTechNum] = useState(1)
     const [imagePreview, setImagePreview] = useState(null)
     const [formData, setFormData] = useState({
@@ -11,7 +10,7 @@ const Form = ({ create, loading }) => {
         preview: null,
         demo: '',
         code: '',
-        desc: '',
+        description: '',
         tech: ['']
     })
     
@@ -26,8 +25,10 @@ const Form = ({ create, loading }) => {
         }
 
         if(e.target.name === 'preview') {
-            const url = URL.createObjectURL(e.target.files[0])
-            setImagePreview(url)
+            if(e.target.files.length) {
+                const url = URL.createObjectURL(e.target.files[0])
+                setImagePreview(url)
+            }
 
             return setFormData({
                 ...formData,
@@ -43,7 +44,7 @@ const Form = ({ create, loading }) => {
     }
 
     const addInputHandler = () => {
-        // I add an empty string to the formData.tech array to make newly added tech input a controlled input.
+        // I add an empty string to the formData.tech array to turn newly added tech input into a controlled input.
         const newTechArray = [...formData.tech]
         newTechArray.push('')
         setFormData({
@@ -68,9 +69,28 @@ const Form = ({ create, loading }) => {
         setTechNum(techNum - 1)
     }
 
-    const submitFormHandler = e => {
+    const onSubmitHandler = e => {
         e.preventDefault()
-        create(formData)
+
+        const data = new FormData()
+        data.append('title', formData.title)
+        data.append('description', formData.description)
+        data.append('demo', formData.demo)
+        data.append('code', formData.code)
+        data.append('tech', formData.tech)
+        data.append('preview', formData.preview)
+
+        submit(data)
+        if(!error) {
+            setFormData({
+                title: '',
+                preview: null,
+                demo: '',
+                code: '',
+                description: '',
+                tech: ['']
+            })
+        }
     }
 
     let techElements = Array.from(new Array(techNum)).map((num, i) => {
@@ -83,25 +103,26 @@ const Form = ({ create, loading }) => {
     })
 
     return (
-        <form className={classes.Form} onSubmit={submitFormHandler}>
+        <form className={classes.Form} onSubmit={onSubmitHandler}>
+            {/* {error && <div className={classes.Error}>{error}</div>} */}
             <label htmlFor="title">Title</label>
-            <input type="text" id="title" name="title" value={formData.title} onChange={onChangeHandler}/>
+            <input type="text" id="title" name="title" value={formData.title} onChange={onChangeHandler} required/>
             <label htmlFor="demo">Demo Link</label>
             <input type="text" id="demo" name="demo" value={formData.demo} onChange={onChangeHandler}/>
             <label htmlFor="code">Code Link</label>
             <input type="text" id="code" name="code" value={formData.code} onChange={onChangeHandler}/>
-            <label htmlFor="desc">Description</label>
-            <textarea name="desc" id="desc" value={formData.desc} onChange={onChangeHandler}></textarea>
+            <label htmlFor="description">descriptionription</label>
+            <textarea name="description" id="description" value={formData.description} onChange={onChangeHandler}></textarea>
             <label htmlFor="preview">Preview</label>
             <input type="file" name="preview" id="preview" accept="image/png, image/jpeg" onChange={onChangeHandler}/>
             {
-                imagePreview ? <img src={imagePreview} className={classes.Preview} /> : null
+                imagePreview ? <img className={classes.Preview} src={imagePreview} alt="upload-preview" /> : null
             }
             <div className={classes.Technologies}>{techElements}</div>
             <div className={classes.ButtonsWrapper}>
                 <PrimaryButton type="button" onClick={addInputHandler}>Add Tech</PrimaryButton>
                 <PrimaryButton type="button" onClick={deleteInputHandler}>Delete Tech</PrimaryButton>
-                <PrimaryButton type="submit" disabled={loading} onClick={submitFormHandler}>{loading ? 'Loading...' : 'Submit'}</PrimaryButton>
+                <PrimaryButton type="submit" disabled={loading} onClick={onSubmitHandler}>{loading ? 'Loading...' : 'Submit'}</PrimaryButton>
             </div>
         </form>
     )
