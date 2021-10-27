@@ -18,7 +18,7 @@ export const validationErrors = (fields) => {
     }
 
     if(fields.tech) {
-        if(fields.tech.touched && fields.tech.value.length < 2) {
+        if(fields.tech.touched && fields.tech.value.some(value => value.length === 0)) {
             errors.tech = 'Tech stack used for project is required.'
         }
     }
