@@ -50,6 +50,7 @@ const Input = ({ type, label, name, id, value, error, accept, onChange, onFocus,
                         id={id}
                         type="file"
                         accept={accept}
+                        value={value}
                         onChange={onChange}
                         onFocus={onFocus}
                         onBlur={onBlur}
@@ -57,6 +58,9 @@ const Input = ({ type, label, name, id, value, error, accept, onChange, onFocus,
                 </>
             )
             break
+        }
+        default: {
+            return null
         }
     }
     return (

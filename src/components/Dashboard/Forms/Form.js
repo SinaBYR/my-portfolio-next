@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { ErrorMessage, PrimaryButton } from '../../Utilities';
 import { setTouched, setValues, setErrors, isValid } from './form-data';
 import ScaleLoader from 'react-spinners/ScaleLoader';
+// import { useEffect } from 'react';
+import { Input } from './Input/Input';
 
-const Form = ({ submit, loading, error }) => {
+const Form = ({ initialData, submit, loading, error }) => {
     const [techNum, setTechNum] = useState(1)
     const [formData, setFormData] = useState({
         title: {
@@ -13,7 +15,7 @@ const Form = ({ submit, loading, error }) => {
             touched: false
         },
         preview: {
-            value: null,
+            value: '',
             error: null,
             touched: false
         },
@@ -91,101 +93,135 @@ const Form = ({ submit, loading, error }) => {
         data.append('description', formData.description.value)
         data.append('demo', formData.demo.value)
         data.append('code', formData.code.value)
-        data.append('tech', formData.tech.value)
-        data.append('preview', formData.preview.value)
-
+        // When I want to post or patch form data to the server, I simply create a FormData instance and then
+        // append formData state values to this FormData instance one by one. This approach is fine because express 
+        // expects multipart/form-data.
+        // I use multer behind the scenes in web api to handle form body and form files.
+        // When this component first mounts, formData.preview.value is set to a Binary type file.
+        // If I were to change preview file, then I would need to set formData.preview.file to a File type file.
+        // If I didn't want to change preview file, then I refuse to append formData.preview.value (which still is a Binary type file) to the FormData instance.
+        if(formData.preview.value?.type.includes('image')) {
+            data.append('preview', formData.preview.value)
+        }
+        formData.tech.value.forEach(value => {
+            data.append('tech[]', value)
+        })
+        console.log(formData)
+        console.log(isValid(formData))
         if(!isValid(formData)) {
             return
         }
-
-        submit(data)
+        
+        // submit(data)
     }
+
+    // useEffect(() => {
+    //     if(initialData && Object.keys(initialData).length) {
+    //         const fields = ['title', 'description', 'code', 'demo', 'preview', 'tech']
+    //         const newFormData = {...formData}
+    //         fields.forEach(field => {
+    //             newFormData[field] = {
+    //                 ...newFormData[field],
+    //                 touched: true,
+    //                 value: initialData[field]
+    //             }
+    //         })
+    //         setFormData(newFormData)
+    //         setTechNum(initialData.tech?.length)
+    //     }
+    // }, [initialData])
+
+    // console.log(formData)
 
     let techElements = Array.from(new Array(techNum)).map((num, i) => {
         return (
-            <div key={i}>
-                <label htmlFor="tech">Tech {i + 1}</label>
-                <input
-                    type="text"
-                    name="tech"
-                    id={i}
-                    value={formData.tech.value[i]}
-                    onChange={onChangeHandler}
-                    onFocus={onFocusHandler}
-                    onBlur={onBlurHandler}
-                    />
-           </div>
+            <Input
+                key={i}
+                type="text"
+                label={"Tech " + (i + 1)}
+                name="tech"
+                id={i}
+                value={formData.tech.value && formData.tech.value[i]}
+                onChange={onChangeHandler}
+                onFocus={onFocusHandler}
+                onBlur={onBlurHandler}
+            />
         )
     })
 
     return (
         <form className={classes.Form} onSubmit={onSubmitHandler}>
             {error && <div className={classes.Error}>{error.message}</div>}
-            <label htmlFor="title">Title</label>
-            <ErrorMessage>{formData.title.error}</ErrorMessage>
-            <input
+            <Input
+                key="title"
                 type="text"
-                id="title"
+                label="Title"
                 name="title"
+                id="title"
                 value={formData.title.value}
+                error={formData.title.error}
                 onChange={onChangeHandler}
                 onFocus={onFocusHandler}
                 onBlur={onBlurHandler}
                 />
-            <label htmlFor="demo">Demo Link</label>
-            <ErrorMessage>{formData.demo.error}</ErrorMessage>
-            <input
+            <Input
+                key="demo"
                 type="text"
+                label="Demo Link"
                 id="demo"
                 name="demo"
                 value={formData.demo.value}
+                error={formData.demo.error}
                 onChange={onChangeHandler}
                 onFocus={onFocusHandler}
                 onBlur={onBlurHandler}
                 />
-            <label htmlFor="code">Code Link</label>
-            <ErrorMessage>{formData.code.error}</ErrorMessage>
-            <input
+            <Input
+                key="code"
                 type="text"
+                label="Code Link"
                 id="code"
                 name="code"
                 value={formData.code.value}
+                error={formData.code.error}
                 onChange={onChangeHandler}
                 onFocus={onFocusHandler}
                 onBlur={onBlurHandler}
                 />
-            <label htmlFor="description">Description</label>
-            <ErrorMessage>{formData.description.error}</ErrorMessage>
-            <textarea
+            <Input
+                key="description"
+                type="textarea"
+                label="Description"
                 name="description"
                 id="description"
                 value={formData.description.value}
-                onChange={onChangeHandler}
-                onFocus={onFocusHandler}
-                onBlur={onBlurHandler}
-                ></textarea>
-            <label htmlFor="preview">Preview</label>
-            <ErrorMessage>{formData.preview.error}</ErrorMessage>
-            <input
-                type="file"
-                name="preview"
-                resize="off"
-                id="preview"
-                accept="image/png, image/jpeg"
+                error={formData.description.error}
                 onChange={onChangeHandler}
                 onFocus={onFocusHandler}
                 onBlur={onBlurHandler}
                 />
-            {
+            <Input
+                key="preview"
+                type="file"
+                label="Preview"
+                name="preview"
+                id="preview"
+                accept="image/png, image/jpeg"
+                error={formData.preview.error}
+                onChange={onChangeHandler}
+                onFocus={onFocusHandler}
+                onBlur={onBlurHandler}
+                />
+            {/* {
                 formData.preview.value
                 ?
                 <img
                     className={classes.Preview}
-                    src={URL.createObjectURL(formData.preview.value)}
+                    src={"data:image/jpg;base64," + formData.preview.value.data.toString()}
                     alt="upload-preview" />
                 :
                 null
-            }
+            } */}
             
             <ErrorMessage>{formData.tech.error}</ErrorMessage>
             <div className={classes.Technologies}>{techElements}</div>
@@ -198,7 +234,7 @@ const Form = ({ submit, loading, error }) => {
                         ?
                         <ScaleLoader color="#eeeeee" height="10px" radius="2px"/>
                         :
-                        'Submit'
+                        initialData ? 'Update' : 'Create'
                     }
                 </PrimaryButton>
             </div>

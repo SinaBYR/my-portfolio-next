@@ -2,18 +2,18 @@ import classes from './Edit.module.css';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import axios from '../../../axios/axios';
-import { Form } from '../Form/Form';
+import { Form } from '../Forms/Form';
 
-const Edit = props => {
+const Edit = () => {
     const [project, setProject] = useState({})
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const { projectID } = useParams()
 
-    const updateProject = async () => {
+    const updateProject = async (payload) => {
         setLoading(true)
         try {
-            const response = await axios.patch('/projects/' + projectID)
+            const response = await axios.patch('/projects/' + projectID, payload)
             const data = await response.data
             console.log(data)
             setProject(data)
@@ -31,7 +31,7 @@ const Edit = props => {
             try {
                 const response = await axios.get('/projects/' + projectID)
                 const data = await response.data
-                console.log(data)
+                // console.log(data)
                 setProject(data)
             } catch(err) {
                 console.log(err)
