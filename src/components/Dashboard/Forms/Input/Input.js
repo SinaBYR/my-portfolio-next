@@ -1,14 +1,12 @@
 import classes from './Input.module.css';
-import { ErrorMessage } from '../../../Utilities';
 
-const Input = ({ type, label, name, id, value, error, accept, onChange, onFocus, onBlur }) => {
+const Input = ({ type, label, name, id, value, accept, onChange, onFocus, onBlur }) => {
     let display;
     switch (type) {
         case 'text': {
             display = (
                 <>
                     <label htmlFor={id}>{label}</label>
-                    <ErrorMessage>{error}</ErrorMessage>
                     <input
                         name={name}
                         id={id}
@@ -26,7 +24,6 @@ const Input = ({ type, label, name, id, value, error, accept, onChange, onFocus,
             display = (
                 <>
                     <label htmlFor={id}>{label}</label>
-                    <ErrorMessage>{error}</ErrorMessage>
                     <input
                         name={name}
                         id={id}
@@ -44,7 +41,6 @@ const Input = ({ type, label, name, id, value, error, accept, onChange, onFocus,
             display = (
                 <>
                     <label htmlFor={id}>{label}</label>
-                    <ErrorMessage>{error}</ErrorMessage>
                     <textarea
                         name={name}
                         id={id}
