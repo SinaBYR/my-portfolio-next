@@ -1,31 +1,26 @@
 import { useState, useEffect } from 'react';
-import { Spinner } from '../../Utilities';
+import { ErrorMessage, Spinner } from '../../Utilities';
 import { Project } from './Project/Project';
 import classes from './Projects.module.css';
 import axios from '../../../axios/axios';
+import { ScaleLoader } from 'react-spinners';
 
 const Projects = () => {
     const [projects, setProjects] = useState([])
+    const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    // useEffect(() => {
-    //     setLoading(true)
-    //     setTimeout(() => {
-    //         setProjects([1, 2, 3])
-    //         setLoading(false)
-    //     }, 2000)
-    // }, [])
-
     const fetchProjects = async () => {
+        setError(null)
         setLoading(true)
         try {
             const response = await axios.get('/projects?titleOnly=true')
             const data = await response.data
-            console.log(data)
             setProjects(data)
             setLoading(false)
         } catch(err) {
             console.log(err)
+            setError(err)
             setLoading(false)
         }
     }
@@ -40,10 +35,11 @@ const Projects = () => {
 
     return (
         <div className={classes.Projects}>
+            {error && <ErrorMessage>{error.message}</ErrorMessage>}
             {
                 loading
                 ?
-                <Spinner color="#f7f7f7"/>
+                <ScaleLoader color="#f7f7f7"/>
                 :
                 display
             }
