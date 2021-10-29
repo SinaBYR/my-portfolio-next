@@ -1,0 +1,55 @@
+.Form {
+    display: flex;
+    flex-direction: column;
+}
+
+.Preview {
+    width: 200px;
+    height: 100px;
+    background-color: gray;
+    margin-top: 0.5rem;
+}
+
+.Technologies {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.Technologies > * {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.Remove {
+    color: gray;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.ButtonsWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    margin-top: 2rem;
+    gap: 8px;
+}
+
+.ButtonsWrapper > * {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.Error {
+    font-size: 1.2rem;
+    background-color: #1e262c;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid red;
+}
+
+@media screen and (max-width: 680px) {
+    .ButtonsWrapper {
+        grid-template-columns: 1fr;
+    }
+}
