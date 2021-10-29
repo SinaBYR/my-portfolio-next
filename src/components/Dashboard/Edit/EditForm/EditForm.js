@@ -44,6 +44,11 @@ const EditForm = ({ submit, preData, loading, error}) => {
 
         const data = new FormData()
         Object.keys(formData).forEach(field => {
+            // If preview is not being changed, then I don't even want to add it to FormData instance.
+            if(field === 'preview' && !formData.preview) {
+                return
+            }
+            
             if(field === 'tech') {
                 return formData[field].forEach(value => {
                     data.append('tech[]', value)
