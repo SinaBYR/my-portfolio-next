@@ -25,7 +25,6 @@ const Create = () => {
     }
     return (
         <div>
-            {/* <Form submit={createProject} loading={loading} error={error}/> */}
             <CreateForm submit={createProject} loading={loading} error={error}/>
         </div>
     )
