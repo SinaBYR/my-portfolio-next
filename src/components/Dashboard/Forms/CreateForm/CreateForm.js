@@ -86,7 +86,7 @@ const CreateForm = ({ submit, loading, error}) => {
                     label="Title"
                     name="title"
                     id="title"
-                    value={formData.title.value}
+                    value={formData.title}
                     onChange={onChangeHandler}
                     />
                 <Input
