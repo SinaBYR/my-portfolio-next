@@ -1,6 +1,5 @@
 import classes from './CreateForm.module.css';
-import { PrimaryButton } from '../../../Utilities';
-// import { Input } from '../Input/Input';
+import { ErrorMessage, PrimaryButton } from '../../../Utilities';
 import { Input } from '..';
 import { ScaleLoader } from 'react-spinners'
 import { useState } from 'react';
@@ -79,7 +78,7 @@ const CreateForm = ({ submit, loading, error}) => {
     return (
         <div className={classes.CreateForm}>
             <form className={classes.Form} onSubmit={onSubmitHandler}>
-                {error && <div className={classes.Error}>{error.message}</div>}
+                {error && <ErrorMessage>{error.message}</ErrorMessage>}
                 <Input
                     key="title"
                     type="text"

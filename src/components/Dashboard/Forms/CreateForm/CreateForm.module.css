@@ -40,14 +40,6 @@
     margin: 0 auto;
 }
 
-.Error {
-    font-size: 1.2rem;
-    background-color: #1e262c;
-    padding: 1rem;
-    margin: 1rem 0;
-    border: 1px solid red;
-}
-
 @media screen and (max-width: 680px) {
     .ButtonsWrapper {
         grid-template-columns: 1fr;

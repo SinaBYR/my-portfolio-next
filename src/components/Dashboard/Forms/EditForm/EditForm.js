@@ -1,5 +1,5 @@
 import classes from './EditForm.module.css';
-import { PrimaryButton, WarningButton } from '../../../Utilities';
+import { ErrorMessage, PrimaryButton, WarningButton } from '../../../Utilities';
 import { Input } from '..';
 import { ScaleLoader } from 'react-spinners'
 import { useState } from 'react';
@@ -94,7 +94,7 @@ const EditForm = ({ submit, preData, loading, error}) => {
     return (
         <div className={classes.EditForm}>
             <form className={classes.Form} onSubmit={onSubmitHandler}>
-                {error && <div className={classes.Error}>{error.message}</div>}
+                {error && <ErrorMessage>{error.message}</ErrorMessage>}
                 <Input
                     key="title"
                     type="text"
