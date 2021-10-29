@@ -1,8 +1,8 @@
 import classes from './CreateForm.module.css';
-import { ErrorMessage, PrimaryButton } from '../../../Utilities';
-import { Input } from '..';
-import { ScaleLoader } from 'react-spinners'
 import { useState } from 'react';
+import { ErrorMessage, PrimaryButton } from '../../../Utilities';
+import { Input } from '../../Input/Input';
+import { ScaleLoader } from 'react-spinners'
 import { setValues, isValid } from './handlers';
 
 const CreateForm = ({ submit, loading, error}) => {

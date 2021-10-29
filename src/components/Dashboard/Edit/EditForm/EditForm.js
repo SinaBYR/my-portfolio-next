@@ -1,9 +1,8 @@
 import classes from './EditForm.module.css';
+import { useState, useEffect } from 'react';
 import { ErrorMessage, PrimaryButton, WarningButton } from '../../../Utilities';
-import { Input } from '..';
+import { Input } from '../../Input/Input';
 import { ScaleLoader } from 'react-spinners'
-import { useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
 import { setValues, isValid } from './handlers';
 
 const EditForm = ({ submit, preData, loading, error}) => {
@@ -58,8 +57,7 @@ const EditForm = ({ submit, preData, loading, error}) => {
             return
         }
 
-        console.log(formData)
-        // submit(data)
+        submit(data)
     }
 
     useEffect(() => {
@@ -161,7 +159,7 @@ const EditForm = ({ submit, preData, loading, error}) => {
                 <div className={classes.ButtonsWrapper}>
                     <PrimaryButton type="button" onClick={addInputHandler}>Add Tech</PrimaryButton>
                     <PrimaryButton type="button" onClick={deleteInputHandler}>Delete Tech</PrimaryButton>
-                    <PrimaryButton type="submit" onClick={onSubmitHandler}>
+                    <PrimaryButton type="submit" onClick={onSubmitHandler} disabled={loading || !isValid(formData)}>
                         {
                             loading
                             ?

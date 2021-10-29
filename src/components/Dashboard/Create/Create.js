@@ -1,6 +1,5 @@
-import classes from './Create.module.css';
 import axios from '../../../axios/axios';
-import { CreateForm } from '../Forms';
+import { CreateForm } from './CreateForm/CreateForm';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 
@@ -13,7 +12,7 @@ const Create = () => {
         setError(null)
         try {
             const response = await axios.post('/projects', payload)
-            const data = await response.data
+            await response.data
             setLoading(false)
             if(response.status === 201) {
                 history.replace('/')
@@ -25,7 +24,7 @@ const Create = () => {
         }
     }
     return (
-        <div className={classes.Create}>
+        <div>
             {/* <Form submit={createProject} loading={loading} error={error}/> */}
             <CreateForm submit={createProject} loading={loading} error={error}/>
         </div>

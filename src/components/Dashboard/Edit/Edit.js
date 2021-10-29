@@ -1,8 +1,7 @@
-import classes from './Edit.module.css';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import axios from '../../../axios/axios';
-import { EditForm } from '../Forms/EditForm/EditForm';
+import { EditForm } from './EditForm/EditForm';
 import { ScaleLoader } from 'react-spinners';
 import { ErrorMessage } from '../../Utilities';
 
@@ -33,7 +32,7 @@ const Edit = () => {
             setError(null)
             setLoading(true)
             try {
-                const response = await axios.get('/projectss/' + projectID)
+                const response = await axios.get('/projects/' + projectID)
                 const data = await response.data
                 console.log(data)
                 setProject(data)
@@ -48,7 +47,8 @@ const Edit = () => {
     }, [projectID])
 
     return (
-        <div className={classes.Edit}>
+        <div>
+            {loading && <ScaleLoader color="#f7f7f7"/>}
             {error && <ErrorMessage>{error.message}</ErrorMessage>}
             {!error && <EditForm submit={updateProject} preData={project} loading={loading} error={error}/>}
         </div>

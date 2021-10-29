@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ErrorMessage, Spinner } from '../../Utilities';
+import { ErrorMessage } from '../../Utilities';
 import { Project } from './Project/Project';
 import classes from './Projects.module.css';
 import axios from '../../../axios/axios';
