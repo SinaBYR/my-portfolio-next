@@ -2,7 +2,9 @@ import classes from './Edit.module.css';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import axios from '../../../axios/axios';
-import { Form } from '../Forms/Form';
+import { EditForm } from '../Forms/EditForm/EditForm';
+import { ScaleLoader } from 'react-spinners';
+import { ErrorMessage } from '../../Utilities';
 
 const Edit = () => {
     const [project, setProject] = useState({})
@@ -28,13 +30,18 @@ const Edit = () => {
     
     useEffect(() => {
         const fetchProject = async () => {
+            setError(null)
+            setLoading(true)
             try {
-                const response = await axios.get('/projects/' + projectID)
+                const response = await axios.get('/projectss/' + projectID)
                 const data = await response.data
-                // console.log(data)
+                console.log(data)
                 setProject(data)
+                setLoading(false)
             } catch(err) {
                 console.log(err)
+                setError(err)
+                setLoading(false)
             }
         }
         fetchProject()
@@ -42,7 +49,8 @@ const Edit = () => {
 
     return (
         <div className={classes.Edit}>
-            <Form submit={updateProject} loading={loading} error={error} initialData={project}/>
+            {error && <ErrorMessage>{error.message}</ErrorMessage>}
+            {!error && <EditForm submit={updateProject} preData={project} loading={loading} error={error}/>}
         </div>
     )
 }
