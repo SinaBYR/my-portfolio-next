@@ -40,6 +40,17 @@
     margin: 0 auto;
 }
 
+.ConfirmDeleteButtons {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ConfirmDeleteButtons > * {
+    width: 48%;
+}
+
 @media screen and (max-width: 680px) {
     .ButtonsWrapper {
         grid-template-columns: 1fr;

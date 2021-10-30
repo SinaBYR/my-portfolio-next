@@ -1,11 +1,11 @@
 import classes from './EditForm.module.css';
 import { useState, useEffect } from 'react';
-import { ErrorMessage, PrimaryButton, WarningButton } from '../../../Utilities';
+import { ErrorMessage, PrimaryButton, SecondaryButton, WarningButton, ConfirmButton } from '../../../Utilities';
 import { Input } from '../../Input/Input';
 import { ScaleLoader } from 'react-spinners'
 import { setValues, isValid } from './handlers';
 
-const EditForm = ({ submit, preData, loading, error}) => {
+const EditForm = ({ submit, deleteProject, preData, loading, error}) => {
     const [formData,setFormData] = useState({
         title: '',
         preview: null,
@@ -14,6 +14,7 @@ const EditForm = ({ submit, preData, loading, error}) => {
         description: '',
         tech: ['']
     })
+    const [isConfirming, setIsConfirming] = useState(false)
     const addInputHandler = () => {
         // I add an empty string to the formData.tech to turn newly added tech input into a controlled input.
         const newTechArray = [...formData.tech]
@@ -63,6 +64,15 @@ const EditForm = ({ submit, preData, loading, error}) => {
         }
 
         submit(data)
+    }
+    const onDeleteHandler = () => {
+        setIsConfirming(true)
+    }
+    const cancelDeleteHandler = () => {
+        setIsConfirming(false)
+    }
+    const confirmDeleteHandler = () => {
+        deleteProject()
     }
 
     useEffect(() => {
@@ -164,7 +174,7 @@ const EditForm = ({ submit, preData, loading, error}) => {
                 <div className={classes.ButtonsWrapper}>
                     <PrimaryButton type="button" onClick={addInputHandler}>Add Tech</PrimaryButton>
                     <PrimaryButton type="button" onClick={deleteInputHandler}>Delete Tech</PrimaryButton>
-                    <PrimaryButton type="submit" onClick={onSubmitHandler} disabled={loading || !isValid(formData)}>
+                    <ConfirmButton type="submit" onClick={onSubmitHandler} disabled={loading || !isValid(formData)}>
                         {
                             loading
                             ?
@@ -172,8 +182,17 @@ const EditForm = ({ submit, preData, loading, error}) => {
                             :
                             'Update'
                         }
-                    </PrimaryButton>
-                    <WarningButton>Delete</WarningButton>
+                    </ConfirmButton>
+                    {
+                        isConfirming
+                        ?
+                        <div className={classes.ConfirmDeleteButtons}>
+                            <PrimaryButton onClick={confirmDeleteHandler}>Yes</PrimaryButton>
+                            <PrimaryButton onClick={cancelDeleteHandler}>No</PrimaryButton>
+                        </div>
+                        :
+                        <WarningButton onClick={onDeleteHandler}>Delete</WarningButton>
+                    }
                 </div>
             </form>
         </div>
