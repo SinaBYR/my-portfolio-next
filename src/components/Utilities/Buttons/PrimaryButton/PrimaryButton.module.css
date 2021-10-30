@@ -1,11 +1,11 @@
 .PrimaryButton {
-    padding: 0.6rem 1.2rem;
-    cursor: pointer;
-    border: none;
+    color: #ffffff;
     background-color: #1e262c;
     font-size: 1rem;
-    color: #ffffff;
+    padding: 0.6rem 1.2rem;
+    border: none;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 .PrimaryButton:disabled {

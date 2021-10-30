@@ -1,6 +1,6 @@
-.WarningButton {
+.ConfirmButton {
     color: #ffffff;
-    background-color: #8b0000;
+    background-color: #007600;
     font-size: 1rem;
     padding: 0.6rem 1.2rem;
     border: none;
@@ -8,7 +8,7 @@
     cursor: pointer;
 }
 
-.WarningButton:disabled {
-    background-color: #710000;
+.ConfirmButton:disabled {
+    background-color: #00ff00;
     cursor: not-allowed;
 }
