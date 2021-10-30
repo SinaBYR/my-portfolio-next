@@ -1,6 +1,6 @@
 import classes from './CreateForm.module.css';
 import { useState } from 'react';
-import { ErrorMessage, PrimaryButton } from '../../../Utilities';
+import { ConfirmButton, ErrorMessage, PrimaryButton } from '../../../Utilities';
 import { Input } from '../../Input/Input';
 import { ScaleLoader } from 'react-spinners'
 import { setValues, isValid } from './handlers';
@@ -139,7 +139,7 @@ const CreateForm = ({ submit, loading, error}) => {
                 <div className={classes.ButtonsWrapper}>
                     <PrimaryButton type="button" onClick={addInputHandler}>Add Tech</PrimaryButton>
                     <PrimaryButton type="button" onClick={deleteInputHandler}>Delete Tech</PrimaryButton>
-                    <PrimaryButton type="submit" onClick={onSubmitHandler} disabled={loading || !isValid(formData)}>
+                    <ConfirmButton type="submit" onClick={onSubmitHandler} disabled={loading || !isValid(formData)}>
                         {
                             loading
                             ?
@@ -147,7 +147,7 @@ const CreateForm = ({ submit, loading, error}) => {
                             :
                             'Create'
                         }
-                    </PrimaryButton>
+                    </ConfirmButton>
                 </div>
             </form>
         </div>
