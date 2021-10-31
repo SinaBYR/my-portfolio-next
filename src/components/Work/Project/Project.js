@@ -5,7 +5,7 @@ import { useContext } from 'react/cjs/react.development';
 import { ThemeContext } from '../../../dark-mode-future/theme-context';
 import { colors } from '../../../color-palette/color-palette';
 
-const Project = () => {
+const Project = ({ title, code, demo, description, tech, preview }) => {
     const dark = useContext(ThemeContext)
     const classNames = [classes.Project, dark ? classes.Dark : null].join(' ')
 
@@ -14,36 +14,36 @@ const Project = () => {
             className={classNames}
             style={{backgroundColor: dark ? colors.dark.primary : colors.light.secondary}}>
             <div>
-                <h2>Spotify API Dashboard</h2>
-                <div className={classes.MobilePreview}></div>
+                <h2>{title}</h2>
+                <div className={classes.MobilePreview}>
+                    <img src={preview} alt="project-preview-screenshot"/>
+                </div>
                 <div className={classes.Links}>
                     {
                         dark
                         ?
                         <>
-                            <SecondaryLink>Demo <BiLinkExternal /></SecondaryLink>
-                            <SecondaryLink>Code <BiLinkExternal /></SecondaryLink>
+                            <SecondaryLink to={demo} target="_blank" rel="noopener noreferrer">Demo <BiLinkExternal /></SecondaryLink>
+                            <SecondaryLink to={code} target="_blank" rel="noopener noreferrer">Code <BiLinkExternal /></SecondaryLink>
                         </>
                         :
                         <>
-                            <PrimaryLink>Demo <BiLinkExternal /></PrimaryLink>
-                            <PrimaryLink>Code <BiLinkExternal /></PrimaryLink>
+                            <PrimaryLink to={demo} target="_blank" rel="noopener noreferrer">Demo <BiLinkExternal /></PrimaryLink>
+                            <PrimaryLink to={code} target="_blank" rel="noopener noreferrer">Code <BiLinkExternal /></PrimaryLink>
                         </>
                     }
                 </div>
-                <p className={classes.Description}>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</p>
+                <p className={classes.Description}>{description}</p>
                 <div className={classes.Technologies}>
                     <h3>Technologies</h3>
                     <ul>
-                        <li>HTML/CSS</li>
-                        <li>React.js</li>
-                        <li>Spotify API</li>
-                        <li>Axios package</li>
-                        <li>Uploaded on Netlify</li>
+                        {tech.map(value => <li key={value}>{value}</li>)}
                     </ul>
                 </div>
             </div>
-            <div className={classes.DesktopPreview}></div>
+            <div className={classes.DesktopPreview}>
+                <img src={preview} alt="project-preview-screenshot"/>
+            </div>
         </section>
     )
 }
