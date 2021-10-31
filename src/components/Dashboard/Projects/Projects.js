@@ -9,7 +9,7 @@ const Projects = () => {
     const [projects, setProjects] = useState([])
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
-
+    
     const fetchProjects = async () => {
         setError(null)
         setLoading(true)
@@ -29,15 +29,9 @@ const Projects = () => {
         fetchProjects()
     }, [])
 
-    let display
-    if(!projects.length) {
-        display = <p>There are no projects.</p>
-    } else {
-        display = projects.map(project => {
+    let display = projects.map(project => {
             return <Project title={project.title} projectID={project._id} key={project + Math.random()}/>
-        })
-    }
-
+    })
 
     return (
         <div className={classes.Projects}>

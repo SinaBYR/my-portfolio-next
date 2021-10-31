@@ -37,9 +37,7 @@ const Edit = () => {
         setLoading(true)
         setError(null)
         try {
-            const response = await axios.delete('/projectss/' + projectID)
-            const data = await response.data
-            console.log(data)
+            const response = await axios.delete('/projects/' + projectID)
             setLoading(false)
             if(response.status === 200) {
                 history.replace('/')
@@ -58,7 +56,6 @@ const Edit = () => {
             try {
                 const response = await axios.get('/projects/' + projectID)
                 const data = await response.data
-                console.log(data)
                 setProject(data)
                 // setLoading(false)
             } catch(err) {
