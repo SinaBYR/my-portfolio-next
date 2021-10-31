@@ -57,7 +57,6 @@ const CreateForm = ({ submit, loading, error}) => {
             return
         }
 
-        console.log(formData)
         submit(data)
     }
 

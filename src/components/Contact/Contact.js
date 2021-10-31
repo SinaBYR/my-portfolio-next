@@ -64,7 +64,6 @@ const Contact = () => {
                         />
                     <label>Message</label>
                     <p className={classes.ErrorMessage}>{formData.message.error}</p>
-                    <ErrorMessage>{formData.message.error}</ErrorMessage>
                     <textarea
                         name="message"
                         id="message"
