@@ -31,9 +31,9 @@ const Navbar = () => {
                 {
                     dark
                     ?
-                    <SecondaryLink>Resume <BsDownload /></SecondaryLink>
+                    <SecondaryLink to="/" target="_blank" rel="noopener noreferrer">Resume <BsDownload /></SecondaryLink>
                     :
-                    <PrimaryLink>Resume <BsDownload /></PrimaryLink>
+                    <PrimaryLink to="/" target="_blank" rel="noopener noreferrer">Resume <BsDownload /></PrimaryLink>
                 }
             </nav>
         </header>
