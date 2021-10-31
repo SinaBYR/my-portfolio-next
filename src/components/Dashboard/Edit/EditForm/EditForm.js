@@ -1,6 +1,6 @@
 import classes from './EditForm.module.css';
 import { useState, useEffect } from 'react';
-import { ErrorMessage, PrimaryButton, SecondaryButton, WarningButton, ConfirmButton } from '../../../Utilities';
+import { ErrorMessage, PrimaryButton, WarningButton, ConfirmButton } from '../../../Utilities';
 import { Input } from '../../Input/Input';
 import { ScaleLoader } from 'react-spinners'
 import { setValues, isValid } from './handlers';
@@ -65,7 +65,7 @@ const EditForm = ({ submit, deleteProject, preData, loading, error}) => {
 
         submit(data)
     }
-    const onDeleteHandler = () => {
+    const showDeleteConfirmation = () => {
         setIsConfirming(true)
     }
     const cancelDeleteHandler = () => {
@@ -187,11 +187,11 @@ const EditForm = ({ submit, deleteProject, preData, loading, error}) => {
                         isConfirming
                         ?
                         <div className={classes.ConfirmDeleteButtons}>
-                            <PrimaryButton onClick={confirmDeleteHandler}>Yes</PrimaryButton>
-                            <PrimaryButton onClick={cancelDeleteHandler}>No</PrimaryButton>
+                            <PrimaryButton type="button" onClick={confirmDeleteHandler}>Yes</PrimaryButton>
+                            <PrimaryButton type="button" onClick={cancelDeleteHandler}>No</PrimaryButton>
                         </div>
                         :
-                        <WarningButton onClick={onDeleteHandler}>Delete</WarningButton>
+                        <WarningButton type="button" onClick={showDeleteConfirmation}>Delete</WarningButton>
                     }
                 </div>
             </form>

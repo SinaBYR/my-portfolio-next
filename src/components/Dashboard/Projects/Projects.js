@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ErrorMessage } from '../../Utilities';
 import { Project } from './Project/Project';
 import classes from './Projects.module.css';
-import axios from '../../../axios/axios';
+import { axios } from '../../../axios/axios';
 import { ScaleLoader } from 'react-spinners';
 
 const Projects = () => {
@@ -29,9 +29,15 @@ const Projects = () => {
         fetchProjects()
     }, [])
 
-    let display = projects.map(project => {
-        return <Project title={project.title} projectID={project._id} key={project + Math.random()}/>
-    })
+    let display
+    if(!projects.length) {
+        display = <p>There are no projects.</p>
+    } else {
+        display = projects.map(project => {
+            return <Project title={project.title} projectID={project._id} key={project + Math.random()}/>
+        })
+    }
+
 
     return (
         <div className={classes.Projects}>

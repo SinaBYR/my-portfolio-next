@@ -11,7 +11,6 @@ const Dashboard = () => {
             <div className={classes.DashboardWrapper}>
                 <Header />
                 <Switch>
-                    {/* <Route path="/create" render={() => <Form create={create} loading={loading}/>}/> */}
                     <Route path="/create" component={Create}/>
                     <Route path="/:projectID" component={Edit}/>
                     <Route path="/" component={Projects}/>
