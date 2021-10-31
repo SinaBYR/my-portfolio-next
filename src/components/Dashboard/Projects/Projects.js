@@ -1,7 +1,7 @@
+import classes from './Projects.module.css';
 import { useState, useEffect } from 'react';
 import { ErrorMessage } from '../../Utilities';
 import { Project } from './Project/Project';
-import classes from './Projects.module.css';
 import { axios } from '../../../axios/axios';
 import { ScaleLoader } from 'react-spinners';
 
