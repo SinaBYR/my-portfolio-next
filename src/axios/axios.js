@@ -1,7 +1,8 @@
-import axios from "axios";
+import axiosModule from "axios";
 
-const instance = axios.create({
+export const cancelTokenSource = axiosModule.CancelToken.source()
+
+export const axios = axiosModule.create({
     baseURL: 'http://localhost:8000',
+    cancelToken: cancelTokenSource.token
 })
-
-export default instance
