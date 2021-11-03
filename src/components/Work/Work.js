@@ -52,7 +52,9 @@ const Work = () => {
                         :
                             loading
                             ?
-                            <ScaleLoader color="#f7f7f7"/>
+                            <div style={{textAlign: 'center'}}>
+                                <ScaleLoader color={!dark ? colors.dark.secondary : colors.light.primary}/>
+                            </div>
                             :
                             display
                     }
