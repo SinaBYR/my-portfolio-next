@@ -1,5 +1,5 @@
 import classes from './Showcase.module.css';
-import { useContext } from 'react/cjs/react.development';
+import { useContext } from 'react';
 import { ThemeContext } from '../../dark-mode-future/theme-context';
 import { colors } from '../../color-palette/color-palette';
 

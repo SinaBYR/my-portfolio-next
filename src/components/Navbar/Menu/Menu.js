@@ -1,7 +1,7 @@
 import classes from './Menu.module.css';
+import { useContext } from 'react';
 import { NavLinks } from '../NavLinks/NavLinks';
 import { DarkModeCheckbox } from '../DarkModeCheckbox/DarkModeCheckbox';
-import { useContext } from 'react/cjs/react.development';
 import { ThemeContext } from '../../../dark-mode-future/theme-context';
 import { colors } from '../../../color-palette/color-palette';
 

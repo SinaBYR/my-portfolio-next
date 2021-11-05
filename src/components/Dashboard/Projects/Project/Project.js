@@ -1,5 +1,5 @@
-import { SecondaryLink } from '../../../Utilities';
 import classes from './Project.module.css';
+import { SecondaryLink } from '../../../Utilities';
 
 const Project = ({ title, projectID }) => {
     return (

@@ -1,5 +1,5 @@
 import classes from './Footer.module.css';
-import { useContext } from 'react/cjs/react.development';
+import { useContext } from 'react';
 import { colors } from '../../color-palette/color-palette';
 import { ThemeContext } from '../../dark-mode-future/theme-context';
 

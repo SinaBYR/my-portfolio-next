@@ -1,7 +1,7 @@
 import classes from './Project.module.css';
+import { useContext } from 'react';
 import { BiLinkExternal } from 'react-icons/bi';
 import { PrimaryLink, SecondaryLink } from '../../Utilities';
-import { useContext } from 'react/cjs/react.development';
 import { ThemeContext } from '../../../dark-mode-future/theme-context';
 import { colors } from '../../../color-palette/color-palette';
 

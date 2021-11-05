@@ -1,5 +1,5 @@
 import classes from './Navbar.module.css';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import { NavLinks } from './NavLinks/NavLinks';
 import { BsDownload } from 'react-icons/bs';
 import { Burger, PrimaryLink, SecondaryLink } from '../Utilities';
