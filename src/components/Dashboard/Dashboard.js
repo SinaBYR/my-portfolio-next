@@ -11,9 +11,9 @@ const Dashboard = () => {
             <div className={classes.DashboardWrapper}>
                 <Header />
                 <Switch>
-                    <Route path="/dashboard/create" component={Create}/>
-                    <Route path="/dashboard/:projectID" component={Edit}/>
-                    <Route path="/dashboard" component={Projects}/>
+                    <Route path="/create" component={Create}/>
+                    <Route path="/:projectID" component={Edit}/>
+                    <Route path="/" component={Projects}/>
                 </Switch>
             </div>
         </div>

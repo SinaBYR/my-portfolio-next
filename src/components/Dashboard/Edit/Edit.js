@@ -24,7 +24,7 @@ const Edit = () => {
             setProject(data)
             setLoading(false)
             if(response.status === 200) {
-                history.replace('/dashboard')
+                history.replace('/')
             }
         } catch(err) {
             console.log(err)
@@ -40,7 +40,7 @@ const Edit = () => {
             const response = await axios.delete('/projects/' + projectID)
             setLoading(false)
             if(response.status === 200) {
-                history.replace('/dashboard')
+                history.replace('/')
             }
         } catch(err) {
             console.log(err)
