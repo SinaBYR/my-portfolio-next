@@ -15,7 +15,7 @@ const Create = () => {
             const response = await axios.post('/projects', payload)
             setLoading(false)
             if(response.status === 201) {
-                history.replace('/')
+                history.replace('/dashboard')
             }
         } catch(err) {
             console.log(err)

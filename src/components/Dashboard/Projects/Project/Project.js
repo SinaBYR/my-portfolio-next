@@ -6,7 +6,7 @@ const Project = ({ title, projectID }) => {
         <div className={classes.Project}>
             <p>{title}</p>
             <div className={classes.Controllers}>
-                <SecondaryLink to={"/" + projectID}>Edit</SecondaryLink>
+                <SecondaryLink to={"/dashboard/" + projectID}>Edit</SecondaryLink>
             </div>
         </div>
     )

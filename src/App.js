@@ -11,16 +11,10 @@ import { Dashboard } from "./components/Dashboard/Dashboard";
 const App = () => {
     const dark = useContext(ThemeContext)
 
-    const host = window.location.host
-    const array = host.split('.')
     return (
         <div style={{color: dark ? '#f7f7f7' : '#1e262c'}}>
             <Switch>
-                {/* render dashboard if "dashboard" is the subdomain */}
-                {
-                    array[0].toLowerCase() === 'dashboard' && 
-                    <Route component={Dashboard}/>
-                }
+                <Route path="/dashboard" component={Dashboard}/>
                 <Route exact path="/">
                     <Navbar />
                     <Showcase />
