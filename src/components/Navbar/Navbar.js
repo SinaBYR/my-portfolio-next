@@ -2,7 +2,7 @@ import classes from './Navbar.module.css';
 import { useState } from 'react';
 import { NavLinks } from './NavLinks/NavLinks';
 import { BsDownload } from 'react-icons/bs';
-import { Burger, PrimaryLink, SecondaryLink } from '../Utilities';
+import { Burger, PrimaryAnchor, SecondaryAnchor } from '../Utilities';
 import { Menu } from './Menu/Menu';
 import { useContext } from 'react';
 import { ThemeContext } from '../../dark-mode-future/theme-context';
@@ -31,9 +31,9 @@ const Navbar = () => {
                 {
                     dark
                     ?
-                    <SecondaryLink to="/" target="_blank" rel="noopener noreferrer">Resume <BsDownload /></SecondaryLink>
+                    <SecondaryAnchor href="#" target="_blank" rel="noopener noreferrer">Resume <BsDownload /></SecondaryAnchor>
                     :
-                    <PrimaryLink to="/" target="_blank" rel="noopener noreferrer">Resume <BsDownload /></PrimaryLink>
+                    <PrimaryAnchor href="#" target="_blank" rel="noopener noreferrer">Resume <BsDownload /></PrimaryAnchor>
                 }
             </nav>
         </header>
