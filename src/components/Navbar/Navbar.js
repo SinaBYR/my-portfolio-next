@@ -31,9 +31,9 @@ const Navbar = () => {
                 {
                     dark
                     ?
-                    <SecondaryAnchor href="#" target="_blank" rel="noopener noreferrer">Resume <BsDownload /></SecondaryAnchor>
+                    <SecondaryAnchor href="https://drive.google.com/file/d/1HJoJi-s_4c22NDENLhX4bPYliS7D6GJL/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume <BsDownload /></SecondaryAnchor>
                     :
-                    <PrimaryAnchor href="#" target="_blank" rel="noopener noreferrer">Resume <BsDownload /></PrimaryAnchor>
+                    <PrimaryAnchor href="https://drive.google.com/file/d/1HJoJi-s_4c22NDENLhX4bPYliS7D6GJL/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume <BsDownload /></PrimaryAnchor>
                 }
             </nav>
         </header>
