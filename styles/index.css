@@ -1,11 +1,18 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
+@font-face {
+  font-family: 'AlbertSans-Regular';
+  src: url('../public/AlbertSans-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
-  font-family: 'Roboto Mono';
+  font-family: 'AlbertSans-Regular';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
