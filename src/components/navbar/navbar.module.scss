@@ -1,0 +1,53 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  padding: 0 1rem;
+  border-bottom: 1px solid #cccccc;
+}
+
+.navbarWrapper {
+  display: flex;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.logo {
+  font-size: 24px;
+}
+
+.darkMode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 4px;
+}
+
+.links {
+  display: flex;
+  margin-right: 1rem;
+
+  li {
+    margin: 0 4px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+    .Links {
+        display: none;
+    }
+    
+    /* PrimaryLink ( resume download link ) */
+    .NavbarWrapper > *:last-child {
+        margin-left: auto;
+    }
+
+    .DarkMode {
+        display: none;
+    }
+}

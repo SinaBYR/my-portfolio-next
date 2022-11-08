@@ -1,0 +1,32 @@
+.button {
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  color: #ffffff;
+  background-color: #1e262c;
+}
+
+.secondary {
+  color: #1e262c;
+  background-color: #f7f7f7;
+}
+
+.success {
+  color: #ffffff;
+  background-color: #007600;
+}
+
+.danger {
+  color: #ffffff;
+  background-color: #8b0000;
+}
