@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { SocialIcon } from 'react-social-icons';
+// import { SocialIcon } from 'react-social-icons';
 import { ThemeContext } from '../../../dark-mode-future/theme-context';
 import { colors } from '../../../color-palette/color-palette';
 
@@ -7,7 +7,7 @@ const NavLinks = ({ mobile }) => {
     const dark = useContext(ThemeContext)
     return (
         <>
-            <li>
+            {/* <li>
                 <SocialIcon bgColor={dark ? colors.light.secondary : null} style={{width: mobile ? '80px' : '40px', height: mobile ? '80px' : '40px'}} url="https://www.github.com/SinaBYR"  target="_blank" rel="noopener noreferrer" to="/"/>
             </li>
             <li>
@@ -15,7 +15,7 @@ const NavLinks = ({ mobile }) => {
             </li>
             <li>
                 <SocialIcon bgColor={dark ? colors.light.secondary : null} style={{width: mobile ? '80px' : '40px', height: mobile ? '80px' : '40px'}} url="https://www.twitter.com/sinabyr"  target="_blank" rel="noopener noreferrer" to="/"/>
-            </li>
+            </li> */}
         </>
     )
 }
