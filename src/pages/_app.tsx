@@ -4,10 +4,10 @@ import { ThemeProvider } from "../dark-mode-future/theme-context";
 
 export default function App({ Component, pageProps }) {
   return (
-    <Layout>
-      <ThemeProvider>
-        <Component {...pageProps}/>
-      </ThemeProvider>
-    </Layout>
+    <ThemeProvider>
+      <Layout>
+          <Component {...pageProps}/>
+      </Layout>
+    </ThemeProvider>
   )
 }
