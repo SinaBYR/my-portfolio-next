@@ -1,0 +1,28 @@
+.menu {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-100%);
+  transition: transform 300ms ease;
+
+  &.open {
+    transform: translateX(0);
+  }
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25%;
+
+  & > li {
+    margin: 0 16px;
+  }
+
+  a {
+    font-size: 2rem !important;
+  }
+}
