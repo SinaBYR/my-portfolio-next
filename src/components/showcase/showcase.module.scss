@@ -1,0 +1,39 @@
+.showcase {
+  display: flex;
+  align-items: center;
+  min-height: 350px;
+  padding: 1rem;
+  margin-top: 72px;
+}
+
+.showcaseWrapper {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+
+  h2 {
+    font-size: 2.8rem;
+  }
+
+  p {
+    font-size: 1.6rem;
+    margin: 0.5rem 0;
+    line-height: 1.4;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .showcaseWrapper {
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  }
+}
