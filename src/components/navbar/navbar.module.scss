@@ -1,4 +1,4 @@
-.navbar {
+.header {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   padding: 0 1rem;
 }
 
-.navbarWrapper {
+.navbar {
   display: flex;
   align-items: center;
   max-width: 980px;
@@ -34,10 +34,5 @@
 @media screen and (max-width: 680px) {
   .links {
     display: none;
-  }
-  
-  /* Link ( resume download link ) */
-  .navbarWrapper > *:last-child {
-    // margin-left: auto;
   }
 }

@@ -13,8 +13,8 @@ export function Navbar() {
   }
 
   return (
-    <header className={classes.navbar}>
-      <nav className={classes.navbarWrapper}>
+    <header className={classes.header}>
+      <nav className={classes.navbar}>
         <Burger open={isMenuOpen} click={menuClickHandler}/>
         <Menu open={isMenuOpen}/>
         {/* <h1 className={classes.logo}>Sina Beyraghdar</h1> */}
