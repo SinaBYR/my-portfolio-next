@@ -1,8 +1,14 @@
 import classes from './logo.module.scss';
+// Props
+// fontSize (optional): used for transitioning. CSS font-size property is associated with transition,
+// so transitioning will be smooth. if ommited, a default value of "1.6rem" would be set.
+interface Props {
+  fontSize?: string;
+}
 
-export function Logo() {
+export function Logo({ fontSize = '1.6rem' }: Props) {
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.wrapper} style={{ fontSize: fontSize }}>
       <div>
         <h2>S</h2>
         <span>INA</span>
