@@ -1,6 +1,6 @@
 import classes from './navbar.module.scss';
 import { useEffect, useState } from 'react';
-import { NavLinks } from './navLinks/navLinks';
+import { Links } from './links/links';
 import { BsDownload } from 'react-icons/bs';
 import { Burger, Link, Logo } from '../Utilities';
 import { Menu } from './menu/menu';
@@ -12,6 +12,12 @@ export function Navbar() {
 
   function menuClickHandler() {
     setIsMenuOpen(state => !state);
+
+    if(document.body.style.overflow === 'hidden') {
+      return document.body.style.overflow = 'auto';
+    }
+    
+    document.body.style.overflow = 'hidden';
   }
 
   function onScrollHandler() {
@@ -44,16 +50,10 @@ export function Navbar() {
       <nav className={classes.navbar}>
         <Burger open={isMenuOpen} click={menuClickHandler}/>
         <Menu open={isMenuOpen}/>
-        {/* <h1 className={classes.logo}>Sina Beyraghdar</h1> */}
-        {/* {isShrunk ? 'true' : 'false'} */}
         <div className={classes.logoWrapper}>
-          {/* <Image src={LogoImageSrc} layout="fill"/> */}
           <Logo fontSize={isShrunk ? '1.2rem' : '1.6rem'}/>
         </div>
-
-        {/* <ul className={classes.links}>
-          <NavLinks />
-        </ul> */}
+        <Links />
         {/* <Link
           mode="secondary"
           href="https://drive.google.com/file/d/1HJoJi-s_4c22NDENLhX4bPYliS7D6GJL/view?usp=sharing"
