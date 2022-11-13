@@ -1,22 +1,18 @@
 import classes from './links.module.scss';
 import Link from 'next/link';
 
-type Props = {
-  mobile?: boolean;
-}
-
-export function Links({ mobile }: Props) {
+export function Links() {
   return (
-    <ul className={classes.links}>
-      <li>
+    <>
+      <li className={classes.link}>
         <Link href="/">Skills</Link>
       </li>
-      <li>
+      <li className={classes.link}>
         <Link href="/">Showcase</Link>
       </li>
-      <li>
+      <li className={classes.link}>
         <Link href="/">Contact</Link>
       </li>
-    </ul>
+    </>
   )
 }
