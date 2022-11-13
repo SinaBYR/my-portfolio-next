@@ -16,7 +16,7 @@ export function Navbar() {
     if(document.body.style.overflow === 'hidden') {
       return document.body.style.overflow = 'auto';
     }
-    
+
     document.body.style.overflow = 'hidden';
   }
 
@@ -48,12 +48,14 @@ export function Navbar() {
   return (
     <header className={[classes.header, isShrunk ? classes.shrunk : null].join(' ')}>
       <nav className={classes.navbar}>
-        <Burger open={isMenuOpen} click={menuClickHandler}/>
         <Menu open={isMenuOpen}/>
         <div className={classes.logoWrapper}>
           <Logo fontSize={isShrunk ? '1.2rem' : '1.6rem'}/>
         </div>
-        <Links />
+        <div className={classes.linksWrapper}>
+          <Links />
+        </div>
+        <Burger open={isMenuOpen} click={menuClickHandler}/>
         {/* <Link
           mode="secondary"
           href="https://drive.google.com/file/d/1HJoJi-s_4c22NDENLhX4bPYliS7D6GJL/view?usp=sharing"
