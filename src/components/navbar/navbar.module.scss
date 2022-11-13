@@ -27,6 +27,10 @@
   margin-right: auto;
 }
 
+.linksWrapper {
+  display: flex;
+}
+
 @media screen and (max-width: 680px) {
   .linksWrapper {
     display: none;

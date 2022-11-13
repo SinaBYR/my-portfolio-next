@@ -52,9 +52,9 @@ export function Navbar() {
         <div className={classes.logoWrapper}>
           <Logo fontSize={isShrunk ? '1.2rem' : '1.6rem'}/>
         </div>
-        <div className={classes.linksWrapper}>
+        <ul className={classes.linksWrapper}>
           <Links />
-        </div>
+        </ul>
         <Burger open={isMenuOpen} click={menuClickHandler}/>
         {/* <Link
           mode="secondary"
