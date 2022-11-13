@@ -17,9 +17,9 @@ export function Menu({ open }: Props) {
         <div className={classes.logoWrapper}>
           <Logo />
         </div>
-        <div className={classes.linksWrapper}>
+        <ul className={classes.linksWrapper}>
           <Links />
-        </div>
+        </ul>
       </div>
     </div>
   )
