@@ -1,6 +1,5 @@
 .menu {
   position: fixed;
-  top: 72px;
   top: 0;
   left: 0;
   width: 100%;
@@ -25,7 +24,7 @@
     }
    
     .logoWrapper {
-      animation: logo-delay forwards 400ms 400ms ease-out;
+      animation: logo-delay forwards 400ms 800ms ease-out;
       opacity: 0;
     }
   }
