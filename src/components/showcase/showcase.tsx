@@ -1,4 +1,8 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import classes from './showcase.module.scss';
+import githubSvg from '../../../public/img/github.svg';
+import { BsGithub, BsLinkedin } from 'react-icons/bs';
 
 export function Showcase() {
   return (
@@ -16,6 +20,14 @@ export function Showcase() {
           <br />
           <span>and secure web-based applications.</span>
         </p>
+        <div className={classes.socials}>
+          <a href="https://b2n.ir/e82982" target="_blank" rel="noopener noreferrer">
+            <BsGithub />
+          </a>
+          <a href="https://www.linkedin.com/in/sina-beyraghdar" target="_blank" rel="noopener noreferrer">
+            <BsLinkedin />
+          </a>
+        </div>
       </div>
     </section>
   )

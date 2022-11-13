@@ -34,10 +34,20 @@
   }
 }
 
+.socials {
+  margin-top: 1rem;
+
+  a {
+    color: #f4f4f4;
+    font-size: 2rem;
+    margin-right: 1rem;
+  }
+}
+
 @media screen and (max-width: 680px) {
   .showcaseWrapper {
     h2 {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       margin-bottom: 1rem;
       line-height: 1.2;
       text-align: center;
@@ -47,5 +57,9 @@
       font-size: 1.2rem;
       text-align: center;
     }
+  }
+
+  .socials {
+    text-align: center;
   }
 }
