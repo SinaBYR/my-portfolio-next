@@ -6,11 +6,12 @@
   align-items: center;
   width: 26px;
   height: 24px;
-  margin-right: 4px;
+  z-index: 2;
 
   & div {
     width: 15%;
     height: 14%;
+    background-color: #e4e4e4;
     transition: transform 300ms ease, visibility 300ms ease, opacity 300ms ease, width 300ms ease;
     border-radius: 8px;
   }

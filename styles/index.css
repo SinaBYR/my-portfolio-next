@@ -2,9 +2,7 @@
 
 @font-face {
   font-family: 'AlbertSans-Regular';
-  src: url('../public/AlbertSans-Regular.ttf');
-  font-weight: 400;
-  font-style: normal;
+  src: url('../public/fonts/AlbertSans-Regular.ttf');
 }
 
 body {
