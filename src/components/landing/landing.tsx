@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import classes from './showcase.module.scss';
+import classes from './landing.module.scss';
 import githubSvg from '../../../public/img/github.svg';
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
 
-export function Showcase() {
+export function Landing() {
   return (
-    <section className={classes.showcase} >
-      <div className={classes.showcaseWrapper}>
+    <section className={classes.landing} >
+      <div className={classes.landingWrapper}>
         <h2>
           <span>Let's give</span>
           <br />
