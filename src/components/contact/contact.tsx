@@ -2,11 +2,12 @@ import classes from './contact.module.scss';
 import { useState } from 'react';
 import { Button } from '../Utilities';
 import { setTouched, setErrors, setValues, isValid } from './form-data';
+import { FormData } from './form-data/types';
 // import ScaleLoader from 'react-spinners/ScaleLoader';
 
 export function Contact() {
-  const [loading, setLoading] = useState(false)
-  const [formData, setFormData] = useState({
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
     fullname: {
       value: '',
       error: null,
@@ -22,19 +23,7 @@ export function Contact() {
       error: null,
       touched: false
     }
-  })
-
-  const onChangeHandler = e => {
-    setFormData(setValues(formData, e))
-  }
-
-  const onFocusHandler = e => {
-    setFormData(setTouched(formData, e))
-  }
-  
-  const onBlurHandler = e => {
-    setFormData(setErrors(formData, e))
-  }
+  });
 
   const sendData = (e) => {
     e.preventDefault();
@@ -64,9 +53,9 @@ export function Contact() {
             id="fullname"
             // style={{borderColor: formData.fullname.error && 'red'}}
             autoComplete="off"
-            onChange={onChangeHandler}
-            onFocus={onFocusHandler}
-            onBlur={onBlurHandler}
+            onChange={e => setFormData(setValues(formData, e))}
+            onFocus={e => setFormData(setTouched(formData, e))}
+            onBlur={e => setFormData(setErrors(formData, e))}
             />
         </div>
         <div>
@@ -77,10 +66,9 @@ export function Contact() {
             id="email"
             // style={{borderColor: formData.email.error && 'red'}}
             autoComplete="off"
-            onChange={onChangeHandler}
-            // onFocus={onFocusHandler}
-            onFocus={onFocusHandler}
-            onBlur={onBlurHandler}
+            onChange={e => setFormData(setValues(formData, e))}
+            onFocus={e => setFormData(setTouched(formData, e))}
+            onBlur={e => setFormData(setErrors(formData, e))}
             />
         </div>
         <div>
@@ -89,9 +77,9 @@ export function Contact() {
             name="message"
             id="message"
             // style={{borderColor: formData.message.error && 'red'}}
-            onChange={onChangeHandler}
-            onFocus={onFocusHandler}
-            onBlur={onBlurHandler}
+            onChange={e => setFormData(setValues(formData, e))}
+            onFocus={e => setFormData(setTouched(formData, e))}
+            onBlur={e => setFormData(setErrors(formData, e))}
             />
         </div>
         <Button type="submit" disabled={loading} mode="primary">Send</Button>
