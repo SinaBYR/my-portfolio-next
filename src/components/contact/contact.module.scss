@@ -5,6 +5,7 @@
 
 .header {
   text-align: center;
+  margin-bottom: 2rem;
 
   h2 {
     font-size: 3rem;
@@ -13,8 +14,22 @@
   }
 
   p {
-    margin-bottom: 2rem;
     font-size: 1.2rem;
+  }
+}
+
+.errors {
+  max-width: 680px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0 8px;
+    color: #fd3c3c;
+    line-height: 1.8;
+    list-style: none;
   }
 }
 
@@ -60,11 +75,6 @@
     margin-bottom: 1rem;
     border: 1px solid #020303;
   }
-}
-
-.error {
-  color: #929292;
-  margin: 4px 0;
 }
 
 @media screen and (max-width: 680px) {

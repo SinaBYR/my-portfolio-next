@@ -1,25 +1,26 @@
 import classes from './contact.module.scss';
-import { useState } from 'react';
 import { Button } from '../Utilities';
 import { useFormik } from 'formik';
 import { validationSchema } from './validation-schema';
+import { BiError } from 'react-icons/bi'
 
 export function Contact() {
-  const [loading, setLoading] = useState(false);
-
-  const initialValues = {
-    fullname: '',
-    email: '',
-    message: ''
-  };
-
   const { values, errors, isValid, submitCount, handleSubmit, handleChange, handleBlur } = useFormik({
-    initialValues,
+    initialValues: {
+      fullname: '',
+      email: '',
+      message: ''
+    },
     onSubmit: (values, _helpers) => {
       console.log(values);
     },
-    validationSchema
+    validationSchema,
+    validateOnChange: false,
+    validateOnBlur: false
   });
+
+  const errorMessages = Object.keys(errors)
+    .map(field => <li key={field}><BiError color="#fd3c3c" />{errors[field]}</li>);
 
   return (
     <section className={classes.contact}>
@@ -27,6 +28,7 @@ export function Contact() {
         <h2>Get in touch</h2>
         <p>Send me a message and I'll get back to you as soon as possible.</p>
       </div>
+      {!isValid && <ul className={classes.errors}>{errorMessages}</ul>}
       <form className={classes.form} onSubmit={handleSubmit}>
         <div>
           <label htmlFor="fullname">Full name</label>
@@ -34,7 +36,6 @@ export function Contact() {
             type="text"
             name="fullname"
             id="fullname"
-            // style={{borderColor: formData.fullname.error && 'red'}}
             autoComplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -47,7 +48,6 @@ export function Contact() {
             type="email"
             name="email"
             id="email"
-            // style={{borderColor: formData.email.error && 'red'}}
             autoComplete="off"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -59,13 +59,12 @@ export function Contact() {
           <textarea
             name="message"
             id="message"
-            // style={{borderColor: formData.message.error && 'red'}}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.message}
             />
         </div>
-        <Button type="submit" disabled={!isValid} mode="primary">Send</Button>
+        <Button type="submit" mode="primary">Send</Button>
       </form>
     </section>
   )
