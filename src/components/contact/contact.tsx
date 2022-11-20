@@ -1,42 +1,25 @@
 import classes from './contact.module.scss';
 import { useState } from 'react';
 import { Button } from '../Utilities';
-import { setTouched, setErrors, setValues, isValid } from './form-data';
-import { FormData } from './form-data/types';
-// import ScaleLoader from 'react-spinners/ScaleLoader';
+import { useFormik } from 'formik';
+import { validationSchema } from './validation-schema';
 
 export function Contact() {
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
-    fullname: {
-      value: '',
-      error: null,
-      touched: false
+
+  const initialValues = {
+    fullname: '',
+    email: '',
+    message: ''
+  };
+
+  const { values, errors, isValid, submitCount, handleSubmit, handleChange, handleBlur } = useFormik({
+    initialValues,
+    onSubmit: (values, _helpers) => {
+      console.log(values);
     },
-    email: {
-      value: '',
-      error: null,
-      touched: false
-    },
-    message: {
-      value: '',
-      error: null,
-      touched: false
-    }
+    validationSchema
   });
-
-  const sendData = (e) => {
-    e.preventDefault();
-
-    if(!isValid(formData)) {
-        return false
-    }
-    setLoading(true)
-    setTimeout(() => {
-        console.log(formData);
-        setLoading(false)
-    }, 2000)
-  }
 
   return (
     <section className={classes.contact}>
@@ -44,7 +27,7 @@ export function Contact() {
         <h2>Get in touch</h2>
         <p>Send me a message and I'll get back to you as soon as possible.</p>
       </div>
-      <form className={classes.form} onSubmit={sendData}>
+      <form className={classes.form} onSubmit={handleSubmit}>
         <div>
           <label htmlFor="fullname">Full name</label>
           <input
@@ -53,9 +36,9 @@ export function Contact() {
             id="fullname"
             // style={{borderColor: formData.fullname.error && 'red'}}
             autoComplete="off"
-            onChange={e => setFormData(setValues(formData, e))}
-            onFocus={e => setFormData(setTouched(formData, e))}
-            onBlur={e => setFormData(setErrors(formData, e))}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.fullname}
             />
         </div>
         <div>
@@ -66,9 +49,9 @@ export function Contact() {
             id="email"
             // style={{borderColor: formData.email.error && 'red'}}
             autoComplete="off"
-            onChange={e => setFormData(setValues(formData, e))}
-            onFocus={e => setFormData(setTouched(formData, e))}
-            onBlur={e => setFormData(setErrors(formData, e))}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.email}
             />
         </div>
         <div>
@@ -77,12 +60,12 @@ export function Contact() {
             name="message"
             id="message"
             // style={{borderColor: formData.message.error && 'red'}}
-            onChange={e => setFormData(setValues(formData, e))}
-            onFocus={e => setFormData(setTouched(formData, e))}
-            onBlur={e => setFormData(setErrors(formData, e))}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.message}
             />
         </div>
-        <Button type="submit" disabled={loading} mode="primary">Send</Button>
+        <Button type="submit" disabled={!isValid} mode="primary">Send</Button>
       </form>
     </section>
   )
