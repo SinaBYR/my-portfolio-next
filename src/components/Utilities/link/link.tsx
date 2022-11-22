@@ -1,12 +1,14 @@
+import classes from './link.module.scss';
 import NextLink, { LinkProps } from "next/link";
-import styles from './link.module.scss';
 
 type Props = {
-  mode?: 'primary' | 'secondary'
+  variant?: 'primary'|'secondary'|'simple';
+  simple?: boolean;
 } & LinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const Link: React.FC<Props> = ({
-  mode = 'primary',
+  variant = 'primary',
+  simple = false,
   href,
   as,
   legacyBehavior,
@@ -19,7 +21,7 @@ export const Link: React.FC<Props> = ({
   children,
   ...rest 
 }) => {
-  const classes = [styles.link, styles[mode]].join(' ');
+  const classNames = [classes.link, classes[variant]].join(' ');
   
   return (
     <NextLink 
@@ -32,7 +34,7 @@ export const Link: React.FC<Props> = ({
       scroll={scroll}
       shallow={shallow}
       locale={locale}>
-      <a className={classes} {...rest}>{children}</a>
+      <a className={classNames} {...rest}>{children}</a>
     </NextLink>
   )
 }

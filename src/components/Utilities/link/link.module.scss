@@ -20,3 +20,13 @@
   background-color: #f7f7f7;
   padding: 0.3rem 1rem;
 }
+
+.simple {
+  color: white;
+  text-decoration: none;
+  transition: opacity 400ms;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
