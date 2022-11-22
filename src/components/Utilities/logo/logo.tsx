@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import classes from './logo.module.scss';
 // Props
 // fontSize (optional): used for transitioning. CSS font-size property is associated with transition,
@@ -8,15 +9,17 @@ interface Props {
 
 export function Logo({ fontSize = '1.6rem' }: Props) {
   return (
-    <div className={classes.wrapper} style={{ fontSize: fontSize }}>
-      <div>
-        <h2>S</h2>
-        <span>INA</span>
-      </div>
-      <div>
-        <h2>B</h2>
-        <span>EYRAGHDAR</span>
-      </div>
-    </div>
+    <Link href="/">
+      <a className={classes.wrapper} style={{ fontSize: fontSize }}>
+        <div>
+          <h2>S</h2>
+          <span>INA</span>
+        </div>
+        <div>
+          <h2>B</h2>
+          <span>EYRAGHDAR</span>
+        </div>
+      </a>
+    </Link>
   )
 }
