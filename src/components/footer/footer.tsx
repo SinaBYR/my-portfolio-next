@@ -10,7 +10,7 @@ export function Footer() {
           <div className={classes.logoWrapper}>
             <Logo fontSize="16px"/>
           </div>
-          <p>Developed by Sina Beyraghdar © 2021</p>
+          <p>Developed by Sina Beyraghdar © {new Date().getFullYear()}</p>
         </div>
         <div>
           <div className={classes.linksWrapper}>
