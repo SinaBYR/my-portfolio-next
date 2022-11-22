@@ -4,7 +4,7 @@ import classes from './skills.module.scss';
 export function Skills() {
   return (
     <div className={classes.skills}>
-      <h1>Skills</h1>
+      <h2>Skills</h2>
       <div className={classes.technologies}>
         <Skill src="/img/html5.png" alt="html5" title="HTML5"/>
         <Skill src="/img/css3.png" alt="css" title="CSS3"/>
@@ -14,7 +14,7 @@ export function Skills() {
         <Skill src="/img/ts.png" alt="ts" title="Typescript"/>
         <Skill src="/img/git.png" alt="git" title="Git"/>
         <Skill src="/img/react.png" alt="react" title="React.js"/>
-        <Skill src="/img/nextjs-1.png" alt="next" title="Next.js" style={{ background: 'white', borderRadius: '50px' }}/>
+        {/* <Skill src="/img/nextjs-1.png" alt="next" title="Next.js" style={{ background: 'white', borderRadius: '50px' }}/> */}
         <Skill src="/img/redux.png" alt="redux" title="Redux"/>
         <Skill src="/img/node.png" alt="node" title="Node.js"/>
         <Skill src="/img/npm.png" alt="npm" title="Npm"/>
