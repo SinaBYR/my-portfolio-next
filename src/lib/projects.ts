@@ -1,6 +1,10 @@
 import { db } from "../db/db";
 import { ReducedProjectType, Technology } from "../types/types";
 
+// This util function is used to retrieve reduced projects for
+// showcase section of index page.
+// It is called in getServerSideProps of index page, and then
+// projects, and technologies arrays are passed to Showcase component.
 export async function getReducedProjects() {
   try {
     const projects: ReducedProjectType[] = await db.pool.query(`
