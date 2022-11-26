@@ -1,14 +1,35 @@
 import { Landing } from '../components/landing/landing';
-import { Work } from '../components/work/work';
-import { Contact } from '../components/Contact/Contact';
+import { Showcase } from '../components/showcase/showcase';
+import { Contact } from '../components/contact/contact';
 import { Skills } from '../components/skills/skills';
+import { ReducedProjectType, Technology } from '../types/types';
+import { getReducedProjects } from '../lib/projects';
 
-export default function Home() {
+export async function getServerSideProps() {
+  const { projects, technologies } = await getReducedProjects();
+
+  return {
+    props: {
+      projects,
+      technologies
+    }
+  }
+}
+
+export default function Home(
+  {
+    projects,
+    technologies
+  }:{
+    projects: ReducedProjectType[],
+    technologies: Technology[]
+  }
+) {
   return (
     <>
       <Landing />
       <Skills />
-      <Work />
+      <Showcase projects={projects} technologies={technologies}/>
       <Contact />
     </>
   )
