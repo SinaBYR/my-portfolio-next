@@ -10,6 +10,7 @@ export async function getReducedProjects() {
     const projects: ReducedProjectType[] = await db.pool.query(`
       select id, title, description, created_at
       from project
+      order by created_at desc
       limit 2;
     `);
     const p_ids = projects.map(p => `'${p.id}'`).join(',');
