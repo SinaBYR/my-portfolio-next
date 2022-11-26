@@ -4,7 +4,7 @@
   margin-bottom: 4rem;
 }
 
-.showcaseWrapper {
+.wrapper {
   width: 100%;
   max-width: 680px;
   margin: 0 auto;
@@ -31,7 +31,7 @@
 }
 
 @media screen and (max-width: 680px) {
-  .showcaseWrapper {
+  .wrapper {
     h2 {
       font-size: 2rem;
     }

@@ -11,7 +11,7 @@ interface Props {
 export function Showcase({ projects, technologies }: Props) {
   return (
     <main className={classes.showcase}>
-      <div className={classes.showcaseWrapper}>
+      <div className={classes.wrapper}>
         <h2>Latest Projects</h2>
         <div className={classes.projects}>
           {projects.map(p => {

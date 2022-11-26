@@ -29,7 +29,7 @@ export function ReducedProject({
           {tech.map(val => <span>{val}</span>)}
         </div>
         <p>{description}</p>
-          <Link variant="secondary" href={"/projects/" + id}>Read more</Link>
+        <Link variant="secondary" href={"/projects/" + id}>Read more</Link>
       </div>
     </div>
   )
