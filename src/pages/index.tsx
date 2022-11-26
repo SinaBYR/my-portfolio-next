@@ -6,7 +6,7 @@ import { ReducedProjectType, Technology } from '../types/types';
 import { getReducedProjects } from '../lib/projects';
 
 export async function getServerSideProps() {
-  const { projects, technologies } = await getReducedProjects();
+  const { projects, technologies } = await getReducedProjects(2);
 
   return {
     props: {
