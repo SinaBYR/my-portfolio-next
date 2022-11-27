@@ -12,7 +12,7 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Work({ projects, technologies }: any) {
+export default function ProjectsPage({ projects, technologies }: any) {
   return (
     <Projects projects={projects} technologies={technologies} />
   )
