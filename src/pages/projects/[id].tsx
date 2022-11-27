@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import { Project } from "../../components/projects/project/project";
-import { db } from "../../db/db";
 import { getProject } from "../../lib/projects";
 import { FullProject, Technology } from "../../types/types";
 
