@@ -7,6 +7,7 @@ export interface FullProject {
   preview: string[];
   created_at: string;
   edited_at: string;
+  gh_repository: string|null;
 }
 
 export interface ReducedProjectType {
