@@ -136,7 +136,13 @@ export function Contributors({ repo }: Props) {
       <ul className={classes.avatars}>
         {contributors.map((c, i) => {
           return (
-            <li style={{zIndex: c.contributions, marginTop: i > 11 && '4px', display: i > 9 && !isContributorsExpanded && 'none'}}>
+            <li
+              key={c.login}
+              style={{
+                display: (i > 9 && !isContributorsExpanded) ? 'none': 'inline-block',
+                marginTop: i > 11 ? '4px' : 0,
+                zIndex: 0 - i
+              }}>
               <a key={c.login} href={c.html_url} target="_blank" rel="noopener noreferrer" title={c.login}>
                 <Image src={c.avatar_url} width="100%" height="100%" />
               </a>
@@ -145,7 +151,12 @@ export function Contributors({ repo }: Props) {
         })}
         {
           contributors.length > 10 &&
-          <li onClick={() => setIsContributorsExpanded(state => !state)} style={{display: isContributorsExpanded && 'none'}}>
+          <li
+            onClick={() => setIsContributorsExpanded(state => !state)}
+            style={{
+              display: isContributorsExpanded ? 'none' : 'flex',
+              zIndex: -51
+            }}>
             <MdMoreHoriz fontSize="20px"/>
           </li>
         }
