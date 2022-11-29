@@ -2,6 +2,9 @@ import classes from './project.module.scss';
 import { BiLinkExternal } from 'react-icons/bi';
 import { Link } from '../../Utilities';
 import { Technology } from '../../../types/types';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { octokit } from '../../../gh/gh';
 
 interface Props {
   title: string;
@@ -12,6 +15,7 @@ interface Props {
   tech: Technology[];
   created_at: string;
   edited_at: string;
+  gh_repository: string|null;
 }
 function Project ({
   title,
@@ -20,8 +24,29 @@ function Project ({
   demo_link,
   tech,
   preview,
-  created_at
+  created_at,
+  gh_repository
 }: Props): JSX.Element {
+  const [contributors, setContributors] = useState<any[]>([])
+
+  useEffect(() => {
+    if(!gh_repository) return;
+
+    async function fetchContributors() {
+      try {
+        const result = await octokit.request('GET /repos/{owner}/{repo}/contributors{?anon,per_page,page}', {
+          owner: 'sinabyr',
+          repo: gh_repository
+        });
+
+        setContributors([...result.data])
+      } catch(err) {
+        console.error(err);
+      }
+    }
+
+    fetchContributors()
+  }, [])
 
   return (
     <section className={classes.project}>
@@ -83,7 +108,9 @@ function Project ({
               {tech.map(t => <span key={t.id}>{t.name}</span>)}
             </div>
           </div>
-          {/* <div className={classes.contributors}></div> */}
+          <div className={classes.contributors}>
+            {contributors.map(c => <Image src={c.avatar_url} width="30px" height="30px" style={{borderRadius: '50px'}}/>)}
+          </div>
         </div>
       </div>
     </section>

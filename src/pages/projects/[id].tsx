@@ -22,7 +22,8 @@ export default function FullProjectPage({ project, technologies }: { project: Fu
     code_link,
     demo_link,
     created_at,
-    edited_at
+    edited_at,
+    gh_repository
   } = project;
   return (
     <Project
@@ -34,6 +35,7 @@ export default function FullProjectPage({ project, technologies }: { project: Fu
       demo_link={demo_link}
       tech={technologies}
       created_at={created_at}
-      edited_at={edited_at}/>
+      edited_at={edited_at}
+      gh_repository={gh_repository}/>
   )
 }
