@@ -5,25 +5,24 @@ import { Technologies } from './technologies/technologies';
 import { Contributors } from './contributors/contributors';
 
 interface Props {
-  code_link: string;
-  demo_link: string;
+  demo_url: string;
   tech: Technology[];
   created_at: string;
-  gh_repository: string;
+  repo: string;
 }
 
-export function Sidebar({ code_link, demo_link, tech, created_at, gh_repository }: Props) {
+export function Sidebar({ demo_url, tech, created_at, repo }: Props) {
   return (
     <aside className={classes.sidebar}>
       <div className={classes.topSection}>
-        <Links code_link={code_link} demo_link={demo_link}/>
+        <Links repo={repo} demo_url={demo_url}/>
         <div className={classes.createdAt}>
           <h4>Created at</h4>
           <div>{new Date(created_at).toLocaleString()}</div>
         </div>
         <Technologies list={tech}/>
       </div>
-      <Contributors repo={gh_repository}/>
+      <Contributors repo={repo}/>
     </aside>
   )
 }

@@ -2,12 +2,11 @@ export interface FullProject {
   id: string;
   title: string;
   description: string;
-  code_link: string;
-  demo_link: string;
+  demo_url: string;
   preview: string[];
   created_at: string;
   edited_at: string;
-  gh_repository: string|null;
+  repo: string|null;
 }
 
 export interface ReducedProjectType {
