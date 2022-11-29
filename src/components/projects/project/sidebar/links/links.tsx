@@ -1,5 +1,5 @@
 import { BiLinkExternal } from 'react-icons/bi';
-import { Link } from '../../../../Utilities';
+import { Link } from '../../../../utilities';
 import classes from './links.module.scss';
 
 interface Props {

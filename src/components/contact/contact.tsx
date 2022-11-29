@@ -1,5 +1,5 @@
 import classes from './contact.module.scss';
-import { Button } from '../Utilities';
+import { Button } from '../utilities';
 import { useFormik } from 'formik';
 import { validationSchema } from './validation-schema';
 import { BiError } from 'react-icons/bi'

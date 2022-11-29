@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import classes from './reducedProject.module.scss';
 import img from '../../../../public/img/alessio-soggetti-gdE-5Oui1Y0-unsplash.webp';
-import { Link } from '../../Utilities';
+import { Link } from '../../utilities';
 
 interface Props {
   id: string;

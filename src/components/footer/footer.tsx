@@ -1,5 +1,5 @@
 import { BsGithub, BsLinkedin, BsTwitter } from 'react-icons/bs';
-import { Link, Logo } from '../Utilities';
+import { Link, Logo } from '../utilities';
 import classes from './footer.module.scss';
 
 export function Footer() {
