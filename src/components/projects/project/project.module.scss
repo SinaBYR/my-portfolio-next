@@ -35,63 +35,45 @@
   line-height: 1.4;
 }
 
-.mobileSidebar {
-  display: none;
-  margin: 1rem 0;
-  height: fit-content;
-  background-color: #141414;
-  padding: 1rem;
-}
-
-.sidebar {
-  position: sticky;
-  top: 90px;
+.contributors {
   width: 350px;
-  height: fit-content;
   background-color: #141414;
   padding: 1rem;
-  margin-top: 72px;
-}
-
-.links {
-  display: flex;
-  gap: 0 4px;
-  margin-bottom: 2rem;
-
-  & > * {
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-.createdAt {
-  margin-bottom: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 
   h4 {
     margin-bottom: 12px;
   }
-
-  div {
-    color: #bdbdbd;
-  }
 }
 
-.technologies {
-  h4 {
-    margin-bottom: 12px;
-  }
-}
-
-.techList {
+.avatars {
+  position: sticky;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  margin-left: 5px;
 
-  span {
-    background-color: #2c2c2c;
-    margin-right: 4px;
-    margin-bottom: 4px;
-    padding: 4px;
-    border-radius: 5px;
+  li {
+    position: sticky;
+    width: 30px;
+    height: 30px;
+    margin-left: -5px;
+    border: 1px solid gray;
+    border-radius: 50px;
+
+    &:last-child {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #f4f4f4;
+      cursor: pointer;
+    }
+  }
+
+  img {
+    border-radius: 50px;
   }
 }
 
@@ -119,11 +101,8 @@
     margin-bottom: 0;
   }
 
-  .sidebar {
-    display: none;
-  }
-
-  .mobileSidebar {
-    display: block;
+  .contributors {
+    width: 100%;
+    padding: 0;
   }
 }
