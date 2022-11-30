@@ -26,7 +26,7 @@ export function ReducedProject({
       </div>
       <div className={classes.content}>
         <div className={classes.tech}>
-          {tech.map(val => <span>{val}</span>)}
+          {tech.map(val => <span key={val}>{val}</span>)}
         </div>
         <p>{description}</p>
         <Link variant="secondary" href={"/projects/" + id}>Read more</Link>

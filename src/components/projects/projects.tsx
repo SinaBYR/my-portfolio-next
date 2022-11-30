@@ -18,12 +18,12 @@ export function Projects({ projects, technologies }: Props) {
           {projects.map(p => {
             const techArray = technologies.filter(t => t.p_id === p.id).map(t => t.name);
             return (
-              <ReducedProject 
+              <ReducedProject
+                key={p.id}
                 id={p.id}
                 title={p.title}
                 description={p.description}
                 preview="/img/babel.png"
-                key={p.id}
                 tech={techArray}/>
             )
           })}
