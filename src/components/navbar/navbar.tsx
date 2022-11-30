@@ -2,7 +2,7 @@ import classes from './navbar.module.scss';
 import { useEffect, useState } from 'react';
 import { Links } from './links/links';
 import { BsDownload } from 'react-icons/bs';
-import { Burger, Link, Logo } from '../Utilities';
+import { Burger, Link, Logo } from '../utilities';
 import { Menu } from './menu/menu';
 
 export function Navbar() {

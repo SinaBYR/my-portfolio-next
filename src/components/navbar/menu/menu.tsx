@@ -1,6 +1,6 @@
 import classes from './menu.module.scss';
 import { Links } from '../links/links';
-import { Logo } from '../../Utilities';
+import { Logo } from '../../utilities';
 
 type Props = {
   open: boolean

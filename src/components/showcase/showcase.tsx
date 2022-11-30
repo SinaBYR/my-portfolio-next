@@ -1,5 +1,5 @@
 import classes from './showcase.module.scss';
-import { Link } from '../Utilities';
+import { Link } from '../utilities';
 import { ReducedProject } from './reducedProject/reducedProject';
 import { ReducedProjectType, Technology } from '../../types/types';
 

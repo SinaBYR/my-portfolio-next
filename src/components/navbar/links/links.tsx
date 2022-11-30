@@ -1,5 +1,5 @@
 import classes from './links.module.scss';
-import { Link } from '../../Utilities';
+import { Link } from '../../utilities';
 
 export function Links() {
   return (

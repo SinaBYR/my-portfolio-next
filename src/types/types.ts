@@ -1,3 +1,14 @@
+export interface FullProject {
+  id: string;
+  title: string;
+  description: string;
+  demo_url: string;
+  preview: string[];
+  created_at: string;
+  edited_at: string;
+  repo: string|null;
+}
+
 export interface ReducedProjectType {
   id: string;
   title: string;
