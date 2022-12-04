@@ -9,29 +9,36 @@ import { FullProject, ReducedProjectType, Technology } from "../types/types";
 // limit: optional => it determines the number of rows (projects)
 // that'll be returned.
 export async function getReducedProjects(limit?: number) {
-  let query = `
-    select id, title, description, created_at
-    from project
-    order by created_at desc;
-  `;
-
-  if(limit > 0) {
-    query = `
+  try {
+    let query = `
       select id, title, description, created_at
       from project
-      order by created_at desc
-      limit ${limit};
-    `
-  }
-  try {
+      order by created_at desc;
+    `;
+    if(limit > 0) {
+      query = `
+        select id, title, description, created_at
+        from project
+        order by created_at desc
+        limit ${limit};
+      `;
+    }
+
     const projects: ReducedProjectType[] = await db.pool.query(query);
+    if(!projects.length) {
+      return {
+        projects: [],
+        technologies: []
+      }
+    }
+
     const p_ids = projects.map(p => `'${p.id}'`).join(',');
     const technologies: Technology[] = await db.pool.query(`
       select *
       from technology
       where p_id in (${p_ids});
     `);
-    
+
     return {
       projects: JSON.parse(JSON.stringify(projects)),
       technologies: technologies
@@ -59,11 +66,17 @@ export async function getProject(id: string) {
       where p_id = '${project[0].id}';
     `);
 
+    const response = await fetch(`https://api.github.com/repos/sinabyr/${project[0].repo}/contributors`);
+    const data = await response.json();
+
     return {
-      project: JSON.parse(JSON.stringify(project[0])),
+      project: {
+        ...JSON.parse(JSON.stringify(project[0])),
+        contributors: response.status === 200 && data || []
+      },
       technologies
     }
   } catch(err) {
-    console.error(err);
+    console.log(err)
   }
 }

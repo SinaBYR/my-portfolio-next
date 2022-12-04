@@ -1,149 +1,23 @@
 import classes from './contributors.module.scss';
 import Image from 'next/image';
-import { useEffect, useState } from "react";
-import { octokit } from "../../../../../gh/gh";
+import { useState } from "react";
 import { MdMoreHoriz } from 'react-icons/md';
-import { ContributorsSkeleton } from '../../../../skeletons/contributors/contributors';
 
 interface Props {
-  repo: string;
+  list: any[]
 }
 
-export function Contributors({ repo }: Props) {
-  // const [contributors, setContributors] = useState<any[]>([
-  //   {
-  //     "login": "1",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 16
-  //   },
-  //   {
-  //     "login": "2",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 15
-  //   },
-  //   {
-  //     "login": "3",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 14
-  //   },
-  //   {
-  //     "login": "4",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 13
-  //   },
-  //   {
-  //     "login": "5",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 12
-  //   },
-  //   {
-  //     "login": "6",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 11
-  //   },
-  //   {
-  //     "login": "7",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 10
-  //   },
-  //   {
-  //     "login": "8",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 9
-  //   },
-  //   {
-  //     "login": "9",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 8
-  //   },
-  //   {
-  //     "login": "10",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 7
-  //   },
-  //   {
-  //     "login": "11",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 6
-  //   },    {
-  //     "login": "12",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 5
-  //   },
-  //   {
-  //     "login": "13",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 4
-  //   },
-  //   {
-  //     "login": "14",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 3
-  //   },
-  //   {
-  //     "login": "15",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 2
-  //   },
-  //   {
-  //     "login": "16",
-  //     "avatar_url": "https://avatars.githubusercontent.com/u/59318782?v=4",
-  //     "html_url": "https://github.com/SinaBYR",
-  //     "contributions": 1
-  //   },
-  // ]);
-  const [contributors, setContributors] = useState<any[]>([]);
+export function Contributors({ list = [] }: Props) {
   const [isContributorsExpanded, setIsContributorsExpanded] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    // return;
-    if(!repo) return;
-
-    async function fetchContributors() {
-      setLoading(true);
-      try {
-        const result = await octokit.request('GET /repos/{owner}/{repo}/contributors{?anon,per_page,page}', {
-          owner: 'sinabyr',
-          repo
-        });
-
-        console.log(result);
-
-        setContributors([...result.data])
-      } catch(err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchContributors()
-  }, [])
 
   return (
     <div className={classes.contributors}>
       <h4>Contributors</h4>
       {
-      loading ? <ContributorsSkeleton />
+      !list.length ? 'Found 0 contributors.'
       :
       <ul className={classes.avatars}>
-        {contributors.map((c, i) => {
+        {list?.map((c, i) => {
           return (
             <li
               key={c.login}
@@ -159,7 +33,7 @@ export function Contributors({ repo }: Props) {
           )
         })}
         {
-          contributors.length > 10 &&
+          list.length > 10 &&
           <li
             onClick={() => setIsContributorsExpanded(state => !state)}
             style={{

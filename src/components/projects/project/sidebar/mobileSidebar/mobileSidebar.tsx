@@ -9,9 +9,10 @@ interface Props {
   tech: Technology[];
   created_at: string;
   repo: string;
+  contributors: any[];
 }
 
-export function MobileSidebar({ demo_url, created_at, tech, repo }: Props) {
+export function MobileSidebar({ demo_url, created_at, tech, repo, contributors }: Props) {
   return (
     <div className={classes.mobileSidebar}>
       <Links repo={repo} demo_url={demo_url}/>
@@ -20,7 +21,7 @@ export function MobileSidebar({ demo_url, created_at, tech, repo }: Props) {
         <div>{new Date(created_at).toLocaleString()}</div>
       </div>
       <Technologies list={tech}/>
-      <Contributors repo={repo}/>
+      <Contributors list={contributors}/>
     </div>
   )
 }
