@@ -7,6 +7,7 @@ export interface FullProject {
   created_at: string;
   edited_at: string;
   repo: string|null;
+  contributors: any[]
 }
 
 export interface ReducedProjectType {
