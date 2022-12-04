@@ -66,11 +66,17 @@ export async function getProject(id: string) {
       where p_id = '${project[0].id}';
     `);
 
+    const response = await fetch(`https://api.github.com/repos/sinabyr/${project[0].repo}/contributors`);
+    const data = await response.json();
+
     return {
-      project: JSON.parse(JSON.stringify(project[0])),
+      project: {
+        ...JSON.parse(JSON.stringify(project[0])),
+        contributors: response.status === 200 && data || []
+      },
       technologies
     }
   } catch(err) {
-    console.error(err);
+    console.log(err)
   }
 }

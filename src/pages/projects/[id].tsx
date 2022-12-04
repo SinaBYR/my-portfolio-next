@@ -19,17 +19,20 @@ export default function FullProjectPage({ project, technologies }: { project: Fu
     title,
     description,
     repo,
+    contributors,
     demo_url,
     preview,
     created_at,
     edited_at,
   } = project;
+
   return (
     <Project
       key={id}
       title={title}
       description={description}
       repo={repo}
+      contributors={contributors}
       demo_url={demo_url}
       preview={preview}
       tech={technologies}
