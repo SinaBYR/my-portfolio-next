@@ -1,5 +1,5 @@
 import { db } from "../db/db";
-import { FullProject, ReducedProjectType, Technology } from "../types/types";
+import { FullProject, ReducedProjectType, Screenshot, Technology } from "../types/types";
 
 // This util function is used to retrieve reduced projects for
 // showcase section of index page.
@@ -60,6 +60,12 @@ export async function getProject(id: string) {
       where id = '${id}';
     `);
 
+    const screenshots: Screenshot[] = await db.pool.query(`
+      select *
+      from screenshot
+      where p_id = '${id}';
+    `);
+
     const technologies: Technology[] = await db.pool.query(`
       select *
       from technology
@@ -74,7 +80,8 @@ export async function getProject(id: string) {
         ...JSON.parse(JSON.stringify(project[0])),
         contributors: response.status === 200 && data || []
       },
-      technologies
+      technologies,
+      screenshots
     }
   } catch(err) {
     console.log(err)
