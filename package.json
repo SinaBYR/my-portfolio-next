@@ -11,6 +11,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
+    "react-responsive-carousel": "^3.2.23",
     "sass": "^1.56.0",
     "web-vitals": "^3.0.4",
     "yup": "^0.32.11"
