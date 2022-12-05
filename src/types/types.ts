@@ -1,3 +1,9 @@
+export interface Screenshot {
+  id: string;
+  src: string;
+  p_id: string;
+}
+
 export interface FullProject {
   id: string;
   title: string;
