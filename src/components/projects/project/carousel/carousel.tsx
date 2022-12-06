@@ -13,7 +13,7 @@ export function Carousel({ list }: Props) {
       <ReactCarousel showArrows showThumbs={false}>
         {list?.map(imageUrl => (
           <div className={classes.imageWrapper} key={imageUrl}>
-            <Image src={imageUrl} layout="fill"/>
+            <Image src={imageUrl} alt="project-screenshot" layout="fill"/>
           </div>
         ))}
       </ReactCarousel>
