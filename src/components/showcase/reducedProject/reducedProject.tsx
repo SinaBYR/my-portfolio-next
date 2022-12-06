@@ -21,7 +21,7 @@ export function ReducedProject({
   return (
     <div className={classes.wrapper} key={id}>
       <div className={classes.preview}>
-        <Image src={preview} layout="fill"/>
+        <Image src={preview} alt="project-preview-screenshot" layout="fill"/>
         <div className={classes.title}>{title}</div>
       </div>
       <div className={classes.content}>
