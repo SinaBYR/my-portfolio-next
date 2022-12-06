@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aws-sdk": "^2.1268.0",
     "axios": "^0.23.0",
     "formik": "^2.2.9",
     "iron-session": "^6.3.1",
