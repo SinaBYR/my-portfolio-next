@@ -23,7 +23,7 @@ export function Projects({ projects, technologies }: Props) {
                 id={p.id}
                 title={p.title}
                 description={p.description}
-                preview="/img/babel.png"
+                preview={p.preview}
                 tech={techArray}/>
             )
           })}

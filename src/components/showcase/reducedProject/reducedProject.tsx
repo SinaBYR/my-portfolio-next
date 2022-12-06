@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import classes from './reducedProject.module.scss';
-import img from '../../../../public/img/alessio-soggetti-gdE-5Oui1Y0-unsplash.webp';
 import { Link } from '../../utilities';
+import Image from 'next/image';
 
 interface Props {
   id: string;
@@ -21,7 +20,10 @@ export function ReducedProject({
   return (
     <div className={classes.wrapper} key={id}>
       <div className={classes.preview}>
-        <Image src={preview} alt="project-preview-screenshot" layout="fill"/>
+        <Image
+          src={preview || '/img/project_preview_fallback.png'}
+          alt="project-preview-screenshot"
+          layout="fill"/>
         <div className={classes.title}>{title}</div>
       </div>
       <div className={classes.content}>

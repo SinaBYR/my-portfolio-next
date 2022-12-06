@@ -12,13 +12,13 @@ import { FullProject, ReducedProjectType, Technology } from "../types/types";
 export async function getReducedProjects(limit?: number) {
   try {
     let query = `
-      select id, title, description, created_at
+      select id, title, description, preview, created_at
       from project
       order by created_at desc;
     `;
     if(limit > 0) {
       query = `
-        select id, title, description, created_at
+        select id, title, description, preview, created_at
         from project
         order by created_at desc
         limit ${limit};
