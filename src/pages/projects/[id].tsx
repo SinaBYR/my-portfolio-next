@@ -4,16 +4,21 @@ import { getProject } from "../../lib/projects";
 import { FullProject, Technology } from "../../types/types";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { project, technologies } = await getProject(params.id as string)
+  const { project, technologies, screenshots } = await getProject(params.id as string)
   return {
     props: {
       project,
-      technologies
+      technologies,
+      screenshots
     }
   }
 }
 
-export default function FullProjectPage({ project, technologies }: { project: FullProject; technologies: Technology[] }) {
+export default function FullProjectPage({ project, technologies, screenshots }: {
+  project: FullProject;
+  technologies: Technology[];
+  screenshots: string[];
+}) {
   const {
     id,
     title,
@@ -37,6 +42,7 @@ export default function FullProjectPage({ project, technologies }: { project: Fu
       preview={preview}
       tech={technologies}
       created_at={created_at}
-      edited_at={edited_at}/>
+      edited_at={edited_at}
+      screenshots={screenshots}/>
   )
 }

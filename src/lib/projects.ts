@@ -1,3 +1,4 @@
+import { s3 } from "../aws/aws";
 import { db } from "../db/db";
 import { FullProject, ReducedProjectType, Technology } from "../types/types";
 
@@ -11,13 +12,13 @@ import { FullProject, ReducedProjectType, Technology } from "../types/types";
 export async function getReducedProjects(limit?: number) {
   try {
     let query = `
-      select id, title, description, created_at
+      select id, title, description, preview, created_at
       from project
       order by created_at desc;
     `;
     if(limit > 0) {
       query = `
-        select id, title, description, created_at
+        select id, title, description, preview, created_at
         from project
         order by created_at desc
         limit ${limit};
@@ -60,6 +61,22 @@ export async function getProject(id: string) {
       where id = '${id}';
     `);
 
+    const bucketParams = {
+      Bucket: 'sinabyr',
+      Prefix: 'screenshots/' + id
+    };
+
+    const { Contents } = await s3.listObjects(bucketParams).promise();
+    // The root directory is also returned alongside actual objects.
+    // Each s3 object contains a 'Size' property.
+    // The object which contains root directory has a 0 Size value.
+    // To remove that, I only pass objects whose Size property are non-zero.
+    const screenshots = Contents?.filter(obj => obj.Size).map(photo => {
+      const href = 'https://sinabyr.storage.iran.liara.space/';
+      const photoUrl = href + photo.Key;
+      return photoUrl;
+    });
+
     const technologies: Technology[] = await db.pool.query(`
       select *
       from technology
@@ -74,7 +91,8 @@ export async function getProject(id: string) {
         ...JSON.parse(JSON.stringify(project[0])),
         contributors: response.status === 200 && data || []
       },
-      technologies
+      technologies,
+      screenshots
     }
   } catch(err) {
     console.log(err)

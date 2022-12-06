@@ -2,6 +2,7 @@ import classes from './project.module.scss';
 import { Technology } from '../../../types/types';
 import { MobileSidebar } from './sidebar/mobileSidebar/mobileSidebar';
 import { Sidebar } from './sidebar/sidebar';
+import { Carousel } from './carousel/carousel';
 
 interface Props {
   title: string;
@@ -12,7 +13,8 @@ interface Props {
   created_at: string;
   edited_at: string;
   repo: string|null;
-  contributors: any[]
+  contributors: any[];
+  screenshots: string[];
 }
 
 export function Project ({
@@ -20,18 +22,17 @@ export function Project ({
   description,
   demo_url,
   tech,
-  preview,
   created_at,
   repo,
-  contributors
+  contributors,
+  screenshots
 }: Props): JSX.Element {
   return (
     <section className={classes.project}>
       <div className={classes.wrapper}>
         <div className={classes.content}>
           <h2>{title}</h2>
-          {/* gallery is going to be a carousel, showcasing screenshots of the project. */}
-          <div className={classes.gallery}></div>
+          {screenshots.length ? <Carousel list={screenshots}/> : null}
           <MobileSidebar
             demo_url={demo_url}
             tech={tech}
