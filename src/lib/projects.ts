@@ -1,5 +1,6 @@
+import { s3 } from "../aws/aws";
 import { db } from "../db/db";
-import { FullProject, ReducedProjectType, Screenshot, Technology } from "../types/types";
+import { FullProject, ReducedProjectType, Technology } from "../types/types";
 
 // This util function is used to retrieve reduced projects for
 // showcase section of index page.
@@ -60,11 +61,21 @@ export async function getProject(id: string) {
       where id = '${id}';
     `);
 
-    const screenshots: Screenshot[] = await db.pool.query(`
-      select *
-      from screenshot
-      where p_id = '${id}';
-    `);
+    const bucketParams = {
+      Bucket: 'sinabyr',
+      Prefix: 'screenshots/' + id
+    };
+
+    const { Contents } = await s3.listObjects(bucketParams).promise();
+    // The root directory is also returned alongside actual objects.
+    // Each s3 object contains a 'Size' property.
+    // The object which contains root directory has a 0 Size value.
+    // To remove that, I only pass objects whose Size property are non-zero.
+    const screenshots = Contents?.filter(obj => obj.Size).map(photo => {
+      const href = 'https://sinabyr.storage.iran.liara.space/';
+      const photoUrl = href + photo.Key;
+      return photoUrl;
+    });
 
     const technologies: Technology[] = await db.pool.query(`
       select *
