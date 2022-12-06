@@ -27,7 +27,7 @@ export function Contributors({ list = [] }: Props) {
                 zIndex: 0 - i
               }}>
               <a key={c.login} href={c.html_url} target="_blank" rel="noopener noreferrer" title={c.login}>
-                <Image src={c.avatar_url} width="100%" height="100%" />
+                <Image src={c.avatar_url} alt="contributor-avatar" width="100%" height="100%" />
               </a>
             </li>
           )
