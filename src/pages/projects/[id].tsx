@@ -1,7 +1,9 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
+import type { NextPageWithLayout } from "../_app";
+import type { FullProject, Technology } from "../../types/types";
 import { Project } from "../../components/projects/project/project";
 import { getProject } from "../../lib/projects";
-import { FullProject, Technology } from "../../types/types";
+import Layout from "../../components/layout/layout";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { project, technologies, screenshots } = await getProject(params.id as string)
@@ -14,11 +16,11 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 }
 
-export default function FullProjectPage({ project, technologies, screenshots }: {
+const FullProjectPage: NextPageWithLayout = ({ project, technologies, screenshots }: {
   project: FullProject;
   technologies: Technology[];
   screenshots: string[];
-}) {
+}) => {
   const {
     id,
     title,
@@ -46,3 +48,11 @@ export default function FullProjectPage({ project, technologies, screenshots }: 
       screenshots={screenshots}/>
   )
 }
+
+FullProjectPage.getLayout = function getLayout(page) {
+  return (
+    <Layout>{page}</Layout>
+  )
+}
+
+export default FullProjectPage;

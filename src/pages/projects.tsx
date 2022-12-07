@@ -1,7 +1,10 @@
-import { Projects } from "../components/projects/projects";
+import type { GetServerSideProps } from "next";
+import type { NextPageWithLayout } from "./_app";
 import { getReducedProjects } from "../lib/projects";
+import { Projects } from "../components/projects/projects";
+import Layout from "../components/layout/layout";
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { projects, technologies } = await getReducedProjects();
 
   return {
@@ -12,8 +15,16 @@ export async function getServerSideProps() {
   }
 }
 
-export default function ProjectsPage({ projects, technologies }: any) {
+const ProjectsPage: NextPageWithLayout = ({ projects, technologies }: any) => {
   return (
     <Projects projects={projects} technologies={technologies} />
   )
 }
+
+ProjectsPage.getLayout = function getLayout(page) {
+  return (
+    <Layout>{page}</Layout>
+  )
+}
+
+export default ProjectsPage;

@@ -4,8 +4,11 @@ import { Contact } from '../components/contact/contact';
 import { Skills } from '../components/skills/skills';
 import { ReducedProjectType, Technology } from '../types/types';
 import { getReducedProjects } from '../lib/projects';
+import Layout from '../components/layout/layout';
+import type { NextPageWithLayout } from './_app';
+import type { GetServerSideProps } from 'next';
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { projects, technologies } = await getReducedProjects(2);
 
   return {
@@ -16,7 +19,7 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home(
+const HomePage: NextPageWithLayout = (
   {
     projects,
     technologies
@@ -24,7 +27,7 @@ export default function Home(
     projects: ReducedProjectType[],
     technologies: Technology[]
   }
-) {
+) => {
   return (
     <>
       <Landing />
@@ -34,3 +37,11 @@ export default function Home(
     </>
   )
 }
+
+HomePage.getLayout = function getLayout(page) {
+  return (
+    <Layout>{page}</Layout>
+  )
+}
+
+export default HomePage;
