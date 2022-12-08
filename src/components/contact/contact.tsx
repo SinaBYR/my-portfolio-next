@@ -64,7 +64,7 @@ export function Contact() {
             value={values.message}
             />
         </div>
-        <Button type="submit" mode="primary">Send</Button>
+        <Button type="submit" variant="primary">Send</Button>
       </form>
     </section>
   )
