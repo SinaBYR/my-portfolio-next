@@ -20,14 +20,13 @@
 
 .form {
   width: 280px;
-  // border: 1px solid red;
 
   & > * {
     animation: inputs 1000ms ease forwards;
     opacity: 0;
     transform: translateY(-8px);
 
-    @for $i from 1 to 3 {
+    @for $i from 1 to 4 {
       &:nth-child(#{$i}) {
         animation-delay: calc(#{$i} * 500ms + 500ms);
       }
@@ -42,10 +41,23 @@
 
   input {
     width: 100%;
-    height: 36px;
+    height: 32px;
+    background-color: #f4f4f4;
     font-size: 1rem;
-    border-radius: 2px;
     padding: 4px;
+    border-radius: 2px;
+  }
+}
+
+.loginButton {
+  width: 100%;
+  margin-top: 1.5rem;
+  animation: inputs 1000ms ease forwards;
+  opacity: 0;
+  transform: translateY(-8px);
+
+  button {
+    width: 100%;
   }
 }
 

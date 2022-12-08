@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { Button } from '../utilities';
 import classes from './login.module.scss';
 
 export function Login() {
@@ -39,6 +40,9 @@ export function Login() {
             onBlur={handleBlur}
             value={values.password}
             />
+        </div>
+        <div className={classes.loginButton}>
+          <Button>Sign in</Button>
         </div>
       </form>
     </div>
