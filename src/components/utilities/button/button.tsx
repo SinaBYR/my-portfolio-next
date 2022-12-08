@@ -1,14 +1,13 @@
-import React from 'react';
-import styles from './button.module.scss';
+import classes from './button.module.scss';
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  mode: 'primary'|'secondary'|'success'|'danger';
+  variant?: 'primary'|'secondary'|'simple';
 }
 
-export const Button: React.FC<Props> = ({ mode = 'primary', children, ...rest }) => {
-  const classes = [styles.button, styles[mode]];
+export const Button: React.FC<Props> = ({ variant = 'primary', children, ...rest }) => {
+  const classNames = [classes.button, classes[variant]].join(' ');
 
   return (
-    <button className={classes.join(' ')} {...rest}>{children}</button>
+    <button className={classNames} {...rest}>{children}</button>
   )
 }

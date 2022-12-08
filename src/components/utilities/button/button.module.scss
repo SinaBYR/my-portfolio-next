@@ -1,8 +1,8 @@
 .button {
-  font-size: 1rem;
-  padding: 0.6rem 1.2rem;
   letter-spacing: 1px;
+  text-decoration: none;
   border: none;
+  border-radius: 2px;
   cursor: pointer;
 
   &:disabled {
@@ -14,19 +14,21 @@
 .primary {
   color: #ffffff;
   background-color: #1e262c;
+  padding: 0.5rem 1rem;
 }
 
 .secondary {
   color: #1e262c;
   background-color: #f7f7f7;
+  padding: 0.3rem 1rem;
 }
 
-.success {
-  color: #ffffff;
-  background-color: #007600;
-}
+.simple {
+  color: white;
+  text-decoration: none;
+  transition: opacity 400ms;
 
-.danger {
-  color: #ffffff;
-  background-color: #8b0000;
+  &:hover {
+    opacity: 0.8;
+  }
 }
