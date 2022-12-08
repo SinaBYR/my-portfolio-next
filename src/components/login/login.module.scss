@@ -1,0 +1,64 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 680px;
+  height: 680px;
+  color: #f4f4f4;
+  padding: 1rem;
+  margin: 0 auto;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    animation: heading 1000ms 500ms ease forwards;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.form {
+  width: 280px;
+  // border: 1px solid red;
+
+  & > * {
+    animation: inputs 1000ms ease forwards;
+    opacity: 0;
+    transform: translateY(-8px);
+
+    @for $i from 1 to 3 {
+      &:nth-child(#{$i}) {
+        animation-delay: calc(#{$i} * 500ms + 500ms);
+      }
+    }
+  }
+
+  label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 4px;
+  }
+
+  input {
+    width: 100%;
+    height: 36px;
+    font-size: 1rem;
+    border-radius: 2px;
+    padding: 4px;
+  }
+}
+
+@keyframes heading {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes inputs {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
