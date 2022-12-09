@@ -37,7 +37,7 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
     }
     delete user.passphrase;
     
-    req.session.user = user;
+    req.session.userId = user.id;
     await req.session.save();
     res.json(user);
   } catch(err) {
