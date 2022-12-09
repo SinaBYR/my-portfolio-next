@@ -2,6 +2,8 @@ import classes from './login.module.scss';
 import Router from 'next/router';
 import { useFormik } from 'formik';
 import { Button } from '../utilities';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface LoginFormInitialValues {
   username: string;
@@ -24,6 +26,10 @@ export function Login() {
   })
 
   async function loginHandler(values: LoginFormInitialValues) {
+    if(!values.username || !values.passphrase) {
+      return toast('Both fields are required.')
+    }
+
     const response = await fetch('/api/login', {
       body: JSON.stringify(values),
       headers: {
@@ -32,9 +38,13 @@ export function Login() {
       method: 'POST'
     });
 
-    if(response.ok) {
-      Router.push('/dashboard');
-    };
+    const result = await response.json();
+    
+    if(!response.ok) {
+      return toast(result.message);
+    }
+
+    Router.push('/dashboard');
   }
 
   return (
@@ -69,6 +79,11 @@ export function Login() {
           <Button type="submit">Sign in</Button>
         </div>
       </form>
+      <ToastContainer
+        hideProgressBar
+        position="top-center"
+        theme="dark"
+        toastStyle={{fontSize: '15px', textAlign: 'center'}}/>
     </div>
   )
 }
