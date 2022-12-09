@@ -2,7 +2,7 @@ import type { IronSessionOptions } from "iron-session"
 
 export const sessionOptions: IronSessionOptions = {
   cookieName: 'user-session',
-  password: '1234567890123456789012345678901234567890'
+  password: process.env.IRON_SESSION_PASS
 }
 
 declare module "iron-session" {
