@@ -1,7 +1,8 @@
-export interface Screenshot {
+export interface User {
   id: string;
-  src: string;
-  p_id: string;
+  username: string;
+  created_at: string;
+  last_sign_in: string;
 }
 
 export interface FullProject {
