@@ -2,7 +2,7 @@ import classes from './link.module.scss';
 import NextLink, { LinkProps } from "next/link";
 
 type Props = {
-  variant?: 'primary'|'secondary'|'simple';
+  variant?: 'primary'|'secondary'|'simple'|'simple-alt';
   simple?: boolean;
 } & LinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 

@@ -1,7 +1,7 @@
 import classes from './button.module.scss';
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary'|'secondary'|'simple';
+  variant?: 'primary'|'secondary'|'simple'|'simple-alt';
 }
 
 export const Button: React.FC<Props> = ({ variant = 'primary', children, ...rest }) => {
