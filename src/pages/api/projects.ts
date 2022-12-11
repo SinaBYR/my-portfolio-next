@@ -14,7 +14,7 @@ interface ProjectType {
 
 async function handler( req: NextApiRequest, res: NextApiResponse ) {
   if(!req.session.userId) {
-    res.status(401).send('Unauthorized access.');
+    return res.status(401).send('Unauthorized access.');
   }
 
   const query = `
