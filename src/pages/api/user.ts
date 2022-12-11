@@ -2,15 +2,27 @@ import { withIronSessionApiRoute } from "iron-session/next";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { db } from "../../db/db";
 import { sessionOptions } from "../../lib/session";
-import type { User } from "../../types/types";
 
 export default withIronSessionApiRoute(handler, sessionOptions);
+
+interface UserTableRecord {
+  id: string;
+  username: string;
+  created_at: string;
+  last_sign_in: string;
+}
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const userId = req.session.userId;
 
   if(!userId) {
-    res.status(401).send('Unauthorized access.');
+    return res.json({
+      id: '',
+      username: '',
+      created_at: '',
+      last_sign_in: '',
+      isLoggedIn: false
+    });
   }
 
   const query = `
@@ -20,9 +32,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   `;
 
   try {
-    const [user]: User[] = await db.pool.query(query);
+    const [user]: UserTableRecord[] = await db.pool.query(query);
 
-    res.json(user);
+    res.json({
+      ...user,
+      isLoggedIn: true
+    });
   } catch(err) {
     res.status(500).send(err);
   }
