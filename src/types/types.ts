@@ -3,6 +3,7 @@ export interface User {
   username: string;
   created_at: string;
   last_sign_in: string;
+  isLoggedIn: boolean;
 }
 
 export interface FullProject {
