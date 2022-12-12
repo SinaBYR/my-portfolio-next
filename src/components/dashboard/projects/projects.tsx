@@ -2,6 +2,7 @@ import classes from './projects.module.scss';
 import useSWR from 'swr';
 import { fetchJson } from '../../../lib/fetchJson';
 import { Project } from './project/project';
+import { Link } from '../../utilities';
 
 interface ProjectType {
   id: string;
@@ -18,8 +19,11 @@ export function Projects() {
   if(error) return <h1>{error.message}</h1>
 
   return (
-    <div className={classes.projects}>
-      <h2>Projects</h2>
+    <>
+      <div className={classes.head}>
+        <h2>Projects</h2>
+        <Link href="/dashboard/projects/new" variant="secondary">New Project</Link>
+      </div>
       <div className={classes.items}>
         {data.map(p => {
           return <Project
@@ -31,6 +35,6 @@ export function Projects() {
             />
         })}
       </div>
-    </div>
+    </>
   )
 }
