@@ -21,6 +21,10 @@
     border-radius: 4px;
     border: 1px solid #020303;
   }
+
+  & > *:nth-child(5) {
+    grid-column: 1/ span 2;
+  }
 }
 
 .Preview {
@@ -30,16 +34,17 @@
     margin-top: 0.5rem;
 }
 
-.Technologies {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-}
+.techList {
+  margin-bottom: 12px;
 
-.Technologies > * {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  span {
+    display: inline-block;
+    background-color: #1a1d1d;
+    padding: 4px;
+    margin-right: 8px;
+    border-radius: 5px;
+    margin-bottom: 4px;
+  }
 }
 
 .Remove {
@@ -49,7 +54,7 @@
 }
 
 .controls {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 @media screen and (max-width: 680px) {

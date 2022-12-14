@@ -3,6 +3,7 @@ import { Button } from '../../../utilities';
 import { useFormik } from 'formik';
 import AsyncSelect from 'react-select/async';
 import { fetchJson } from '../../../../lib/fetchJson';
+import { Editor } from '@tinymce/tinymce-react';
 
 export function Form() {
   const { values, handleChange, setFieldValue, handleSubmit } = useFormik({
@@ -10,6 +11,7 @@ export function Form() {
       title: '',
       demo_url: '',
       repo: '',
+      description: '',
       screenshots: [],
       technologies: []
     },
@@ -39,7 +41,7 @@ export function Form() {
 
   return (
     <form onSubmit={handleSubmit}>
-    <button>click</button>
+      <button>Click</button>
       <div className={classes.inputs}>
         <div>
           <label htmlFor="title">Title</label>
@@ -70,7 +72,9 @@ export function Form() {
               e.preventDefault();
             }
           }}/>
-          {values.technologies.map(t => <span>{t} </span>)}
+          <div className={classes.techList}>
+            {values.technologies.map((t, i) => <span key={i}>{t}</span>)}
+          </div>
         </div>
         <div>
           <label htmlFor="repo">Repository</label>
@@ -102,8 +106,19 @@ export function Form() {
             loadOptions={loadOptions}
             defaultOptions/>
         </div>
+        <div>
+          <label htmlFor="description">Description</label>
+          <Editor
+            init={{
+              height: 500,
+              menubar: false,
+              content_css: 'dark',
+              toolbar: 'undo redo | h2 h3 h4 | bold italic bullist numlist outdent indent removeformat',
+            }}
+            onChange={(_evt, editor) => setFieldValue('description', editor.getContent())}
+          />
+        </div>
       </div>
-
       <div className={classes.controls}>
         <Button variant="simple-alt" type="submit">Create</Button>
       </div>
