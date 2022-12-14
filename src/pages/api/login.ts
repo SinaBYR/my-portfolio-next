@@ -22,7 +22,7 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
   `;
 
   try {
-    const [user] = await db.pool.query(query);
+    const [user] = await db.query(query);
     if(!user) {
       res.status(401).send({
         message: 'Username or password is incorrect.'

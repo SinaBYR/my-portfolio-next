@@ -32,7 +32,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   `;
 
   try {
-    const [user]: UserTableRecord[] = await db.pool.query(query);
+    const [user]: UserTableRecord[] = await db.query(query);
 
     res.json({
       ...user,

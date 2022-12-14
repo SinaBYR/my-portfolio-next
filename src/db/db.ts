@@ -1,6 +1,6 @@
 import mariadb from 'mariadb';
 
-export const db = Object.freeze({
+const pool = Object.freeze({
   pool: mariadb.createPool({
     host: process.env.DB_HOST,
     port: +process.env.DB_PORT,
@@ -9,3 +9,5 @@ export const db = Object.freeze({
     database: process.env.DB_DATABASE
   })
 });
+
+export const db = pool.pool;
