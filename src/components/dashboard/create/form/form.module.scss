@@ -1,6 +1,6 @@
 .inputs {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 0 8px;
 
   label {
@@ -22,7 +22,8 @@
     border: 1px solid #020303;
   }
 
-  & > *:nth-child(5) {
+  // span techList and Editor.
+  & > *:is(:nth-child(5), :nth-child(6)) {
     grid-column: 1/ span 2;
   }
 }
@@ -35,15 +36,15 @@
 }
 
 .techList {
-  margin-bottom: 12px;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
 
   span {
-    display: inline-block;
     background-color: #1a1d1d;
     padding: 4px;
     margin-right: 8px;
     border-radius: 5px;
-    margin-bottom: 4px;
   }
 }
 
@@ -58,6 +59,19 @@
 }
 
 @media screen and (max-width: 680px) {
+  .inputs {
+    grid-template-columns: 1fr;
+
+    & > *:is(:nth-child(5), :nth-child(6)) {
+      grid-column: auto;
+    }
+  }
+
+  .techList {
+    padding-bottom: 4px;
+    grid-row-start: 4;
+  }
+
   .controls {
     grid-template-columns: 1fr;
   }

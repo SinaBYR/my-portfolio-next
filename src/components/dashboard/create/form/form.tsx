@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import AsyncSelect from 'react-select/async';
 import { fetchJson } from '../../../../lib/fetchJson';
 import { Editor } from '@tinymce/tinymce-react';
+import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 
 export function Form() {
   const { values, handleChange, setFieldValue, handleSubmit } = useFormik({
@@ -18,12 +19,24 @@ export function Form() {
     onSubmit: (values, _helpers) => {
       console.log(values)
     }
-  })
+  });
 
+  // update tech list on drop event.
+  function handleDrop(droppedItem: DropResult) {
+    if (!droppedItem.destination) return;
+
+    const updatedList = [...values.technologies];
+    const reorderedItem = updatedList.splice(droppedItem.source.index, 1)[0];
+    updatedList.splice(droppedItem.destination.index, 0, reorderedItem);
+    setFieldValue('technologies', updatedList);
+  };
+
+  // repository selection search-box
   function filterOptions(inputValue: string, options: any[]) {
-    return options.filter(i => i.label.toLowerCase().includes(inputValue.toLowerCase()))
-  }
+    return options.filter(i => i.label.toLowerCase().includes(inputValue.toLowerCase()));
+  };
 
+  // fetch github repositories.
   async function loadOptions(inputValue: string) {
     try {
       const repos: any[] = await fetchJson('https://api.github.com/users/sinabyr/repos?sort=created');
@@ -37,7 +50,7 @@ export function Form() {
     } catch(err) {
 
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -72,9 +85,6 @@ export function Form() {
               e.preventDefault();
             }
           }}/>
-          <div className={classes.techList}>
-            {values.technologies.map((t, i) => <span key={i}>{t}</span>)}
-          </div>
         </div>
         <div>
           <label htmlFor="repo">Repository</label>
@@ -106,6 +116,33 @@ export function Form() {
             loadOptions={loadOptions}
             defaultOptions/>
         </div>
+        {!!values.technologies.length && <DragDropContext onDragEnd={handleDrop} >
+          <Droppable droppableId="list-container" direction="horizontal">
+            {(provided) => (
+              <div
+                className={classes.techList}
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {values.technologies.map((item, index) => (
+                  <Draggable key={item} draggableId={item} index={index}>
+                    {(provided) => (
+                      <span
+                        
+                        ref={provided.innerRef}
+                        {...provided.dragHandleProps}
+                        {...provided.draggableProps}
+                      >
+                        {item}
+                      </span>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>}
         <div>
           <label htmlFor="description">Description</label>
           <Editor
