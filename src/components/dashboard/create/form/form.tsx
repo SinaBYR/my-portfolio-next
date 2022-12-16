@@ -3,6 +3,8 @@ import { Button } from '../../../utilities';
 import { useFormik } from 'formik';
 import AsyncSelect from 'react-select/async';
 import { fetchJson } from '../../../../lib/fetchJson';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Editor } from '@tinymce/tinymce-react';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
 
@@ -48,7 +50,7 @@ export function Form() {
       })
       return filterOptions(inputValue, options);
     } catch(err) {
-
+        toast.error(err.message);
     }
   };
 
@@ -116,25 +118,23 @@ export function Form() {
             loadOptions={loadOptions}
             defaultOptions/>
         </div>
-        {!!values.technologies.length && <DragDropContext onDragEnd={handleDrop} >
-          <Droppable droppableId="list-container" direction="horizontal">
-            {(provided) => (
+        {!!values.technologies.length &&
+        <DragDropContext onDragEnd={handleDrop} >
+          <Droppable droppableId="tech-list-droppable" direction="horizontal">
+            {provided => (
               <div
                 className={classes.techList}
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                {values.technologies.map((item, index) => (
-                  <Draggable key={item} draggableId={item} index={index}>
-                    {(provided) => (
+                {values.technologies.map((t, index) => (
+                  <Draggable key={t + index} draggableId={t + index} index={index}>
+                    {provided => (
                       <span
-                        
                         ref={provided.innerRef}
                         {...provided.dragHandleProps}
                         {...provided.draggableProps}
-                      >
-                        {item}
-                      </span>
+                      >{t}</span>
                     )}
                   </Draggable>
                 ))}
@@ -159,6 +159,13 @@ export function Form() {
       <div className={classes.controls}>
         <Button variant="simple-alt" type="submit">Create</Button>
       </div>
+      <ToastContainer
+        hideProgressBar
+        autoClose={false}
+        position="bottom-center"
+        theme="dark"
+        toastStyle={{fontSize: '15px', textAlign: 'center'}}
+        />
     </form>
   )
 }
