@@ -25,7 +25,7 @@ export async function getReducedProjects(limit?: number) {
       `;
     }
 
-    const projects: ReducedProjectType[] = await db.query(query);
+    const projects: ReducedProjectType[] = await db.pool.query(query);
     if(!projects.length) {
       return {
         projects: [],
@@ -34,7 +34,7 @@ export async function getReducedProjects(limit?: number) {
     }
 
     const p_ids = projects.map(p => `'${p.id}'`).join(',');
-    const technologies: Technology[] = await db.query(`
+    const technologies: Technology[] = await db.pool.query(`
       select *
       from technology
       where p_id in (${p_ids});
@@ -55,7 +55,7 @@ export async function getReducedProjects(limit?: number) {
 // id: required => used to fetch a single matching project data.
 export async function getProject(id: string) {
   try {
-    const project: FullProject[] = await db.query(`
+    const project: FullProject[] = await db.pool.query(`
       select *
       from project
       where id = '${id}';
@@ -77,7 +77,7 @@ export async function getProject(id: string) {
       return photoUrl;
     });
 
-    const technologies: Technology[] = await db.query(`
+    const technologies: Technology[] = await db.pool.query(`
       select *
       from technology
       where p_id = '${project[0].id}';

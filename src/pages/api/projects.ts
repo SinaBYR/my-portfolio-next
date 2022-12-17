@@ -24,7 +24,7 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
   `;
 
   try {
-    const projects: ProjectType[] = await db.query(query);
+    const projects: ProjectType[] = await db.pool.query(query);
     res.json(projects);
   } catch(err) {
     res.status(500).send(err);
