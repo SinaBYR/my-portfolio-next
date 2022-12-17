@@ -6,14 +6,25 @@ import { getProject } from "../../lib/projects";
 import Layout from "../../components/layout/layout";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { project, technologies, screenshots } = await getProject(params.id as string)
-  return {
-    props: {
-      project,
-      technologies,
-      screenshots
+  try {
+    const { project, technologies, screenshots } = await getProject(params.id as string)
+    return {
+      props: {
+        project,
+        technologies,
+        screenshots
+      }
+    }
+  } catch(err) {
+    return {
+      props: {
+        project: null,
+        technologies: null,
+        screenshots: null
+      }
     }
   }
+  
 }
 
 const FullProjectPage: NextPageWithLayout = ({ project, technologies, screenshots }: {
