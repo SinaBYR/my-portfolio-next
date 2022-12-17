@@ -5,12 +5,22 @@ import { Projects } from "../components/projects/projects";
 import Layout from "../components/layout/layout";
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { projects, technologies } = await getReducedProjects();
+  try {
+    const { projects, technologies } = await getReducedProjects();
 
-  return {
-    props: {
-      projects,
-      technologies
+    return {
+      props: {
+        projects,
+        technologies
+      }
+    }
+  } catch(err) {
+    console.log(err);
+    return {
+      props: {
+        projects: [],
+        technologies: []
+      }
     }
   }
 }

@@ -1,9 +1,11 @@
 import classes from './login.module.scss';
-import Router from 'next/router';
 import { useFormik } from 'formik';
 import { Button } from '../utilities';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { fetchJson } from '../../lib/fetchJson';
+import { useUser } from '../../lib/useUser';
+import { User } from '../../types/types';
 
 interface LoginFormInitialValues {
   username: string;
@@ -11,17 +13,17 @@ interface LoginFormInitialValues {
 }
 
 export function Login() {
+  const { mutateUser } = useUser({
+    redirectTo: '/dashboard',
+    redirectIfFound: true
+  });
   const { values, handleSubmit, handleChange, handleBlur } = useFormik<LoginFormInitialValues>({
     initialValues: {
       username: '',
       passphrase: ''
     },
-    onSubmit: async (values, _helpers) => {
-      try {
-        await loginHandler(values);
-      } catch(err) {
-        console.log(err);
-      }
+    onSubmit: (values, _helpers) => {
+      loginHandler(values);
     }
   })
 
@@ -30,21 +32,23 @@ export function Login() {
       return toast('Both fields are required.')
     }
 
-    const response = await fetch('/api/login', {
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: 'POST'
-    });
+    try {
+      const result = await fetchJson<User>('/api/login', {
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        method: 'POST'
+      });
 
-    const result = await response.json();
-    
-    if(!response.ok) {
-      return toast(result.message);
+      mutateUser(result, false);
+    } catch(err) {
+      if(err.response.status === 401) {
+        return toast.error('Username or passphrase is incorrect.')
+      }
+
+      toast.error(err.message);
     }
-
-    Router.push('/dashboard');
   }
 
   return (

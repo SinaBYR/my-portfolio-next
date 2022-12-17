@@ -9,12 +9,22 @@ import type { NextPageWithLayout } from './_app';
 import type { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { projects, technologies } = await getReducedProjects(2);
+  try {
+    const { projects, technologies } = await getReducedProjects(2);
 
-  return {
-    props: {
-      projects,
-      technologies
+    return {
+      props: {
+        projects,
+        technologies
+      }
+    }
+  } catch(err) {
+    console.log(err);
+    return {
+      props: {
+        projects: [],
+        technologies: []
+      }
     }
   }
 }
