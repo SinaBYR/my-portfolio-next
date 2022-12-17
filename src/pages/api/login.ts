@@ -22,24 +22,27 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
   `;
 
   try {
-    const [user] = await db.query(query);
+    const [user] = await db.pool.query(query);
     if(!user) {
-      res.status(401).send({
+      return res.status(401).send({
         message: 'Username or password is incorrect.'
       })
     }
 
     const match = await bcrypt.compare(body.passphrase, user.passphrase);
     if(!match) {
-      res.status(401).send({
+      return res.status(401).send({
         message: 'Username or password is incorrect.'
       })
     }
+
     delete user.passphrase;
-    
     req.session.userId = user.id;
     await req.session.save();
-    res.json(user);
+    res.json({
+      ...user,
+      isLoggedIn: true
+    });
   } catch(err) {
     console.log(err);
     res.status(500).send({err});
