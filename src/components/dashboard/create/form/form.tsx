@@ -112,11 +112,11 @@ export function Form() {
               }),
               option: baseStyles => ({
                 ...baseStyles,
-                color: 'red'
+                color: '#1a1d1d'
               }),
-              menuList: baseStyles => ({
+              menu: baseStyles => ({
                 ...baseStyles,
-                zIndex: '2'
+                zIndex: 2
               })
             }}
             loadOptions={loadOptions}
