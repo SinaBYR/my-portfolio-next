@@ -28,32 +28,6 @@
   }
 }
 
-.Preview {
-    width: 200px;
-    height: 100px;
-    background-color: gray;
-    margin-top: 0.5rem;
-}
-
-.techList {
-  margin-bottom: 1rem;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-
-  span {
-    background-color: #1a1d1d;
-    padding: 4px;
-    margin-right: 8px;
-    border-radius: 5px;
-  }
-}
-
-.Remove {
-    color: gray;
-    margin-left: auto;
-    cursor: pointer;
-}
-
 .controls {
   margin-top: 1rem;
 }
@@ -65,11 +39,6 @@
     & > *:is(:nth-child(5), :nth-child(6)) {
       grid-column: auto;
     }
-  }
-
-  .techList {
-    padding-bottom: 4px;
-    grid-row-start: 4;
   }
 
   .controls {
