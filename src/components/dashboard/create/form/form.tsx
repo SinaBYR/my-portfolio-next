@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Editor } from '@tinymce/tinymce-react';
 import { TechTags } from './techTags/techTags';
 import { SelectRepo } from './selectRepo/selectRepo';
+import { UploadScreenshots } from './uploadScreenshots/uploadScreenshots';
 
 export function Form() {
   const { values, handleChange, setFieldValue, handleSubmit } = useFormik({
@@ -15,13 +16,14 @@ export function Form() {
       repo: '',
       description: '',
       screenshots: [],
-      technologies: []
+      technologies: [],
+      thumbnail: ''
     },
     onSubmit: (values, _helpers) => {
       console.log(values)
     }
   });
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <button>Click</button>
@@ -50,7 +52,7 @@ export function Form() {
           <label htmlFor="repo">Repository</label>
           <SelectRepo setFieldValue={setFieldValue}/>
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="description">Description</label>
           <Editor
             init={{
@@ -61,8 +63,15 @@ export function Form() {
             }}
             onChange={(_evt, editor) => setFieldValue('description', editor.getContent())}
           />
-        </div>
+        </div> */}
       </div>
+      <UploadScreenshots
+        screenshots={values.screenshots}
+        thumbnail={values.thumbnail}
+        handleChange={handleChange}
+        setFieldValue={setFieldValue}/>
+
+      
       <div className={classes.controls}>
         <Button variant="simple-alt" type="submit">Create</Button>
       </div>
