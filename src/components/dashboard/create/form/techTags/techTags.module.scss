@@ -30,3 +30,9 @@
   border: none;
   cursor: pointer;
 }
+
+@media screen and (max-width: 680px) {
+  .techList {
+    width: 340px;
+  }
+}
