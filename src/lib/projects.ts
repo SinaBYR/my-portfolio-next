@@ -51,16 +51,23 @@ export async function getReducedProjects(limit?: number) {
 // id: required => used to fetch a single matching project data.
 export async function getProject(id: string) {
   const [project]: FullProjectType[] = await db.pool.query(`
-    select id, title, description, demo_url, repo, created_at, last_edited_at
+    select id, title, description, demo_url, repo, created_at
     from project
     where id = '${id}';
   `);
+
+  const technologies: Technology[] = await db.pool.query(`
+    select *
+    from technology
+    where p_id = '${project.id}';
+  `);
+
+  const contributors: any[] = await fetchJson(`https://api.github.com/repos/sinabyr/${project.repo}/contributors`);
 
   const bucketParams = {
     Bucket: 'sinabyr',
     Prefix: 'screenshots/' + id
   };
-
   const { Contents } = await s3.listObjects(bucketParams).promise();
   // The root directory is also returned alongside actual objects.
   // Each s3 object contains a 'Size' property.
@@ -72,20 +79,9 @@ export async function getProject(id: string) {
     return photoUrl;
   });
   
-  const technologies: Technology[] = await db.pool.query(`
-    select *
-    from technology
-    where p_id = '${project.id}';
-  `);
+  project.techList = technologies;
+  project.contributors = contributors;
+  project.screenshots = screenshots;
 
-  const contributors = await fetchJson(`https://api.github.com/repos/sinabyr/${project.repo}/contributors`);
-
-  return {
-    project: {
-      ...JSON.parse(JSON.stringify(project)),
-      contributors: contributors
-    },
-    technologies,
-    screenshots
-  }
+  return JSON.parse(JSON.stringify(project)) as FullProjectType;
 }

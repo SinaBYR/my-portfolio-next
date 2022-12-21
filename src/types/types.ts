@@ -11,9 +11,11 @@ export interface FullProjectType {
   title: string;
   description: string;
   demo_url: string;
-  created_at: string;
-  last_edited_at: string;
   repo: string|null;
+  created_at: string;
+  techList: Technology[];
+  contributors: any[];
+  screenshots: string[];
 }
 
 export interface ReducedProjectType {
