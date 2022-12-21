@@ -1,15 +1,14 @@
 import classes from './showcase.module.scss';
 import { CustomError, Link } from '../utilities';
 import { ReducedProject } from './reducedProject/reducedProject';
-import { ReducedProjectType, Technology } from '../../types/types';
 import { BsFiles } from 'react-icons/bs';
+import type { ReducedProjectType } from '../../types/types';
 
-interface Props {
+export function Showcase({
+  projects
+}: {
   projects: ReducedProjectType[]
-  technologies: Technology[]
-}
-
-export function Showcase({ projects, technologies }: Props) {
+}) {
   return (
     <main className={classes.showcase}>
       <div className={classes.wrapper}>
@@ -28,15 +27,14 @@ export function Showcase({ projects, technologies }: Props) {
           <>
             <div className={classes.projects}>
               {projects.map(p => {
-                const techArray = technologies.filter(t => t.p_id === p.id).map(t => t.name);
                 return (
                   <ReducedProject 
                     id={p.id}
                     title={p.title}
                     description={p.description}
-                    preview={p.preview}
+                    thumbnail={p.thumbnail}
                     key={p.id}
-                    tech={techArray}/>
+                    techList={p.techList}/>
                 )
               })}
             </div>

@@ -2,28 +2,26 @@ import { Landing } from '../components/landing/landing';
 import { Showcase } from '../components/showcase/showcase';
 import { Contact } from '../components/contact/contact';
 import { Skills } from '../components/skills/skills';
-import { ReducedProjectType, Technology } from '../types/types';
 import { getReducedProjects } from '../lib/projects';
 import Layout from '../components/layout/layout';
+import type { ReducedProjectType } from '../types/types';
 import type { NextPageWithLayout } from './_app';
 import type { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { projects, technologies } = await getReducedProjects(2);
+    const projects = await getReducedProjects(2);
 
     return {
       props: {
-        projects,
-        technologies
+        projects
       }
     }
   } catch(err) {
     console.log(err);
     return {
       props: {
-        projects: [],
-        technologies: []
+        projects: []
       }
     }
   }
@@ -31,18 +29,16 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 const HomePage: NextPageWithLayout = (
   {
-    projects,
-    technologies
+    projects
   }:{
-    projects: ReducedProjectType[],
-    technologies: Technology[]
+    projects: ReducedProjectType[]
   }
 ) => {
   return (
     <>
       <Landing />
       <Skills />
-      <Showcase projects={projects} technologies={technologies}/>
+      <Showcase projects={projects} />
       <Contact />
     </>
   )

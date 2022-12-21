@@ -1,7 +1,7 @@
-import { s3 } from "../aws/aws";
 import { db } from "../db/db";
-import { FullProject, ReducedProjectType, Technology } from "../types/types";
+import { s3 } from "../aws/aws";
 import { fetchJson } from "./fetchJson";
+import type { ReducedProjectType, FullProjectType, Technology } from "../types/types";
 
 // This util function is used to retrieve reduced projects for
 // showcase section of index page.
@@ -12,13 +12,13 @@ import { fetchJson } from "./fetchJson";
 // that'll be returned.
 export async function getReducedProjects(limit?: number) {
   let query = `
-    select id, title, description, preview, created_at
+    select id, title, description, thumbnail, created_at
     from project
     order by created_at desc;
   `;
   if(limit > 0) {
     query = `
-      select id, title, description, preview, created_at
+      select id, title, description, thumbnail, created_at
       from project
       order by created_at desc
       limit ${limit};
@@ -27,10 +27,7 @@ export async function getReducedProjects(limit?: number) {
 
   const projects: ReducedProjectType[] = await db.pool.query(query);
   if(!projects.length) {
-    return {
-      projects: [],
-      technologies: []
-    }
+    return []
   }
 
   const p_ids = projects.map(p => `'${p.id}'`).join(',');
@@ -40,10 +37,12 @@ export async function getReducedProjects(limit?: number) {
     where p_id in (${p_ids});
   `);
 
-  return {
-    projects: JSON.parse(JSON.stringify(projects)),
-    technologies: technologies
-  }
+  projects.forEach(p => {
+    const techList = technologies.filter(t => t.p_id === p.id).map(t => t.name);
+    p.techList = techList;
+  })
+
+  return JSON.parse(JSON.stringify(projects)) as ReducedProjectType[]
 }
 
 // This util function retrieves a single project data.
@@ -51,8 +50,8 @@ export async function getReducedProjects(limit?: number) {
 // fetch individual project.
 // id: required => used to fetch a single matching project data.
 export async function getProject(id: string) {
-  const project: FullProject[] = await db.pool.query(`
-    select *
+  const [project]: FullProjectType[] = await db.pool.query(`
+    select id, title, description, demo_url, repo, created_at, last_edited_at
     from project
     where id = '${id}';
   `);
@@ -76,17 +75,14 @@ export async function getProject(id: string) {
   const technologies: Technology[] = await db.pool.query(`
     select *
     from technology
-    where p_id = '${project[0].id}';
+    where p_id = '${project.id}';
   `);
 
-  // const response = await fetch(`https://api.github.com/repos/sinabyr/${project[0].repo}/contributors`);
-  // const data = await response.json();
-
-  const contributors = await fetchJson(`https://api.github.com/repos/sinabyr/${project[0].repo}/contributors`);
+  const contributors = await fetchJson(`https://api.github.com/repos/sinabyr/${project.repo}/contributors`);
 
   return {
     project: {
-      ...JSON.parse(JSON.stringify(project[0])),
+      ...JSON.parse(JSON.stringify(project)),
       contributors: contributors
     },
     technologies,

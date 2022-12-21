@@ -1,13 +1,12 @@
 import classes from './projects.module.scss';
 import { ReducedProject } from '../showcase/reducedProject/reducedProject';
-import { ReducedProjectType, Technology } from '../../types/types';
+import type { ReducedProjectType } from '../../types/types';
 
-interface Props {
-  projects: ReducedProjectType[];
-  technologies: Technology[];
-}
-
-export function Projects({ projects, technologies }: Props) {
+export function Projects({
+  projects
+}: {
+  projects: ReducedProjectType[]
+}) {
   return (
     <section className={classes.projects}>
       <div className={classes.wrapper}>
@@ -16,15 +15,14 @@ export function Projects({ projects, technologies }: Props) {
         </div>
         <div className={classes.content}>
           {projects.map(p => {
-            const techArray = technologies.filter(t => t.p_id === p.id).map(t => t.name);
             return (
               <ReducedProject
                 key={p.id}
                 id={p.id}
                 title={p.title}
                 description={p.description}
-                preview={p.preview}
-                tech={techArray}/>
+                thumbnail={p.thumbnail}
+                techList={p.techList}/>
             )
           })}
         </div>

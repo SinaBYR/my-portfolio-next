@@ -6,23 +6,22 @@ export interface User {
   isLoggedIn: boolean;
 }
 
-export interface FullProject {
+export interface FullProjectType {
   id: string;
   title: string;
   description: string;
   demo_url: string;
-  preview: string[];
   created_at: string;
-  edited_at: string;
+  last_edited_at: string;
   repo: string|null;
-  contributors: any[]
 }
 
 export interface ReducedProjectType {
   id: string;
   title: string;
   description: string;
-  preview: string;
+  thumbnail: string;
+  techList: string[];
 }
 
 export interface Technology {

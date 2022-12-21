@@ -3,31 +3,34 @@ import type { NextPageWithLayout } from "./_app";
 import { getReducedProjects } from "../lib/projects";
 import { Projects } from "../components/projects/projects";
 import Layout from "../components/layout/layout";
+import type { ReducedProjectType } from "../types/types";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { projects, technologies } = await getReducedProjects();
+    const projects = await getReducedProjects();
 
     return {
       props: {
-        projects,
-        technologies
+        projects
       }
     }
   } catch(err) {
     console.log(err);
     return {
       props: {
-        projects: [],
-        technologies: []
+        projects: []
       }
     }
   }
 }
 
-const ProjectsPage: NextPageWithLayout = ({ projects, technologies }: any) => {
+const ProjectsPage: NextPageWithLayout = ({
+  projects
+}: {
+  projects: ReducedProjectType[]
+}) => {
   return (
-    <Projects projects={projects} technologies={technologies} />
+    <Projects projects={projects} />
   )
 }
 
