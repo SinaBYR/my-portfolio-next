@@ -34,6 +34,7 @@ export function SelectRepo({ setFieldValue }) {
     <AsyncSelect
       name="repo"
       id="repo"
+      placeholder=""
       onChange={(e: any) => setFieldValue('repo', e.value)}
       styles={{
         singleValue: baseStyles => ({
