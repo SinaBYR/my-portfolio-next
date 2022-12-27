@@ -7,6 +7,7 @@
     "aws-sdk": "^2.1268.0",
     "axios": "^0.23.0",
     "bcrypt": "^5.1.0",
+    "formidable": "^2.1.1",
     "formik": "^2.2.9",
     "iron-session": "^6.3.1",
     "mariadb": "^3.0.2",
@@ -50,6 +51,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/formidable": "^2.0.5",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-tag-input": "^6.6.1",
