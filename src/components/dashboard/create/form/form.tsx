@@ -7,6 +7,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { TechTags } from './techTags/techTags';
 import { SelectRepo } from './selectRepo/selectRepo';
 import { UploadScreenshots } from './uploadScreenshots/uploadScreenshots';
+import { fetchJson } from '../../../../lib/fetchJson';
 
 export function Form() {
   const { values, handleChange, setFieldValue, handleSubmit } = useFormik({
@@ -19,8 +20,26 @@ export function Form() {
       technologies: [],
       thumbnail: ''
     },
-    onSubmit: (values, _helpers) => {
-      console.log(values)
+    onSubmit: async (values, _helpers) => {
+      const formData = new FormData();
+      Object.keys(values).forEach(field => {
+        if(field === 'technologies') {
+          return values.technologies.forEach(t => formData.append('technologies[]', t.text));
+        }
+
+        if(field === 'screenshots') {
+          return values.screenshots.forEach(ss => formData.append('screenshots[]', ss));
+        }
+
+        formData.append(field, values[field]);
+      });
+
+      const res = await fetchJson('/api/projects', {
+        method: 'POST',
+        body: formData
+      })
+
+      console.log(res)
     }
   });
 
@@ -71,7 +90,9 @@ export function Form() {
         handleChange={handleChange}
         setFieldValue={setFieldValue}/>
 
-      
+      {/* <input type="file" name="" id="" onChange={e => {
+        console.log(e.target.files);
+      }}/> */}
       <div className={classes.controls}>
         <Button variant="simple-alt" type="submit">Create</Button>
       </div>
