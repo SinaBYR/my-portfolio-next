@@ -66,7 +66,7 @@ export async function getProject(id: string) {
 
   const bucketParams = {
     Bucket: 'sinabyr',
-    Prefix: 'screenshots/' + id
+    Prefix: 'screenshots/' + project.title
   };
   const { Contents } = await s3.listObjects(bucketParams).promise();
   // The root directory is also returned alongside actual objects.
