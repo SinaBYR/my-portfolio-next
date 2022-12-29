@@ -55,7 +55,7 @@ function getFormData(req: IncomingMessage) {
 
       resolve({
         ...fields,
-        screenshots: [files['screenshots[]']]
+        screenshots: Object.keys(files).length ? [files['screenshots[]']] : []
       });
     })
   });
@@ -80,6 +80,8 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
       message: 'Unauthorized access to resources.'
     });
   }
+
+  const conn = await db.pool.getConnection();
 
   if(req.method === 'POST') {
     try {
@@ -117,7 +119,7 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
         values (?, ?, ?, ?, ?) returning id, title, created_at, last_edited_at;
       `;
   
-      const [newProject]: ProjectType[] = await db.pool.query(projectTableQuery, [
+      const [newProject]: ProjectType[] = await conn.query(projectTableQuery, [
         title,
         repo,
         demo_url ?? null,
@@ -129,11 +131,11 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
         insert into technology (p_id, name) values (?, ?);
       `;
       const promises = technologies.map(t => {
-        return db.pool.query(technologyTableQuery, [newProject.id, t])
+        return conn.query(technologyTableQuery, [newProject.id, t])
       });
       await Promise.all(promises);
   
-      db.pool.end();
+      conn.release();
       return res.json(newProject);
     } catch(err) {
       return res.status(500).send(err);
@@ -147,7 +149,8 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
   `;
 
   try {
-    const projects: ProjectType[] = await db.pool.query(query);
+    const projects: ProjectType[] = await conn.query(query);
+    conn.release();
     res.json(projects);
   } catch(err) {
     res.status(500).send(err);

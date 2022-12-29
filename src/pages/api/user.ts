@@ -32,8 +32,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   `;
 
   try {
-    const [user]: UserTableRecord[] = await db.pool.query(query);
-
+    const conn = await db.pool.getConnection();
+    const [user]: UserTableRecord[] = await conn.query(query);
+    conn.release();
+    
     res.json({
       ...user,
       isLoggedIn: true
