@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Editor } from '@tinymce/tinymce-react';
-import { TechTags } from './techTags/techTags';
+import { AddTechTags } from './addTechTags/addTechTags';
 import { SelectRepo } from './selectRepo/selectRepo';
 import { UploadScreenshots } from './uploadScreenshots/uploadScreenshots';
 import { fetchJson } from '../../../../lib/fetchJson';
@@ -65,7 +65,7 @@ export function Form() {
         </div>
         <div>
           <label htmlFor="technologies">Technologies</label>
-          <TechTags values={values} setFieldValue={setFieldValue}/>
+          <AddTechTags values={values} setFieldValue={setFieldValue}/>
         </div>
         <div>
           <label htmlFor="repo">Repository</label>

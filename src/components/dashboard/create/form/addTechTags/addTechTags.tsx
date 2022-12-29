@@ -1,7 +1,7 @@
-import classes from './techTags.module.scss';
+import classes from './addTechTags.module.scss';
 import { WithContext as ReactTags } from 'react-tag-input';
 
-export function TechTags({ values, setFieldValue }) {
+export function AddTechTags({ values, setFieldValue }) {
   const handleDelete = i => {
     setFieldValue(
       'technologies',
