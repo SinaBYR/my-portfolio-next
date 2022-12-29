@@ -61,7 +61,7 @@ function getFormData(req: IncomingMessage) {
   });
 }
 
-// Returns an array of promises, uploading each screenshot file to S3 bucket.
+// Returns an array of promises of uploading each screenshot file to S3 bucket.
 function getS3UploadPromises(subDirectory: string, screenshots: any[]) {
   const promises = screenshots.map(ss => {
     return s3.upload({
@@ -97,13 +97,13 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
         return res.status(502).send({ message: 'Missing parameters' });
       }
   
-      let thumbnailUrl;
+      let thumbnailUrl: string;
   
       if(screenshots.length) {
         // upload screenshots in parallel
-        const result = await Promise.all(getS3UploadPromises(title, screenshots));
+        const screenshotsArray = await Promise.all(getS3UploadPromises(title, screenshots));
         // grab the selected screenshot used as thumbnail
-        thumbnailUrl = result.filter(({Key}) => Key.substring(Key.lastIndexOf('/') + 1) === thumbnail)[0]?.Location;
+        thumbnailUrl = screenshotsArray.filter(({Key}) => Key.substring(Key.lastIndexOf('/') + 1) === thumbnail)[0]?.Location;
   
         if(!thumbnailUrl) {
           // even tho screenshots are provided, thumbnail value doesn't correspond
@@ -124,7 +124,7 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
         description ?? null,
         thumbnailUrl ?? null
       ]);
-  
+
       const technologyTableQuery = `
         insert into technology (p_id, name) values (?, ?);
       `;
