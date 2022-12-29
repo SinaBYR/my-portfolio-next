@@ -34,7 +34,9 @@ export async function getReducedProjects(limit?: number) {
   const technologies: Technology[] = await db.pool.query(`
     select *
     from technology
-    where p_id in (${p_ids});
+    where p_id in (${p_ids})
+    order by created_at desc
+    limit 3;
   `);
 
   projects.forEach(p => {
