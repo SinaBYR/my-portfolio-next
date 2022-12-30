@@ -63,38 +63,47 @@ export async function getReducedProjects(limit?: number) {
 // fetch individual project.
 // id: required => used to fetch a single matching project data.
 export async function getProject(id: string) {
-  // const [project]: FullProjectType[] = await db.pool.query(`
-  //   select id, title, description, demo_url, repo, created_at
-  //   from project
-  //   where id = '${id}';
-  // `);
+  const client = await db.connect();
 
-  // const technologies: Technology[] = await db.pool.query(`
-  //   select *
-  //   from technology
-  //   where p_id = '${project.id}';
-  // `);
+  const projectResult = await client.query(`
+    select id, title, description, demo_url, repo, created_at
+    from project
+    where id = $1;
+  `, [id]);
 
-  // const contributors: any[] = await fetchJson(`https://api.github.com/repos/sinabyr/${project.repo}/contributors`);
+  const project: FullProjectType = projectResult.rows[0];
 
-  // const bucketParams = {
-  //   Bucket: 'sinabyr',
-  //   Prefix: 'screenshots/' + project.title
-  // };
-  // const { Contents } = await s3.listObjects(bucketParams).promise();
-  // // The root directory is also returned alongside actual objects.
-  // // Each s3 object contains a 'Size' property.
-  // // The object which contains root directory has a 0 Size value.
-  // // To remove that, I only pass objects whose Size property are non-zero value.
-  // const screenshots = Contents?.filter(obj => obj.Size).map(photo => {
-  //   const href = 'https://sinabyr.storage.iran.liara.space/';
-  //   const photoUrl = href + photo.Key;
-  //   return photoUrl;
-  // });
+  const techResult = await client.query(`
+    select *
+    from technology
+    where p_id = $1;
+  `, [project.id]);
+
+  client.release();
+
+  const technologies: Technology[] = techResult.rows;
+
+  const contributors: any[] = await fetchJson(`https://api.github.com/repos/sinabyr/${project.repo}/contributors`);
+
+  const bucketParams = {
+    Bucket: 'sinabyr',
+    Prefix: 'screenshots/' + project.title
+  };
+
+  const { Contents } = await s3.listObjects(bucketParams).promise();
+  // The root directory (root object) is also returned alongside actual objects.
+  // Each s3 object contains a 'Size' property.
+  // The object which contains root directory has a 0 Size value.
+  // To remove that, I only pass objects whose Size property are non-zero value.
+  const screenshots = Contents?.filter(obj => obj.Size).map(photo => {
+    const href = 'https://sinabyr.storage.iran.liara.space/';
+    const photoUrl = href + photo.Key;
+    return photoUrl;
+  });
   
-  // project.techList = technologies;
-  // project.contributors = contributors;
-  // project.screenshots = screenshots;
+  project.techList = technologies;
+  project.contributors = contributors;
+  project.screenshots = screenshots;
 
-  // return JSON.parse(JSON.stringify(project)) as FullProjectType;
+  return JSON.parse(JSON.stringify(project)) as FullProjectType;
 }
