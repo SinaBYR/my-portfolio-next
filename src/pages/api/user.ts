@@ -1,6 +1,6 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { db } from "../../db/db";
+import { db } from "../../db";
 import { sessionOptions } from "../../lib/session";
 
 export default withIronSessionApiRoute(handler, sessionOptions);
@@ -25,17 +25,17 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     });
   }
 
-  const query = `
-    select id, username, created_at
-    from user
-    where id = '${userId}';
-  `;
+  const client = await db.connect();
 
   try {
-    const conn = await db.pool.getConnection();
-    const [user]: UserTableRecord[] = await conn.query(query);
-    conn.release();
-    
+    const { rows } = await client.query(`
+    select id, username, created_at
+    from user
+    where id = $1;
+  `, [userId]);
+
+    const user: UserTableRecord = rows[0];
+
     res.json({
       ...user,
       isLoggedIn: true
