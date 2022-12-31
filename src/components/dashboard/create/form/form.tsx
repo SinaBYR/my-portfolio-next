@@ -1,16 +1,20 @@
 import classes from './form.module.scss';
-import { Button } from '../../../utilities';
+import { Button, Spinner } from '../../../utilities';
 import { useFormik } from 'formik';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Editor } from '@tinymce/tinymce-react';
 import { AddTechTags } from './addTechTags/addTechTags';
 import { SelectRepo } from './selectRepo/selectRepo';
 import { UploadScreenshots } from './uploadScreenshots/uploadScreenshots';
 import { fetchJson } from '../../../../lib/fetchJson';
+import { useRef, useState } from 'react';
+import Router from 'next/router';
 
 export function Form() {
-  const { values, handleChange, setFieldValue, handleSubmit } = useFormik({
+  const [loading, setLoading] = useState(false);
+  const toastRef = useRef(null);
+  const { values, handleChange, setFieldValue, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
       title: '',
       demo_url: '',
@@ -21,6 +25,9 @@ export function Form() {
       thumbnail: ''
     },
     onSubmit: async (values, _helpers) => {
+      toast.dismiss(toastRef.current);
+      setLoading(true);
+      
       const formData = new FormData();
       Object.keys(values).forEach(field => {
         if(field === 'technologies') {
@@ -34,12 +41,18 @@ export function Form() {
         formData.append(field, values[field]);
       });
 
-      const res = await fetchJson('/api/projects', {
-        method: 'POST',
-        body: formData
-      })
+      try {
+        await fetchJson('/api/projects', {
+          method: 'POST',
+          body: formData
+        });
 
-      console.log(res)
+        Router.push('/dashboard/projects');
+      } catch(err) {
+        toastRef.current = toast.error(err.message);
+      } finally {
+        setLoading(false);
+      }
     }
   });
 
@@ -71,7 +84,7 @@ export function Form() {
           <label htmlFor="repo">Repository</label>
           <SelectRepo setFieldValue={setFieldValue}/>
         </div>
-        {/* <div>
+        <div>
           <label htmlFor="description">Description</label>
           <Editor
             init={{
@@ -82,7 +95,7 @@ export function Form() {
             }}
             onChange={(_evt, editor) => setFieldValue('description', editor.getContent())}
           />
-        </div> */}
+        </div>
       </div>
       <UploadScreenshots
         screenshots={values.screenshots}
@@ -90,18 +103,19 @@ export function Form() {
         handleChange={handleChange}
         setFieldValue={setFieldValue}/>
 
-      {/* <input type="file" name="" id="" onChange={e => {
-        console.log(e.target.files);
-      }}/> */}
       <div className={classes.controls}>
-        <Button variant="simple-alt" type="submit">Create</Button>
+        <Button
+          variant="simple-alt"
+          type="submit"
+          disabled={isSubmitting}
+          style={{ marginRight: '1rem' }}>Create</Button>
+        {loading ? <Spinner /> : null}
       </div>
       <ToastContainer
-        hideProgressBar
-        autoClose={false}
-        position="bottom-center"
+        position="top-center"
         theme="dark"
         toastStyle={{fontSize: '15px', textAlign: 'center'}}
+        hideProgressBar
         />
     </form>
   )
