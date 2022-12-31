@@ -28,13 +28,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const client = await db.connect();
 
   try {
-    const { rows } = await client.query(`
-    select id, username, created_at
-    from user
+    const result = await client.query(`
+    select id, username, created_at, last_sign_in
+    from user_account
     where id = $1;
   `, [userId]);
 
-    const user: UserTableRecord = rows[0];
+    const user: UserTableRecord = result.rows[0];
 
     res.json({
       ...user,
@@ -42,5 +42,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     });
   } catch(err) {
     res.status(500).send(err);
+  } finally {
+    client.release();
   }
 }
