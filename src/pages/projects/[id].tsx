@@ -1,5 +1,4 @@
 import type { GetServerSideProps } from "next";
-import type { NextPageWithLayout } from "../_app";
 import type { FullProjectType } from "../../types/types";
 import { Project } from "../../components/projects/project/project";
 import { getProject } from "../../lib/projects";
@@ -22,18 +21,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 }
 
-const FullProjectPage: NextPageWithLayout = ({
+function FullProjectPage({
   project
 }: {
   project: FullProjectType
-}) => {
-  return <Project project={project}/>
-}
-
-FullProjectPage.getLayout = function getLayout(page) {
-  return (
-    <Layout>{page}</Layout>
-  )
+}) {
+  return <Layout><Project project={project}/></Layout>
 }
 
 export default FullProjectPage;

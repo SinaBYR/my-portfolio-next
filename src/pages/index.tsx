@@ -5,7 +5,6 @@ import { Skills } from '../components/skills/skills';
 import { getReducedProjects } from '../lib/projects';
 import Layout from '../components/layout/layout';
 import type { ReducedProjectType } from '../types/types';
-import type { NextPageWithLayout } from './_app';
 import type { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -27,27 +26,27 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
 
-const HomePage: NextPageWithLayout = (
+function HomePage(
   {
     projects
   }:{
     projects: ReducedProjectType[]
   }
-) => {
+) {
   return (
-    <>
+    <Layout>
       <Landing />
       <Skills />
       <Showcase projects={projects} />
       <Contact />
-    </>
+    </Layout>
   )
 }
 
-HomePage.getLayout = function getLayout(page) {
-  return (
-    <Layout>{page}</Layout>
-  )
-}
+// HomePage.getLayout = function getLayout(page) {
+//   return (
+//     <Layout>{page}</Layout>
+//   )
+// }
 
 export default HomePage;

@@ -1,5 +1,4 @@
 import type { GetServerSideProps } from "next";
-import type { NextPageWithLayout } from "./_app";
 import { getReducedProjects } from "../lib/projects";
 import { Projects } from "../components/projects/projects";
 import Layout from "../components/layout/layout";
@@ -24,19 +23,15 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
 
-const ProjectsPage: NextPageWithLayout = ({
+function ProjectsPage({
   projects
 }: {
   projects: ReducedProjectType[]
-}) => {
+}) {
   return (
-    <Projects projects={projects} />
-  )
-}
-
-ProjectsPage.getLayout = function getLayout(page) {
-  return (
-    <Layout>{page}</Layout>
+    <Layout>
+      <Projects projects={projects} />
+    </Layout>
   )
 }
 
