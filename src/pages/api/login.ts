@@ -51,5 +51,7 @@ async function handler( req: NextApiRequest, res: NextApiResponse ) {
   } catch(err) {
     console.log(err);
     res.status(500).send({err});
+  } finally {
+    client.release();
   }
 }
