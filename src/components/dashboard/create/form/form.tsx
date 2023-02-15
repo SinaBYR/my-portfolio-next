@@ -49,7 +49,7 @@ export function Form() {
 
         Router.push('/dashboard/projects');
       } catch(err) {
-        toastRef.current = toast.error(err.message);
+        toastRef.current = toast.error(err.data?.message ?? err.message);
       } finally {
         setLoading(false);
       }
