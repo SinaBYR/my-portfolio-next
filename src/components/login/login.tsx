@@ -43,7 +43,7 @@ export function Login() {
 
       mutateUser(result, false);
     } catch(err) {
-      if(err.response.status === 401) {
+      if(err?.response?.status === 401) {
         return toast.error('Username or passphrase is incorrect.')
       }
 
